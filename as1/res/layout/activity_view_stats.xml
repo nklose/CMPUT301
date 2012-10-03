@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/batteryUsedLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/label_battery_used"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <TextView
+        android:id="@+id/batteryUsedValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="@string/default_battery_value"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#33ccff" />
+    
+    <TextView
+        android:id="@+id/timeElapsedLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_total_time"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <TextView
+        android:id="@+id/timeElapsedValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="@string/default_time_elapsed"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#33ccff" />
+    
+    <TextView
+        android:id="@+id/averageUsageLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_average_usage"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <TextView
+        android:id="@+id/averageUsageValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="@string/default_battery_usage"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#33ccff" />
+
+</LinearLayout>

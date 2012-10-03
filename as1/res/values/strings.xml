@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Battery Tracker</string>
+    <string name="title_activity_main">Main Menu</string>
+    <string name="title_activity_view_log">View Log Entries</string>
+    <string name="title_activity_new_entry">New Log Entry</string>
+    <string name="title_activity_view_stats">Battery Statistics</string>
+    
+    <string name="main_menu_text">Battery Tracker</string>
+    <string name="view_log">View/Edit Log</string>
+    <string name="new_entry">New Entry</string>
+    <string name="view_stats">Statistics</string>
+    <string name="menu_settings">Settings</string>
+    <string name="desc_label">Description:</string>
+    <string name="desc_hint">describe the activity</string>
+    <string name="select_date">Set Date</string>
+    <string name="date_label">Date:</string>
+    <string name="percentage_label">Battery % (0.00&#8211;100.00):</string>
+    <string name="start_percentage_hint">starting life</string>
+    <string name="end_percentage_hint">ending life</string>
+    <string name="time_label">Time Elapsed:</string>
+    <string name="time_hint">enter # of seconds</string>
+    <string name="submit_entry">Add Entry</string>
+    <string name="log_label">Log Entries</string>
+    <string name="clear_log">Clear Log</string>
+    <string name="show_raw_log">Show Raw Log</string>
+    
+    <string name="label_battery_used">Total Battery Used:</string>
+    <string name="label_total_time">Total Time Elapsed:</string>
+    <string name="label_average_usage">Average Battery Usage:</string>
+    <string name="default_battery_value">0%</string>
+    <string name="default_time_elapsed">0 Seconds</string>
+    <string name="default_battery_usage">Unavailable</string>
+    
+    <string name="dialog_start_err">Please modify the value of the starting battery life % so it is between 0 and 100.</string>
+    <string name="dialog_end_err">Please modify the value of the ending battery life % so it is between 0 and 100.</string>
+    <string name="dialog_time_err">Please enter a positive number of seconds.</string>
+    <string name="dialog_missing_fields">Please ensure the starting battery, ending battery, and time elapsed fields are not empty.</string>
+    <string name="dialog_add_success">The new log entry was successfully added.</string>
+    <string name="dialog_write_err">The new log entry could not be added due to a write error.</string>
+    <string name="dialog_battery_err">The ending battery life must be smaller than the starting battery life.</string>
+    <string name="dialog_log_cleared">Log file successfully cleared.</string>
+
+</resources>
