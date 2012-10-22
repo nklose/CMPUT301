@@ -25,5 +25,17 @@
         <text>View%20Completed%20Tasks</text>
       </controlProperties>
     </control>
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::Canvas" x="69" y="78" w="271" h="39" measuredW="100" measuredH="70" zOrder="5" locked="false" isInGroup="-1"/>
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Button" x="301" y="78" w="39" h="39" measuredW="48" measuredH="30" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>ReloadIcon%7Csmall</icon>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="164" y="87" w="-1" h="-1" measuredW="66" measuredH="21" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>App%20Name</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>
