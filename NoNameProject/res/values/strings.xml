@@ -6,5 +6,15 @@
     <string name="view_local_tasks">View Local Tasks</string>
     <string name="view_online_tasks">View Online Tasks</string>
     <string name="view_completed_tasks">View Completed Tasks</string>
-
+    <string name="add_task_title">task title</string>
+    <string name="add_task_desc">task description</string>
+    <string name="add_task_creator">task creator</string>
+    <string name="add_task_items_requested">number of items requested</string>
+    <string name="add_task_type">Type of task:</string>
+    <string name="add_task_text_radio">Text only</string>
+    <string name="add_task_image_radio">Image</string>
+    <string name="add_task_audio_radio">Audio</string>
+    <string name="share_online_checkbox">Share task online</string>
+	<string name="create_task_button">Create</string>
+	<string name="cancel_task_button">Cancel</string>
 </resources>

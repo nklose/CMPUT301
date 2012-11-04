@@ -1,0 +1,140 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+    
+	    <View
+	        android:layout_width="0dp"
+	        android:layout_weight="8"
+	        android:layout_height="30dp" />
+	    
+	    <!-- refresh drawable modified from an image found at  
+	    http://www.softicons.com/free-icons/toolbar-icons/
+	    toolbar-icons-by-gentleface/refresh-icon -->
+	    <Button
+	        android:id="@+id/refreshButton"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="30dp"
+	        android:gravity="right"
+			android:background="@drawable/ic_refresh" />
+    
+    </LinearLayout>
+    
+    <EditText
+        android:id="@+id/taskTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/add_task_title" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/taskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/add_task_desc" />
+    
+    <EditText
+	    android:id="@+id/taskCreator"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/add_task_creator"
+	    android:gravity="top"
+	    android:ems="10" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/add_task_type"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+	    <RadioGroup
+	        android:id="@+id/addTaskRadioGroup"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content" >
+	
+	        <RadioButton
+	            android:id="@+id/addTaskTextRadio"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:checked="true"
+	            android:text="@string/add_task_text_radio" />
+	
+	        <RadioButton
+	            android:id="@+id/addTaskTextImage"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/add_task_image_radio" />
+	
+	        <RadioButton
+	            android:id="@+id/addTaskTextAudio"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/add_task_audio_radio" />
+	    </RadioGroup>
+	</LinearLayout>
+	
+    <EditText
+	    android:id="@+id/itemsRequested"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/add_task_items_requested"
+	    android:gravity="top"
+	    android:inputType="number" 
+	    android:ems="10" />
+    <CheckBox
+        android:id="@+id/shareOnlineCheckbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/share_online_checkbox" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+    
+	    <Button
+	        android:id="@+id/cancelTaskButton"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+	        android:text="@string/cancel_task_button" />
+	    
+	    <Button
+	        android:id="@+id/createTaskButton"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+	        android:text="@string/create_task_button" />
+    
+    </LinearLayout>
+    
+    
+
+</LinearLayout>
