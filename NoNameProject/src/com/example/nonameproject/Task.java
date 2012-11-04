@@ -14,6 +14,7 @@ public class Task {
 	private Calendar submitDate;
 	private ArrayList<TaskItem> taskItems;
 	
+	//Constructor used when a new task is being created
 	public Task(String title, String description, String creator,
 			Integer numRequiredItems, Integer type, 
 			Calendar submitDate){
@@ -23,6 +24,21 @@ public class Task {
 		this.creator = creator;
 		this.numRequiredItems = numRequiredItems;
 		this.completed = false;
+		this.type = type;
+		this.submitDate = submitDate;
+		this.taskItems = new ArrayList<TaskItem>();
+	}
+	
+	//Constructor used when creating a task from existing task data
+	public Task(Integer id, String title, String description, String creator,
+			Integer numRequiredItems, Boolean completed, Integer type, 
+			Calendar submitDate){
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.creator = creator;
+		this.numRequiredItems = numRequiredItems;
+		this.completed = completed;
 		this.type = type;
 		this.submitDate = submitDate;
 		this.taskItems = new ArrayList<TaskItem>();

@@ -5,7 +5,7 @@ import java.util.Calendar;
 public class TextItem extends TaskItem{
 	private String description;
 
-	TextItem(Integer taskId, Integer taskItemId, Calendar submitDate, 
+	public TextItem(Integer taskId, Integer taskItemId, Calendar submitDate, 
 			String description){
 		super(taskId, taskItemId, submitDate);
 		this.description = description;
