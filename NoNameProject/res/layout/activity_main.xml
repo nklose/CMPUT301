@@ -1,14 +1,28 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button android:id="@+id/addtaskbutton"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainActivity" />
+        android:text="@string/add_task"
+        android:onClick = "openLogHandler" />
+    <Button android:id="@+id/viewlocaltasksbutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_local_tasks"
+        android:onClick="newLogEntry" />
+    <Button android:id="@+id/viewonlinetasksbutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_online_tasks"
+        android:onClick="openBatteryStatsHandler" />
+    <Button android:id="@+id/viewcompletedtasksbutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_completed_tasks"
+        android:onClick="openBatteryStatsHandler" />
 
-</RelativeLayout>
+</LinearLayout>
