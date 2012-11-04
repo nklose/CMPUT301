@@ -3,7 +3,7 @@ package com.example.nonameproject;
 import java.util.ArrayList;
 
 public abstract class TaskController {
-	private ArrayList<Task> tasks;
+	protected ArrayList<Task> tasks;
 	
 	public TaskController(){
 		tasks = new ArrayList<Task>();

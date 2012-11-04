@@ -1,8 +1,9 @@
 package com.example.nonameproject;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public abstract class TaskItem {
+public abstract class TaskItem{
 	private Integer taskId;
 	private Integer taskItemId;
 	private Calendar submitDate;

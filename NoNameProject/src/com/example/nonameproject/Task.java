@@ -1,9 +1,10 @@
 package com.example.nonameproject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Task {
+public class Task implements Serializable{
 	private Integer id;
 	private String title;
 	private String description;
@@ -13,6 +14,7 @@ public class Task {
 	private Integer type;
 	private Calendar submitDate;
 	private ArrayList<TaskItem> taskItems;
+	private static final long serialVersionUID = 0L;
 	
 	//Constructor used when a new task is being created
 	public Task(String title, String description, String creator,
@@ -114,5 +116,9 @@ public class Task {
 
 	public void setTaskItems(ArrayList<TaskItem> taskItems) {
 		this.taskItems = taskItems;
+	}
+	
+	public void addTaskItem(TaskItem taskItem){
+		taskItems.add(taskItem);
 	}
 }
