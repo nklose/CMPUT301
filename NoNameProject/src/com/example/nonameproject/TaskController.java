@@ -2,6 +2,8 @@ package com.example.nonameproject;
 
 import java.util.ArrayList;
 
+import android.content.Context;
+
 public abstract class TaskController {
 	protected ArrayList<Task> tasks;
 	
@@ -13,7 +15,7 @@ public abstract class TaskController {
 		return tasks.get(index);
 	}
 	
-	abstract void addTask(Task newTask);
+	abstract void addTask(Context context, Task newTask);
 	
-	abstract void deleteTask(Task task);
+	abstract void deleteTask(Context context, Task task);
 }

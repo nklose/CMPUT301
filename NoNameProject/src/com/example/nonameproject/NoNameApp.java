@@ -1,6 +1,7 @@
 package com.example.nonameproject;
 
 import android.app.Application;
+import android.content.Context;
 
 public class NoNameApp extends Application{
 	//Singletons
@@ -11,9 +12,9 @@ public class NoNameApp extends Application{
 	/**
 	 * @return
 	 */
-	public static LocalTaskController getLocalTaskController() {
+	public static LocalTaskController getLocalTaskController(Context context) {
 		if(localTaskController == null) 
-			localTaskController = new LocalTaskController();
+			localTaskController = new LocalTaskController(context);
 		return localTaskController;
 	}
 
