@@ -7,36 +7,46 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import android.content.Context;
+
 public class LocalTaskController extends TaskController{
 
 
 	/**
 	 * 
 	 */
-	public LocalTaskController() {
+	public LocalTaskController(Context context) {
 		super();
+		readLocalTaskFile(context);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.example.nonameproject.TaskController#addTask(com.example.nonameproject.Task)
 	 */
-	public void addTask(Task newTask) {
-		// TODO Auto-generated method stub
-
+	public void addTask(Context context, Task newTask) {
+		tasks.add(newTask);
+		LocalTaskIOAdapter.appendToLocalLog(context, newTask);
+		
 	}
 
 	/* (non-Javadoc)
 	 * @see com.example.nonameproject.TaskController#deleteTask(com.example.nonameproject.Task)
 	 */
-	public void deleteTask(Task task) {
-		// TODO Auto-generated method stub
-
+	public void deleteTask(Context context, int index) {
+		tasks.remove(index);
+		LocalTaskIOAdapter.overwriteLocalLog(context, tasks);
 	}
+	
+	public void deleteTask(Context context, Task task) {
+		tasks.remove(task);
+		LocalTaskIOAdapter.overwriteLocalLog(context, tasks);
+	}
+
 
 	/**
 	 * @param fis
 	 */
-	public void readLocalTaskFile(FileInputStream fis){
-		tasks = LocalTaskIOAdapter.readLocalLog(fis);
+	public void readLocalTaskFile(Context context){
+		tasks = LocalTaskIOAdapter.readLocalLog(context);
 	}
 }
