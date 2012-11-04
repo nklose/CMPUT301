@@ -1,0 +1,127 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    
+    <TextView
+        android:id="@+id/taskSolutionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_solution_title"
+        android:layout_marginBottom="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+	
+	    <TextView
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="@string/task_title_label" />
+	        
+	    <TextView
+	        android:id="@+id/solutionTaskTitle"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2"
+	        android:text="@string/task_title_placeholder" />
+	    
+	</LinearLayout>
+	
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+	
+	    <TextView
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="@string/task_desc_label" />
+	        
+	    <TextView
+	        android:id="@+id/solutionTaskDesc"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2"
+	        android:text="@string/task_desc_placeholder" />
+	    
+	</LinearLayout>
+	
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+	
+	    <TextView
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="@string/task_creator_label" />
+	        
+	    <TextView
+	        android:id="@+id/solutionTaskCreator"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2"
+	        android:text="@string/task_creator_placeholder" />
+	    
+	</LinearLayout>
+	
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+	
+	    <TextView
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="@string/task_type_label" />
+	        
+	    <TextView
+	        android:id="@+id/solutionTaskType"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2"
+	        android:text="@string/task_type_placeholder" />
+	    
+	</LinearLayout>
+	
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+	
+	    <TextView
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="@string/task_items_requested_label" />
+	        
+	    <TextView
+	        android:id="@+id/solutionTaskItemsRequested"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2"
+	        android:text="@string/task_items_requested_placeholder" />
+	    
+	</LinearLayout>
+
+	<ListView
+	    android:id="@+id/taskSolutionItemsListView"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+	</ListView>
+
+</LinearLayout>

@@ -20,4 +20,15 @@
 	<string name="completed_tasks_title">Completed Tasks</string>
 	<string name="my_tasks_label_radio">My Tasks</string>
 	<string name="all_tasks_label_radio">All Tasks</string>
+	<string name="task_solution_title">Task Solution</string>
+	<string name="task_title_label">Task Title:</string>
+	<string name="task_desc_label">Description:</string>
+	<string name="task_creator_label">Creator:</string>
+	<string name="task_type_label">Type:</string>
+	<string name="task_items_requested_label"># of items:</string>
+	<string name="task_title_placeholder">&lt;task title&gt;</string>
+	<string name="task_desc_placeholder">&lt;task description&gt;</string>
+	<string name="task_creator_placeholder">&lt;task creator&gt;</string>
+	<string name="task_type_placeholder">&lt;task type&gt;</string>
+	<string name="task_items_requested_placeholder">&lt;items requested&gt;</string>
 </resources>
