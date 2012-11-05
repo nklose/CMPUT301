@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddItemActivity"
+            android:name=".Activities.AddItemActivity"
             android:label="@string/title_activity_add_item" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddTaskActivity"
+            android:name=".Activities.AddTaskActivity"
             android:label="@string/title_activity_add_task" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ViewLocalTasksActivity"
+            android:name=".Activities.ViewLocalTasksActivity"
             android:label="@string/title_activity_view_local_tasks" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
