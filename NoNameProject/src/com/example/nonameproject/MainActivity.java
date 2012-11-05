@@ -36,7 +36,8 @@ public class MainActivity extends Activity {
      */
     public void viewLocalTasks(View view)
     {
-    	
+    	Intent intent = new Intent(this, ViewLocalTasksActivity.class);
+    	startActivity(intent);
     }
     
     /**
