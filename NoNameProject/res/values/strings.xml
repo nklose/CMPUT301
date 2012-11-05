@@ -35,4 +35,6 @@
 	<string name="add_item_local_task_button">Add Item</string>
 	<string name="share_button">Share</string>
 	<string name="save_changes_button">Save Changes</string>
+	<string name="shared_tasks_title">Shared Tasks</string>
+	<string name="view_shared_task_title">Shared Task</string>
 </resources>

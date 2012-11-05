@@ -22,6 +22,7 @@ public final class R {
         public static final int addTaskTextImage=0x7f070006;
         public static final int addTaskTextRadio=0x7f070005;
         public static final int addtaskbutton=0x7f070018;
+        public static final int allSharedTasksRadio=0x7f070020;
         public static final int allTasksRadio=0x7f070010;
         public static final int cancelTaskButton=0x7f07000a;
         public static final int completedTasksListView=0x7f070011;
@@ -32,21 +33,32 @@ public final class R {
         public static final int localTaskItemsListView=0x7f070015;
         public static final int localTasksListTitle=0x7f070016;
         public static final int localTasksListView=0x7f070017;
-        public static final int menu_settings=0x7f070023;
+        public static final int menu_settings=0x7f07002f;
+        public static final int mySharedTasksRadio=0x7f07001f;
         public static final int myTasksRadio=0x7f07000f;
         public static final int refreshButton=0x7f07000d;
+        public static final int refreshButtonSharedTasks=0x7f07001d;
         public static final int saveChangesLocalTaskButton=0x7f070013;
         public static final int shareLocalTaskButton=0x7f070012;
         public static final int shareOnlineCheckbox=0x7f070009;
-        public static final int solutionTaskCreator=0x7f07001f;
-        public static final int solutionTaskDesc=0x7f07001e;
-        public static final int solutionTaskItemsRequested=0x7f070021;
-        public static final int solutionTaskTitle=0x7f07001d;
-        public static final int solutionTaskType=0x7f070020;
+        public static final int sharedTaskCreator=0x7f07002b;
+        public static final int sharedTaskDesc=0x7f07002a;
+        public static final int sharedTaskItemsListView=0x7f07002e;
+        public static final int sharedTaskItemsRequested=0x7f07002d;
+        public static final int sharedTaskTitle=0x7f070029;
+        public static final int sharedTaskType=0x7f07002c;
+        public static final int sharedTasksListView=0x7f070021;
+        public static final int sharedTasksRadio=0x7f07001e;
+        public static final int sharedTasksTitle=0x7f07001c;
+        public static final int solutionTaskCreator=0x7f070025;
+        public static final int solutionTaskDesc=0x7f070024;
+        public static final int solutionTaskItemsRequested=0x7f070027;
+        public static final int solutionTaskTitle=0x7f070023;
+        public static final int solutionTaskType=0x7f070026;
         public static final int taskCreator=0x7f070002;
         public static final int taskDescription=0x7f070001;
-        public static final int taskSolutionItemsListView=0x7f070022;
-        public static final int taskSolutionTitle=0x7f07001c;
+        public static final int taskSolutionItemsListView=0x7f070028;
+        public static final int taskSolutionTitle=0x7f070022;
         public static final int taskTitle=0x7f070000;
         public static final int textView1=0x7f070003;
         public static final int viewcompletedtasksbutton=0x7f07001b;
@@ -59,7 +71,9 @@ public final class R {
         public static final int activity_edit_local_task=0x7f030002;
         public static final int activity_local_tasks_list=0x7f030003;
         public static final int activity_main=0x7f030004;
-        public static final int activity_task_solution=0x7f030005;
+        public static final int activity_shared_tasks=0x7f030005;
+        public static final int activity_task_solution=0x7f030006;
+        public static final int activity_view_shared_task=0x7f030007;
     }
     public static final class menu {
         public static final int activity_main=0x7f060000;
@@ -86,6 +100,7 @@ public final class R {
         public static final int save_changes_button=0x7f040023;
         public static final int share_button=0x7f040022;
         public static final int share_online_checkbox=0x7f04000f;
+        public static final int shared_tasks_title=0x7f040024;
         public static final int task_creator_label=0x7f040018;
         public static final int task_creator_placeholder=0x7f04001d;
         public static final int task_desc_label=0x7f040017;
@@ -101,6 +116,7 @@ public final class R {
         public static final int view_completed_tasks=0x7f040006;
         public static final int view_local_tasks=0x7f040004;
         public static final int view_online_tasks=0x7f040005;
+        public static final int view_shared_task_title=0x7f040025;
     }
     public static final class style {
         public static final int AppTheme=0x7f050000;

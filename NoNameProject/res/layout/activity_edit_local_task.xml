@@ -17,14 +17,14 @@
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
-	        android:text="Share" />
+	        android:text="@string/share_button" />
         
 	    <Button
 	        android:id="@+id/saveChangesLocalTaskButton"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
-	        android:text="save_changes_button" />
+	        android:text="@string/save_changes_button" />
     
     </LinearLayout>
     

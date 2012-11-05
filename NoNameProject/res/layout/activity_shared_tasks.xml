@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/sharedTasksTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="@string/shared_tasks_title"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+	    <!-- refresh drawable modified from an image found at  
+	    http://www.softicons.com/free-icons/toolbar-icons/
+	    toolbar-icons-by-gentleface/refresh-icon -->
+	    <Button
+	        android:id="@+id/refreshButtonSharedTasks"
+	        android:layout_width="30dp"
+	        android:layout_height="30dp"
+	        android:gravity="right"
+			android:background="@drawable/ic_refresh" />
+    
+    </LinearLayout>
+
+	<RadioGroup
+	    android:id="@+id/sharedTasksRadio"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    android:gravity="center"
+	    android:orientation="horizontal">
+	
+	    <RadioButton
+	        android:id="@+id/mySharedTasksRadio"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:checked="true"
+	        android:layout_marginRight="30dp"
+	        android:text="@string/my_tasks_label_radio" />
+	
+	    <RadioButton
+	        android:id="@+id/allSharedTasksRadio"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/all_tasks_label_radio" />
+	    
+	</RadioGroup>
+
+	<ListView
+	    android:id="@+id/sharedTasksListView"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+	</ListView>
+
+</LinearLayout>
