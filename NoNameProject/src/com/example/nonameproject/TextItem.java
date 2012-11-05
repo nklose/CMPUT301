@@ -18,4 +18,8 @@ public class TextItem extends TaskItem{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String toString(){
+		return this.description;
+	}
 }

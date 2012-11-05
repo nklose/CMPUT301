@@ -32,4 +32,7 @@ public abstract class TaskItem{
 	public void setSubmitDate(Calendar submitDate) {
 		this.submitDate = submitDate;
 	}
+	public String toString(){
+		return "";
+	}
 }
