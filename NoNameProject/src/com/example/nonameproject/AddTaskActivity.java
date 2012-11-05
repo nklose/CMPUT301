@@ -45,11 +45,13 @@ public class AddTaskActivity extends Activity {
     	String title = new String();
     	String description = new String();
     	String creator = new String();
-    	int type = 0;
+    	int type = -1;
+    	Boolean shareOnline;
     	
-    	// get context and controller
+    	// get context and controllers
     	Context context = this.getApplicationContext();
-    	LocalTaskController controller = NoNameApp.getLocalTaskController();
+    	LocalTaskController localController = NoNameApp.getLocalTaskController();
+    	SharedTaskController sharedController = NoNameApp.getSharedTaskController();
     	
     	// get input from user
     	EditText titleText = (EditText) findViewById(R.id.taskTitle);
@@ -62,7 +64,11 @@ public class AddTaskActivity extends Activity {
     	CheckBox shareCheckbox = (CheckBox) findViewById(R.id.shareOnlineCheckbox);
     	
     	// set type based on radio buttons
-    	if (typeImageRadio.isChecked())
+    	if (typeTextRadio.isChecked())
+    	{
+    		type = 0;
+    	}
+    	else if (typeImageRadio.isChecked())
     	{
     		type = 1;
     	}
@@ -70,18 +76,44 @@ public class AddTaskActivity extends Activity {
     	{
     		type = 2;
     	}
-    		
+    	
+    	shareOnline = shareCheckbox.isChecked();
     	
     	// assign inputs to variables
     	title = titleText.getText().toString();
     	description = descText.getText().toString();
     	creator = creatorText.getText().toString();
-    	int numRequiredItems = 0;
+    	int numRequiredItems = Integer.parseInt(reqItemsText.getText().toString());
     	Calendar submitDate = null;
-    	Task task = new Task(title, description, creator, numRequiredItems,
-    			type, submitDate);
     	
-    	// save the task locally
-    	controller.addTask(context, task);
+    	// check if inputs are valid
+    	if (title.matches(""))
+    	{
+    		// display null title error
+    	}
+    	else if (creator.matches(""))
+    	{
+    		// display null creator error
+    	}
+    	else if (numRequiredItems < 1)
+    	{
+    		// display required items error
+    	}
+    	else
+    	{
+    		// create the task and store it
+	    	Task task = new Task(title, description, creator, numRequiredItems,
+	    			type, submitDate);
+	    	
+	    	// save the task locally or online depending on checkbox
+	    	if (!shareOnline)
+	    	{
+	    		localController.addTask(context, task);
+	    	}
+	    	else
+	    	{
+	    		sharedController.addTask(context, task);
+	    	}
+    	}
     }
 }
