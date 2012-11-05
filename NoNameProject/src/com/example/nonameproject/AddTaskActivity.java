@@ -11,9 +11,12 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class AddTaskActivity extends Activity {
 
+	private final int TOAST_LENGTH = 3;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,7 @@ public class AddTaskActivity extends Activity {
     	String creator = new String();
     	int type = -1;
     	Boolean shareOnline;
+    	int numRequiredItems = 1;
     	
     	// get context and controllers
     	Context context = this.getApplicationContext();
@@ -83,21 +87,42 @@ public class AddTaskActivity extends Activity {
     	title = titleText.getText().toString();
     	description = descText.getText().toString();
     	creator = creatorText.getText().toString();
-    	int numRequiredItems = Integer.parseInt(reqItemsText.getText().toString());
+    	try
+    	{
+    		numRequiredItems = Integer.parseInt(reqItemsText.getText().toString());
+    	}
+    	catch (Exception e) { }
     	Calendar submitDate = null;
     	
-    	// check if inputs are valid
+    	// initialize toast
+    	// toast code from http://developer.android.com/guide/topics/ui/notifiers/toasts.html
+    	CharSequence toastText;
+    	Toast toast = null;
+    	
+    	// check if inputs are valid, and toast if they are not
     	if (title.matches(""))
     	{
-    		// display null title error
+    		//TODO: use dialog boxes instead of toasts
+    		// display missing title error
+    		toastText = "Task title is required.";
+    		toast = Toast.makeText(context, toastText, TOAST_LENGTH);
+    		toast.show();
     	}
     	else if (creator.matches(""))
     	{
-    		// display null creator error
+    		//TODO: use dialog boxes instead of toasts
+    		// display missing creator error
+    		toastText = "Creator is required.";
+    		toast = Toast.makeText(context, toastText, TOAST_LENGTH);
+    		toast.show();
     	}
     	else if (numRequiredItems < 1)
     	{
+    		//TODO: use dialog boxes instead of toasts
     		// display required items error
+    		toastText = "Required items must be > 0.";
+    		toast = Toast.makeText(context, toastText, TOAST_LENGTH);
+    		toast.show();
     	}
     	else
     	{

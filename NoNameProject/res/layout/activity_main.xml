@@ -6,35 +6,35 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/addtaskbutton"
+        android:id="@+id/addTaskButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:onClick="openLogHandler"
+        android:onClick="addTask"
         android:text="@string/add_task" />
 
     <Button
-        android:id="@+id/viewlocaltasksbutton"
+        android:id="@+id/viewLocalTasksButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:onClick="newLogEntry"
+        android:onClick="viewLocalTasks"
         android:text="@string/view_local_tasks" />
 
     <Button
-        android:id="@+id/viewonlinetasksbutton"
+        android:id="@+id/viewSharedTasksButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:onClick="openBatteryStatsHandler"
+        android:onClick="viewSharedTasks"
         android:text="@string/view_online_tasks" />
 
     <Button
-        android:id="@+id/viewcompletedtasksbutton"
+        android:id="@+id/viewCompletedTasksButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:onClick="openBatteryStatsHandler"
+        android:onClick="viewCompletedTasks"
         android:text="@string/view_completed_tasks" />
 
 </LinearLayout>

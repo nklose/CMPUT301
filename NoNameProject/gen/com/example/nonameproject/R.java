@@ -19,13 +19,13 @@ public final class R {
         public static final int Divider=0x7f07003b;
         public static final int addItemLocalTaskButton=0x7f070018;
         public static final int addTaskAudioRadio=0x7f070007;
+        public static final int addTaskButton=0x7f07001c;
         public static final int addTaskImageRadio=0x7f070006;
         public static final int addTaskItemsRequested=0x7f070008;
         public static final int addTaskRadioGroup=0x7f070004;
         public static final int addTaskTextAudio=0x7f070016;
         public static final int addTaskTextImage=0x7f070015;
         public static final int addTaskTextRadio=0x7f070005;
-        public static final int addtaskbutton=0x7f07001c;
         public static final int allSharedTasksRadio=0x7f070024;
         public static final int allTasksRadio=0x7f070010;
         public static final int cancelTaskButton=0x7f07000a;
@@ -74,9 +74,9 @@ public final class R {
         public static final int textViewDate=0x7f070038;
         public static final int textViewTitle=0x7f070034;
         public static final int textViewType=0x7f070035;
-        public static final int viewcompletedtasksbutton=0x7f07001f;
-        public static final int viewlocaltasksbutton=0x7f07001d;
-        public static final int viewonlinetasksbutton=0x7f07001e;
+        public static final int viewCompletedTasksButton=0x7f07001f;
+        public static final int viewLocalTasksButton=0x7f07001d;
+        public static final int viewSharedTasksButton=0x7f07001e;
     }
     public static final class layout {
         public static final int activity_add_task=0x7f030000;
