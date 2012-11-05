@@ -45,7 +45,7 @@ public class LocalTaskBaseAdapter extends BaseAdapter {
 		LocalTaskController localTaskController = NoNameApp.getLocalTaskController();
 		ViewHolder holder;
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.custom_task_row_view, null);
+			convertView = mInflater.inflate(R.layout.custom_local_task_row, null);
 			holder = new ViewHolder();
 			holder.txtDate = (TextView) convertView.findViewById(R.id.textViewDate);
 			holder.txtTitle = (TextView) convertView.findViewById(R.id.textViewTitle);

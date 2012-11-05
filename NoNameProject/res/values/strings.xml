@@ -37,4 +37,9 @@
 	<string name="save_changes_button">Save Changes</string>
 	<string name="shared_tasks_title">Shared Tasks</string>
 	<string name="view_shared_task_title">Shared Task</string>
+	
+	<string name="task_type">Type</string>
+	<string name="task_title">Title</string>
+	<string name="creator">Creator</string>
+	<string name="submit_date">Submit Date</string>
 </resources>

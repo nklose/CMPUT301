@@ -15,6 +15,10 @@ public abstract class TaskController {
 		return tasks.get(index);
 	}
 	
+	public int getNumberOfTasks(){
+		return tasks.size();
+	}
+	
 	abstract void addTask(Context context, Task newTask);
 	
 	abstract void deleteTask(Context context, Task task);

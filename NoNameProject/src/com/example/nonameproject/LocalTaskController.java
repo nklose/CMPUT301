@@ -11,7 +11,9 @@ import android.content.Context;
 
 public class LocalTaskController extends TaskController{
 
-
+	public LocalTaskController() {
+		super();
+	}
 	/**
 	 * 
 	 */
