@@ -50,5 +50,6 @@
     <string name="dialog_add_text_button">Add</string>
     <string name="dialog_add_text_item_title">Add Text Item</string>
     <string name="dialog_text_item_hint">Type the text item here.</string>
+    <string name="title_activity_edit_local_task">Edit Local Task</string>
 
 </resources>
