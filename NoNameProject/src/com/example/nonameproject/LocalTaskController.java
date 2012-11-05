@@ -77,6 +77,16 @@ public class LocalTaskController extends TaskController{
 	public void readLocalTaskFile(Context context){
 		tasks = LocalTaskIOAdapter.readLocalLog(context);
 	}
+	/**
+	 * 
+	 * @param context: context of activity
+	 * @param task: new task to replace previous task with
+	 * @param index: index of task to replace
+	 */
+	public void updateTask(Context context, Task task, int index){
+		tasks.set(index, task);
+		LocalTaskIOAdapter.overwriteLocalLog(context, tasks);
+	}
 	
 	/*
 	 * Deletes the local tasks both in memory and the log file

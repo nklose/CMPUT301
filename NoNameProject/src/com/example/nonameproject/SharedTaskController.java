@@ -35,6 +35,10 @@ public class SharedTaskController extends TaskController{
 		tasks = SharedIOAdapter.getSharedTasks(context);
 	}
 	
+	public void updateTask(Context context, Task task){
+		
+	}
+	
 	/*
 	 * Deletes the shared tasks both in memory and crowdsourcer
 	 * Used in the teardown of tests
