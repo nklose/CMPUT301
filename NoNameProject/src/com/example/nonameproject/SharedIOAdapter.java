@@ -15,7 +15,9 @@ import org.apache.http.message.BasicNameValuePair;
 import com.google.gson.Gson;
 
 import android.content.Context;
-
+/**
+ * Adapter responsible for task input and output to and from the crowdsourcer server
+ */
 public class SharedIOAdapter {
 
 	private static HttpClient httpclient = new DefaultHttpClient();
@@ -77,5 +79,12 @@ public class SharedIOAdapter {
 //	        newTask = gson.fromJson(jsonStringVersion, taskType);
 //	    }
 	    entity.consumeContent();
+	}
+	
+	/*
+	 * Resets CrowdSourcer by removing all shared task entries
+	 */
+	public static void nuke(){
+		
 	}
 }

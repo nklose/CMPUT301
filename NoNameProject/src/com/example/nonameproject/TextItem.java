@@ -2,6 +2,9 @@ package com.example.nonameproject;
 
 import java.util.Calendar;
 
+/**
+ * Represents an text item added as a task item to a task
+ */
 public class TextItem extends TaskItem{
 	private String description;
 

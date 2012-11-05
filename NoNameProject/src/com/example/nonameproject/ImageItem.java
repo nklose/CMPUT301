@@ -2,6 +2,9 @@ package com.example.nonameproject;
 
 import java.util.Calendar;
 
+/**
+ * Represents an image item added as a task item to a task
+ */
 public class ImageItem extends TaskItem{
 	private String image;
 

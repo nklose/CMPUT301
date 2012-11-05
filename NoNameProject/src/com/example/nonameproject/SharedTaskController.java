@@ -1,7 +1,12 @@
 package com.example.nonameproject;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 
+/**
+ * Controller responsible for modifying and reading shared tasks used by the application
+ */
 public class SharedTaskController extends TaskController{
 
 
@@ -30,4 +35,15 @@ public class SharedTaskController extends TaskController{
 		tasks = SharedIOAdapter.getSharedTasks(context);
 	}
 	
+	/*
+	 * Deletes the shared tasks both in memory and crowdsourcer
+	 * Used in the teardown of tests
+	 * 
+	 * @param
+	 * 	context - 
+	 */
+	public void nuke(){
+		tasks = new ArrayList<Task>();
+		SharedIOAdapter.nuke();
+	}
 }
