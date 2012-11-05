@@ -8,9 +8,9 @@ import java.util.Calendar;
 public class ImageItem extends TaskItem{
 	private String image;
 
-	public ImageItem(Integer taskId, Integer taskItemId, Calendar submitDate, 
+	public ImageItem(Calendar submitDate, 
 			String image){
-		super(taskId, taskItemId, submitDate);
+		super(submitDate);
 		this.image = image;
 	}
 	

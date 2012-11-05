@@ -8,9 +8,9 @@ import java.util.Calendar;
 public class TextItem extends TaskItem{
 	private String description;
 
-	public TextItem(Integer taskId, Integer taskItemId, Calendar submitDate, 
+	public TextItem(Calendar submitDate, 
 			String description){
-		super(taskId, taskItemId, submitDate);
+		super(submitDate);
 		this.description = description;
 	}
 	

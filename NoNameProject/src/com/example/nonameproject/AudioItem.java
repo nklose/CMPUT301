@@ -7,9 +7,9 @@ import java.util.Calendar;
 public class AudioItem extends TaskItem{
 	private String audio;
 
-	public AudioItem(Integer taskId, Integer taskItemId, Calendar submitDate, 
+	public AudioItem(Calendar submitDate, 
 			String audio){
-		super(taskId, taskItemId, submitDate);
+		super(submitDate);
 		this.audio = audio;
 	}
 	

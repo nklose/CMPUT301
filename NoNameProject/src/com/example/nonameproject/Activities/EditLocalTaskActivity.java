@@ -9,14 +9,19 @@ import com.example.nonameproject.R;
 import com.example.nonameproject.SharedTaskController;
 import com.example.nonameproject.R.layout;
 import com.example.nonameproject.Task;
+import com.example.nonameproject.TextItem;
 
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -27,6 +32,8 @@ public class EditLocalTaskActivity extends Activity {
 
 	private int position;	
 	private CompletedTaskController controller = NoNameApp.getCompletedTaskController();
+	private Dialog dialog;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,7 +64,31 @@ public class EditLocalTaskActivity extends Activity {
 	public void addTaskItem(View view){
 		Task task = controller.getTask(position);
 		if (task.getType() == Task.TaskType.TASK_TEXT){
+			dialog = new Dialog(EditLocalTaskActivity.this);
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setContentView(R.layout.dialog_add_text_item);
 
+			Button btnSave = (Button) dialog.findViewById(R.id.btnAddTextItem);
+			btnSave.setOnClickListener(new OnClickListener()
+	        {
+	        	public void onClick(View arg0)
+	        	{
+	    			EditText txtDescription = (EditText) dialog.findViewById(R.id.txtDescription);
+	    			TextItem textItem = new TextItem(Calendar.getInstance(), txtDescription.getText().toString());
+	    			Task task = controller.getTask(position);
+	    			task.addTaskItem(textItem);
+	        	}
+	        });
+			
+			Button btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
+			btnCancel.setOnClickListener(new OnClickListener()
+	        {
+	        	public void onClick(View arg0)
+	        	{
+	        		dialog.cancel();
+	        	}
+	        });
+			dialog.show();
 		}
 	}
 
