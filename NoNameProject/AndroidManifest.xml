@@ -24,27 +24,27 @@
             android:name=".Activities.AddItemActivity"
             android:label="@string/title_activity_add_item" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.support.PARENT_ACTIVITY" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="com.example.nonameproject.Activities.MainActivity" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Activities.AddTaskActivity"
             android:label="@string/title_activity_add_task" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.support.PARENT_ACTIVITY" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="com.example.nonameproject.Activities.MainActivity" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Activities.ViewLocalTasksActivity"
             android:label="@string/title_activity_view_local_tasks" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.support.PARENT_ACTIVITY" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="com.example.nonameproject.Activities.MainActivity" />
             </intent-filter>
         </activity>
     </application>
