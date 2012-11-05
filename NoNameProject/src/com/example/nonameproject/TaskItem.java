@@ -12,7 +12,7 @@ public abstract class TaskItem{
 	TaskItem(Calendar submitDate){
 		this.submitDate = submitDate;
 	}
-	
+
 	public Calendar getSubmitDate() {
 		return submitDate;
 	}

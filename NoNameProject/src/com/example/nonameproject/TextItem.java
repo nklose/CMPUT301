@@ -13,7 +13,7 @@ public class TextItem extends TaskItem{
 		super(submitDate);
 		this.description = description;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}

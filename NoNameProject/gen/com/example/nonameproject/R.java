@@ -28,6 +28,8 @@ public final class R {
         public static final int addTaskTextRadio=0x7f070005;
         public static final int allSharedTasksRadio=0x7f070024;
         public static final int allTasksRadio=0x7f070010;
+        public static final int btnAddTextItem=0x7f07003f;
+        public static final int btnCancel=0x7f07003e;
         public static final int cancelTaskButton=0x7f07000a;
         public static final int completedTasksListView=0x7f070011;
         public static final int completedTasksRadio=0x7f07000e;
@@ -37,7 +39,7 @@ public final class R {
         public static final int localTaskItemsListView=0x7f070019;
         public static final int localTasksListTitle=0x7f07001a;
         public static final int localTasksListView=0x7f07001b;
-        public static final int menu_settings=0x7f07003c;
+        public static final int menu_settings=0x7f070040;
         public static final int mySharedTasksRadio=0x7f070023;
         public static final int myTasksRadio=0x7f07000f;
         public static final int progressBarTaskItems=0x7f07003a;
@@ -74,6 +76,8 @@ public final class R {
         public static final int textViewDate=0x7f070038;
         public static final int textViewTitle=0x7f070034;
         public static final int textViewType=0x7f070035;
+        public static final int tvModifyLogEntry=0x7f07003c;
+        public static final int txtDescription=0x7f07003d;
         public static final int viewCompletedTasksButton=0x7f07001f;
         public static final int viewLocalTasksButton=0x7f07001d;
         public static final int viewSharedTasksButton=0x7f07001e;
@@ -88,6 +92,7 @@ public final class R {
         public static final int activity_task_solution=0x7f030006;
         public static final int activity_view_shared_task=0x7f030007;
         public static final int custom_local_task_row=0x7f030008;
+        public static final int dialog_add_text_item=0x7f030009;
     }
     public static final class menu {
         public static final int activity_add_item=0x7f060000;
