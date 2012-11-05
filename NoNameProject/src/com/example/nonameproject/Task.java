@@ -15,6 +15,7 @@ public class Task implements Serializable{
 	private Calendar submitDate;
 	private ArrayList<TaskItem> taskItems;
 	private static final long serialVersionUID = 0L;
+	private String deviceId;
 	
 	public enum TaskType {
 		TASK_TEXT, TASK_IMAGE, TASK_AUDIO, TASK_INVALID;
@@ -23,7 +24,7 @@ public class Task implements Serializable{
 	//Constructor used when a new task is being created
 	public Task(String title, String description, String creator,
 			Integer numRequiredItems, TaskType type, 
-			Calendar submitDate){
+			Calendar submitDate, String deviceId){
 		this.id = "";
 		this.title = title;
 		this.description = description;
@@ -33,6 +34,7 @@ public class Task implements Serializable{
 		this.type = type;
 		this.submitDate = submitDate;
 		this.taskItems = new ArrayList<TaskItem>();
+		this.deviceId = deviceId;
 	}
 	
 	//Constructor used when creating a task from existing task data

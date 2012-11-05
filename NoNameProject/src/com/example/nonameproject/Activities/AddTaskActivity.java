@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
 import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
@@ -55,6 +56,7 @@ public class AddTaskActivity extends Activity {
     	String title = new String();
     	String description = new String();
     	String creator = new String();
+    	String deviceId = new String();
     	Task.TaskType type = Task.TaskType.TASK_INVALID;
     	Boolean shareOnline;
     	int numRequiredItems = 1;
@@ -94,6 +96,7 @@ public class AddTaskActivity extends Activity {
     	title = titleText.getText().toString();
     	description = descText.getText().toString();
     	creator = creatorText.getText().toString();
+    	deviceId = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID); 
     	try
     	{
     		numRequiredItems = Integer.parseInt(reqItemsText.getText().toString());
@@ -135,7 +138,7 @@ public class AddTaskActivity extends Activity {
     	{
     		// create the task and store it
 	    	Task task = new Task(title, description, creator, numRequiredItems,
-	    			type, submitDate);
+	    			type, submitDate, deviceId);
 	    	
 	    	// save the task locally or online depending on checkbox
 	    	if (!shareOnline)
