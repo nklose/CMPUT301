@@ -92,7 +92,7 @@ public class AddTaskActivity extends Activity {
     		numRequiredItems = Integer.parseInt(reqItemsText.getText().toString());
     	}
     	catch (Exception e) { }
-    	Calendar submitDate = null;
+    	Calendar submitDate = Calendar.getInstance();
     	
     	// initialize toast
     	// toast code from http://developer.android.com/guide/topics/ui/notifiers/toasts.html
