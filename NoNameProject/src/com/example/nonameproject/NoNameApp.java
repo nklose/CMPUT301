@@ -3,6 +3,10 @@ package com.example.nonameproject;
 import android.app.Application;
 import android.content.Context;
 
+/**
+ * Represents the state of the application with the data stored in it's 3 singleton controllers
+ * Each controller is related to the usage of a certian task type (shared, local, completed)
+ */
 public class NoNameApp extends Application{
 	//Singletons
 	transient private static LocalTaskController localTaskController;

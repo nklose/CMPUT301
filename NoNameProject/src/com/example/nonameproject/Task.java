@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * Stores data used to represent a task including the task items associated wth the task
+ */
 public class Task implements Serializable{
 	private String id;
 	private String title;
@@ -124,6 +127,14 @@ public class Task implements Serializable{
 		this.taskItems = taskItems;
 	}
 	
+	public String getDeviceId() {
+		return deviceId;
+	}
+
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
+	}
+
 	public void addTaskItem(TaskItem taskItem){
 		taskItems.add(taskItem);
 	}

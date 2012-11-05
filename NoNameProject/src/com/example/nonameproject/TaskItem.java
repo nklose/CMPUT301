@@ -3,6 +3,9 @@ package com.example.nonameproject;
 import java.io.Serializable;
 import java.util.Calendar;
 
+/**
+ * Abstract class that represents a task's task item
+ */
 public abstract class TaskItem{
 	private Integer taskId;
 	private Integer taskItemId;

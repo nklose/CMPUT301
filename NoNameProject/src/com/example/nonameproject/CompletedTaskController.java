@@ -3,10 +3,7 @@ package com.example.nonameproject;
 import android.content.Context;
 
 /**
- * 
- * 
- * @author Tyler Schneider, Nick Klose, Chris Beckett
- *
+ * Controller responsible for modifying and reading completed tasks used by the application
  */
 public class CompletedTaskController extends TaskController{
 

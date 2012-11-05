@@ -2,6 +2,9 @@ package com.example.nonameproject;
 
 import android.content.Context;
 
+/**
+ * Controller responsible for modifying and reading shared tasks used by the application
+ */
 public class SharedTaskController extends TaskController{
 
 

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import android.content.Context;
 
+/**
+ * Abstract class used when modifying and reading tasks
+ */
 public abstract class TaskController {
 	protected ArrayList<Task> tasks;
 	
