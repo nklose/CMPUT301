@@ -110,6 +110,7 @@
 	        android:id="@+id/addItemLocalTaskButton"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+	        android:onClick="addTaskItem"
 	        android:text="@string/add_item_local_task_button" />
     
     <ExpandableListView
