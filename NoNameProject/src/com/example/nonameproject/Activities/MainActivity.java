@@ -51,7 +51,8 @@ public class MainActivity extends Activity {
      */
     public void viewSharedTasks(View view)
     {
-    	
+    	Intent intent = new Intent(this, ViewSharedTasksActivity.class);
+    	startActivity(intent);
     }
     
     /**
@@ -61,7 +62,8 @@ public class MainActivity extends Activity {
      */
     public void viewCompletedTasks(View view)
     {
-    	
+    	Intent intent = new Intent(this, ViewCompletedTasksActivity.class);
+    	startActivity(intent);
     }
     
     
