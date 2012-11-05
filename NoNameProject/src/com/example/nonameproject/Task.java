@@ -11,14 +11,18 @@ public class Task implements Serializable{
 	private String creator;
 	private Integer numRequiredItems;
 	private Boolean completed;
-	private Integer type;
+	private TaskType type;
 	private Calendar submitDate;
 	private ArrayList<TaskItem> taskItems;
 	private static final long serialVersionUID = 0L;
 	
+	public enum TaskType {
+		TASK_TEXT, TASK_IMAGE, TASK_AUDIO, TASK_INVALID;
+	}
+	
 	//Constructor used when a new task is being created
 	public Task(String title, String description, String creator,
-			Integer numRequiredItems, Integer type, 
+			Integer numRequiredItems, TaskType type, 
 			Calendar submitDate){
 		this.id = "";
 		this.title = title;
@@ -33,7 +37,7 @@ public class Task implements Serializable{
 	
 	//Constructor used when creating a task from existing task data
 	public Task(String id, String title, String description, String creator,
-			Integer numRequiredItems, Boolean completed, Integer type, 
+			Integer numRequiredItems, Boolean completed, TaskType type, 
 			Calendar submitDate){
 		this.id = id;
 		this.title = title;
@@ -94,11 +98,11 @@ public class Task implements Serializable{
 		this.completed = completed;
 	}
 
-	public Integer getType() {
+	public TaskType getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(TaskType type) {
 		this.type = type;
 	}
 

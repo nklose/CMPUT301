@@ -9,7 +9,6 @@ public class NoNameApp extends Application{
 	transient private static SharedTaskController sharedTaskController;
 	transient private static CompletedTaskController completedTaskController;
 	
-	
 	public static LocalTaskController getLocalTaskController() {
 		if(localTaskController == null) 
 			localTaskController = new LocalTaskController();

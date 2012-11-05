@@ -60,7 +60,16 @@ public class SharedTaskBaseAdapter extends BaseAdapter {
 		Task entry = sharedTaskController.getTask(position);
 		holder.txtDate.setText(entry.getSubmitDate().toString());
 		holder.txtTitle.setText(entry.getTitle());
-		holder.txtType.setText(entry.getType());
+		Task.TaskType type = entry.getType();
+    	String typeText = "";
+    	if (type == Task.TaskType.TASK_TEXT){
+    		typeText = "Text";
+    	} else if (type == Task.TaskType.TASK_IMAGE){
+    		typeText = "Image";
+    	} else if (type == Task.TaskType.TASK_AUDIO){
+    		typeText = "Audio";
+    	}
+		holder.txtType.setText(typeText);
 		holder.txtCreator.setText(entry.getCreator());
 		
 		int progress = entry.getTaskItems().size() / entry.getNumRequiredItems();

@@ -1,6 +1,13 @@
-package com.example.nonameproject;
+package com.example.nonameproject.Activities;
 
 import java.util.Calendar;
+
+import com.example.nonameproject.LocalTaskController;
+import com.example.nonameproject.NoNameApp;
+import com.example.nonameproject.R;
+import com.example.nonameproject.SharedTaskController;
+import com.example.nonameproject.Task;
+import com.example.nonameproject.Activities.MainActivity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -48,7 +55,7 @@ public class AddTaskActivity extends Activity {
     	String title = new String();
     	String description = new String();
     	String creator = new String();
-    	int type = -1;
+    	Task.TaskType type = Task.TaskType.TASK_INVALID;
     	Boolean shareOnline;
     	int numRequiredItems = 1;
     	
@@ -70,15 +77,15 @@ public class AddTaskActivity extends Activity {
     	// set type based on radio buttons
     	if (typeTextRadio.isChecked())
     	{
-    		type = 0;
+    		type = Task.TaskType.TASK_TEXT;
     	}
     	else if (typeImageRadio.isChecked())
     	{
-    		type = 1;
+    		type = Task.TaskType.TASK_IMAGE;
     	}
     	else if (typeAudioRadio.isChecked())
     	{
-    		type = 2;
+    		type = Task.TaskType.TASK_AUDIO;
     	}
     	
     	shareOnline = shareCheckbox.isChecked();

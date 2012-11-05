@@ -13,12 +13,12 @@ public class SharedTaskController extends TaskController{
 	}
 
 	
-	void addTask(Context context, Task newTask) {
+	public void addTask(Context context, Task newTask) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	void deleteTask(Context context, Task task) {
+	public void deleteTask(Context context, Task task) {
 		// TODO Auto-generated method stub
 		
 	}
