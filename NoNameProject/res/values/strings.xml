@@ -31,4 +31,8 @@
 	<string name="task_creator_placeholder">&lt;task creator&gt;</string>
 	<string name="task_type_placeholder">&lt;task type&gt;</string>
 	<string name="task_items_requested_placeholder">&lt;items requested&gt;</string>
+	<string name="local_tasks_list_title">Local Tasks</string>
+	<string name="add_item_local_task_button">Add Item</string>
+	<string name="share_button">Share</string>
+	<string name="save_changes_button">Save Changes</string>
 </resources>
