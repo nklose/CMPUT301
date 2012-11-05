@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Task implements Serializable{
-	private Integer id;
+	private String id;
 	private String title;
 	private String description;
 	private String creator;
@@ -20,7 +20,7 @@ public class Task implements Serializable{
 	public Task(String title, String description, String creator,
 			Integer numRequiredItems, Integer type, 
 			Calendar submitDate){
-		this.id = 0;
+		this.id = "";
 		this.title = title;
 		this.description = description;
 		this.creator = creator;
@@ -32,7 +32,7 @@ public class Task implements Serializable{
 	}
 	
 	//Constructor used when creating a task from existing task data
-	public Task(Integer id, String title, String description, String creator,
+	public Task(String id, String title, String description, String creator,
 			Integer numRequiredItems, Boolean completed, Integer type, 
 			Calendar submitDate){
 		this.id = id;
@@ -46,11 +46,11 @@ public class Task implements Serializable{
 		this.taskItems = new ArrayList<TaskItem>();
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
