@@ -16,6 +16,7 @@ import android.provider.Settings.Secure;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -31,20 +32,21 @@ import android.widget.Toast;
 public class EditLocalTaskActivity extends Activity {
 
 	private int position;	
-	private CompletedTaskController controller = NoNameApp.getCompletedTaskController();
+	private LocalTaskController controller = NoNameApp.getLocalTaskController();
 	private Dialog dialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_local_task);
-		position = savedInstanceState.getInt("position");
+		Intent intent = getIntent();
+		position = intent.getIntExtra("position", 0);
 		Task task = controller.getTask(position);
-		TextView textView = (TextView) findViewById(R.id.solutionTaskTitle);
+		TextView textView = (TextView) findViewById(R.id.taskTitle);
 		textView.setText(task.getTitle());
-		textView = (TextView) findViewById(R.id.solutionTaskDesc);
+		textView = (TextView) findViewById(R.id.taskDescription);
 		textView.setText(task.getDescription());
-		textView = (TextView) findViewById(R.id.solutionTaskCreator);
+		textView = (TextView) findViewById(R.id.taskCreator);
 		textView.setText(task.getCreator());
 		Task.TaskType type = task.getType();
 		String typeText = "";
@@ -55,10 +57,11 @@ public class EditLocalTaskActivity extends Activity {
 		} else if (type == Task.TaskType.TASK_AUDIO){
 			typeText = "Audio";
 		}
-		textView = (TextView) findViewById(R.id.solutionTaskType);
-		textView.setText(typeText);
-		textView = (TextView) findViewById(R.id.solutionTaskItemsRequested);
-		textView.setText(task.getNumRequiredItems());
+		RadioButton typeRB = (RadioButton) findViewById(R.id.addTaskTextRadio);
+		typeRB.setChecked(true);
+		textView = (TextView) findViewById(R.id.itemsRequested);
+		String numItems = String.valueOf(task.getNumRequiredItems());
+		textView.setText(numItems);
 	}
 
 	public void addTaskItem(View view){
