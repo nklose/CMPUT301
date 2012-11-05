@@ -80,4 +80,11 @@ public class SharedIOAdapter {
 //	    }
 	    entity.consumeContent();
 	}
+	
+	/*
+	 * Resets CrowdSourcer by removing all shared task entries
+	 */
+	public static void nuke(){
+		
+	}
 }
