@@ -32,7 +32,7 @@ public class SharedTaskController extends TaskController{
 	 * @param fis
 	 */
 	public void readLocalTaskFile(Context context){
-		tasks = SharedIOAdapter.getSharedTasks(context);
+		tasks = SharedTaskIOAdapter.getSharedTasks(context);
 	}
 	
 	public void updateTask(Context context, Task task){
@@ -48,6 +48,6 @@ public class SharedTaskController extends TaskController{
 	 */
 	public void nuke(){
 		tasks = new ArrayList<Task>();
-		SharedIOAdapter.nuke();
+		SharedTaskIOAdapter.nuke();
 	}
 }

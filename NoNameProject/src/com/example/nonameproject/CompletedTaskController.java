@@ -34,6 +34,6 @@ public class CompletedTaskController extends TaskController{
 	 */
 	public void nuke(){
 		tasks = new ArrayList<Task>();
-		SharedIOAdapter.nuke();
+		SharedTaskIOAdapter.nuke();
 	}
 }
