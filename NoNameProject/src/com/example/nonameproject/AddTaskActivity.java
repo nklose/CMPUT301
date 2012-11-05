@@ -136,12 +136,14 @@ public class AddTaskActivity extends Activity {
 	    		localController.addTask(context, task);
 	    		toastText = "Task saved locally.";
 	    		toast = Toast.makeText(context, toastText, TOAST_LENGTH);
+	    		toast.show();
 	    	}
 	    	else
 	    	{
 	    		sharedController.addTask(context, task);
 	    		toastText = "Task shared online.";
 	    		toast = Toast.makeText(context, toastText, TOAST_LENGTH);
+	    		toast.show();
 	    	}
 	    	
 	    	// return to the main screen
