@@ -20,7 +20,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ViewLocalTasksActivity extends Activity {
-
+	private LocalTaskBaseAdapter adapter;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,7 +29,7 @@ public class ViewLocalTasksActivity extends Activity {
 		final ListView listViewLog = (ListView) findViewById(R.id.localTasksListView);
 
 		try{
-			final LocalTaskBaseAdapter adapter = new LocalTaskBaseAdapter(this);
+			adapter = new LocalTaskBaseAdapter(this);
 			listViewLog.setAdapter(adapter);
 			listViewLog.setOnItemClickListener(new OnItemClickListener() {
 				public void onItemClick(AdapterView<?> a, View v, int position, long id) { 
@@ -49,9 +49,6 @@ public class ViewLocalTasksActivity extends Activity {
 	public void onResume() {
 		super.onResume();
 		//Rest the ListView
-		final ListView listViewLog = (ListView) findViewById(R.id.localTasksListView);
-		listViewLog.setAdapter(null);
-		listViewLog.invalidateViews();
-		listViewLog.setAdapter(new LocalTaskBaseAdapter(ViewLocalTasksActivity.this));
+		adapter.notifyDataSetChanged();
 	}
 }
