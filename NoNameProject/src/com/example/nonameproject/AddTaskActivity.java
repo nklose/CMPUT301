@@ -134,11 +134,19 @@ public class AddTaskActivity extends Activity {
 	    	if (!shareOnline)
 	    	{
 	    		localController.addTask(context, task);
+	    		toastText = "Task saved locally.";
+	    		toast = Toast.makeText(context, toastText, TOAST_LENGTH);
 	    	}
 	    	else
 	    	{
 	    		sharedController.addTask(context, task);
+	    		toastText = "Task shared online.";
+	    		toast = Toast.makeText(context, toastText, TOAST_LENGTH);
 	    	}
+	    	
+	    	// return to the main screen
+	    	Intent intent = new Intent(this, MainActivity.class);
+	    	startActivity(intent);
     	}
     }
 }
