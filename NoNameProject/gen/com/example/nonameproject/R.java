@@ -145,6 +145,7 @@ public final class R {
         public static final int task_type_placeholder=0x7f04001e;
         public static final int title_activity_add_item=0x7f04002b;
         public static final int title_activity_add_task=0x7f04002c;
+        public static final int title_activity_edit_local_task=0x7f040032;
         public static final int title_activity_main=0x7f040001;
         public static final int title_activity_view_local_tasks=0x7f04002d;
         public static final int view_completed_tasks=0x7f040006;

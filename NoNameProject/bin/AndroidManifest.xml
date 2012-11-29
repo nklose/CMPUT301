@@ -21,8 +21,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.AddItemActivity"
-            android:label="@string/title_activity_add_item" >
+            android:name=".Activities.EditLocalTaskActivity"
+            android:label="@string/title_activity_edit_local_task" >
             <intent-filter>
                 <action android:name="android.support.PARENT_ACTIVITY" />
 

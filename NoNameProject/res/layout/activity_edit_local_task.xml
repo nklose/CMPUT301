@@ -24,6 +24,7 @@
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
+	        android:onClick="saveTask"
 	        android:text="@string/save_changes_button" />
     
     </LinearLayout>

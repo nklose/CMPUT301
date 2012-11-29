@@ -96,6 +96,7 @@ public class EditLocalTaskActivity extends Activity {
 	}
 
 	public void saveTask(View view){
+		//TODO: currently this function appears to crash the app.
 		Task oldTask = controller.getTask(position);
 
 		// initalize the task variables
