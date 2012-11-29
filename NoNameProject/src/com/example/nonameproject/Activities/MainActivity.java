@@ -64,7 +64,5 @@ public class MainActivity extends Activity {
     {
     	Intent intent = new Intent(this, ViewCompletedTasksActivity.class);
     	startActivity(intent);
-    }
-    
-    
+    }    
 }

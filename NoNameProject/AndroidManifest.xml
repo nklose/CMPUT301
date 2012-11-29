@@ -47,6 +47,15 @@
                 <category android:name="com.example.nonameproject.Activities.MainActivity" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SendEmailActivity"
+            android:label="@string/title_activity_send_email" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
