@@ -1,5 +1,12 @@
 package com.example.nonameproject;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import network.AddSharedTaskThread;
+import network.DeleteSharedTaskThread;
+import network.GetSharedTasksThread;
+
 import android.content.Context;
 
 public class SharedTaskController extends TaskController{
@@ -12,22 +19,23 @@ public class SharedTaskController extends TaskController{
 		super();
 	}
 
+	public void addAllTasks(ArrayList<Task> tasks){
+		this.tasks = tasks;
+	}
 	
 	public void addTask(Context context, Task newTask) {
-		// TODO Auto-generated method stub
-		
+		new AddSharedTaskThread().execute(newTask);
 	}
 
 	public void deleteTask(Context context, Task task) {
-		// TODO Auto-generated method stub
-		
+		new DeleteSharedTaskThread().execute(task);
 	}
 
 	/**
 	 * @param fis
 	 */
-	public void readLocalTaskFile(Context context){
-		tasks = SharedIOAdapter.getSharedTasks(context);
+	public void readSharedTaskFile(){
+		new GetSharedTasksThread().execute(this);
 	}
 	
 }

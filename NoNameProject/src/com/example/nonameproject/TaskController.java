@@ -15,8 +15,6 @@ public abstract class TaskController {
 		return tasks.get(index);
 	}
 	
-	
-	
 	public int getNumberOfTasks(){
 		return tasks.size();
 	}
