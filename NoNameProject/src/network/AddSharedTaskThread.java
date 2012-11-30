@@ -2,7 +2,7 @@ package network;
 
 import android.os.AsyncTask;
 
-import com.example.nonameproject.SharedIOAdapter;
+import com.example.nonameproject.SharedTaskIOAdapter;
 import com.example.nonameproject.Task;
 
 public class AddSharedTaskThread extends AsyncTask<Task, Void, Void> {
@@ -12,9 +12,9 @@ public class AddSharedTaskThread extends AsyncTask<Task, Void, Void> {
 		
 		try {
 			if( task[0].getId().equals("")){
-				SharedIOAdapter.add(task[0]);
+				SharedTaskIOAdapter.add(task[0]);
 			} else {
-				SharedIOAdapter.update(task[0]);
+				SharedTaskIOAdapter.update(task[0]);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

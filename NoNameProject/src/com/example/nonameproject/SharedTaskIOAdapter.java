@@ -28,7 +28,6 @@ import android.content.Context;
  */
 public class SharedTaskIOAdapter {
 
-	
 	private class OnlineContentFromList {
 		private String summary;
 		private String id;

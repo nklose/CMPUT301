@@ -20,7 +20,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ViewSharedTasksActivity extends Activity {
-	private SharedTaskBaseAdapter adapter = new SharedTaskBaseAdapter(this);
+	private SharedTaskBaseAdapter adapter;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

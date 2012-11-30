@@ -2,7 +2,7 @@ package network;
 
 import java.util.ArrayList;
 
-import com.example.nonameproject.SharedIOAdapter;
+import com.example.nonameproject.SharedTaskIOAdapter;
 import com.example.nonameproject.SharedTaskController;
 import com.example.nonameproject.Task;
 
@@ -14,7 +14,7 @@ public class GetSharedTasksThread extends AsyncTask<SharedTaskController, Void, 
 	protected Void doInBackground(SharedTaskController... controller) {
 		try {
 			ArrayList<Task> tasks = new ArrayList<Task>();
-			tasks = SharedIOAdapter.getSharedTasks();
+			tasks = SharedTaskIOAdapter.getSharedTasks();
 			controller[0].addAllTasks(tasks);
 		} catch (Exception e) {
 			e.printStackTrace();
