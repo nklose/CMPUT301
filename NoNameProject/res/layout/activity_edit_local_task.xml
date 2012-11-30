@@ -24,6 +24,7 @@
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
+	        android:onClick="saveTask"
 	        android:text="@string/save_changes_button" />
     
     </LinearLayout>
@@ -110,6 +111,7 @@
 	        android:id="@+id/addItemLocalTaskButton"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+	        android:onClick="addTaskItem"
 	        android:text="@string/add_item_local_task_button" />
     
     <ExpandableListView

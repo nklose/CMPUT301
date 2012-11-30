@@ -1,13 +1,15 @@
 package com.example.nonameproject;
 
 import java.util.Calendar;
-
+/**
+ * Represents an audio item added as a task item to a task
+ */
 public class AudioItem extends TaskItem{
 	private String audio;
 
-	public AudioItem(Integer taskId, Integer taskItemId, Calendar submitDate, 
+	public AudioItem(Calendar submitDate, 
 			String audio){
-		super(taskId, taskItemId, submitDate);
+		super(submitDate);
 		this.audio = audio;
 	}
 	

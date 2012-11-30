@@ -5,9 +5,13 @@ Team: CMPUT301F12T10 (cbeckett, klose, teschnei)
 
 License
 =======
-This application allows the user to input log entries with information
-about their laptop's current battery state. The purpose is to see how
-much battery life is lost while using the laptop for various tasks.
+This application implements crowd sourcing for different tasks. 
+A user can create a task, which is a request for fulfilment of 
+a textual description of something, an image or series of images,
+or an audio file or series of audio files. The task is published
+online and other users of the app can fulfill all or part of the
+task by submitting task items, which are tracked by the application
+and then sent to the task creater via email.
 
 Copyright (C) 2012 Christopher Beckett, Nicholas Klose, Tyler Schneider
 

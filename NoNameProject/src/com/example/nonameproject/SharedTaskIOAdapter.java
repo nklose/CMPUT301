@@ -23,8 +23,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
+/**
+ * Adapter responsible for task input and output to and from the crowdsourcer server
+ */
+public class SharedTaskIOAdapter {
 
-public class SharedIOAdapter {
 	
 	private class OnlineContentFromList {
 		private String summary;
@@ -185,5 +188,12 @@ public class SharedIOAdapter {
 			}
 		}
 		return sb.toString();
+	}
+	
+	/*
+	 * Resets CrowdSourcer by removing all shared task entries
+	 */
+	public static void nuke(){
+		
 	}
 }

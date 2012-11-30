@@ -1,5 +1,7 @@
 package com.example.nonameproject;
 
+import java.text.SimpleDateFormat;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +58,9 @@ public class CompletedTaskBaseAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		Task entry = completedTaskController.getTask(position);
-		holder.txtDate.setText(entry.getSubmitDate().toString());
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    String submitDate = simpleDateFormat.format(entry.getSubmitDate().getTime());
+		holder.txtDate.setText(submitDate);
 		holder.txtTitle.setText(entry.getTitle());
 		Task.TaskType type = entry.getType();
     	String typeText = "";
