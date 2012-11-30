@@ -1,4 +1,4 @@
-package network;
+package com.example.nonameproject.network;
 
 import java.util.ArrayList;
 

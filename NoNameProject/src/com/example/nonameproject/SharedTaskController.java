@@ -3,9 +3,10 @@ package com.example.nonameproject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import network.AddSharedTaskThread;
-import network.DeleteSharedTaskThread;
-import network.GetSharedTasksThread;
+import com.example.nonameproject.network.AddSharedTaskThread;
+import com.example.nonameproject.network.DeleteSharedTaskThread;
+import com.example.nonameproject.network.GetSharedTasksThread;
+
 
 import android.content.Context;
 
