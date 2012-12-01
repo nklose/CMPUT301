@@ -60,5 +60,6 @@
     <string name="body_field">type your email here</string>
     <string name="title_activity_view_shared_tasks">View Shared Tasks</string>
     <string name="title_activity_take_image">TakeImageActivity</string>
+    <string name="type_label">Type: </string>
 
 </resources>
