@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class SendEmailActivity extends Activity {
-
+	@Deprecated
 	Button sendButton;
 	EditText emailRecipient;
 	EditText emailSubject;

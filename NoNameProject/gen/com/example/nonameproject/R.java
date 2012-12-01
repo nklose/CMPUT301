@@ -162,7 +162,9 @@ public final class R {
         public static final int title_activity_edit_local_task=0x7f040032;
         public static final int title_activity_main=0x7f040001;
         public static final int title_activity_send_email=0x7f040033;
+        public static final int title_activity_take_image=0x7f04003b;
         public static final int title_activity_view_local_tasks=0x7f04002d;
+        public static final int title_activity_view_shared_tasks=0x7f04003a;
         public static final int view_completed_tasks=0x7f040006;
         public static final int view_local_tasks=0x7f040004;
         public static final int view_online_tasks=0x7f040005;

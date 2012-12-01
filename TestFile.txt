@@ -1,7 +1,0 @@
-This is a test file for CMPUT 301. 
-
-Team Members:
-
-Nick Klose
-Chris <TheChris> Beckett
-TYLER SCHNEIDER
