@@ -80,6 +80,7 @@ public class EditLocalTaskActivity extends Activity {
 	    			TextItem textItem = new TextItem(Calendar.getInstance(), txtDescription.getText().toString());
 	    			Task task = controller.getTask(position);
 	    			task.addTaskItem(textItem);
+	    			dialog.dismiss();
 	        	}
 	        });
 			
@@ -194,7 +195,7 @@ public class EditLocalTaskActivity extends Activity {
 			}
 			else
 			{
-				sharedController.updateTask(context, task);
+				sharedController.addTask(context, task);
 				toastText = "Task updated.";
 				toast = Toast.makeText(context, toastText, Toast.LENGTH_LONG);
 				toast.show();

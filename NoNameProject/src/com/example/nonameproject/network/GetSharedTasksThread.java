@@ -7,6 +7,7 @@ import com.example.nonameproject.SharedTaskController;
 import com.example.nonameproject.Task;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 public class GetSharedTasksThread extends AsyncTask<SharedTaskController, Void, Void> {
 
@@ -23,7 +24,6 @@ public class GetSharedTasksThread extends AsyncTask<SharedTaskController, Void, 
 	}
 	
 	protected void onPostExecute(){
-		
 	}
 
 }

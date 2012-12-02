@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +16,10 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import android.content.Context;
 /**
  * Adapter responsible for task input and output to and from the crowdsourcer server
  */
@@ -40,20 +37,11 @@ public class SharedTaskIOAdapter {
 	private class OnlineContentFromGet {
 		private String summary;
 		private String id;
-		private String content;
+		private Task content;
 		private String description;
-		
-		public String getId(){
-			return this.id;
-		}
-		public String getSummary(){
-			return this.summary;
-		}
-		public String getContent(){
+
+		public Task getContent(){
 			return this.content;
-		}
-		public String getDescription(){
-			return this.description;
 		}
 	}
 	
@@ -80,7 +68,6 @@ public class SharedTaskIOAdapter {
 		}
 		
 		entity.consumeContent();
-		System.out.println("List of tasks: "+jsonString);
 		Type arrayType = new TypeToken<ArrayList<OnlineContentFromList>>(){}.getType();
 		ArrayList<OnlineContentFromList> content = new ArrayList<OnlineContentFromList>();
 		ArrayList<Task> taskList = new ArrayList<Task>();
@@ -102,9 +89,8 @@ public class SharedTaskIOAdapter {
 				InputStream is = entity.getContent();
 				jsonString = convertStreamToString(is);
 				OnlineContentFromGet get = gson.fromJson(jsonString, OnlineContentFromGet.class);
-				Task task = gson.fromJson(get.getContent(), Task.class);
+				Task task = get.getContent();
 				taskList.add(task);
-				System.out.println(task.getTitle());
 			}
 			
 		}

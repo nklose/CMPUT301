@@ -21,6 +21,7 @@ public class SharedTaskController extends TaskController{
 	 */
 	public SharedTaskController() {
 		super();
+		readSharedTaskFile();
 	}
 
 	public void addAllTasks(ArrayList<Task> tasks){
@@ -40,10 +41,6 @@ public class SharedTaskController extends TaskController{
 	 */
 	public void readSharedTaskFile(){
 		new GetSharedTasksThread().execute(this);
-	}
-	
-	public void updateTask(Context context, Task task){
-		
 	}
 	
 	/*
