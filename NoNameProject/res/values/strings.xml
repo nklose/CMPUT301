@@ -61,5 +61,6 @@
     <string name="title_activity_view_shared_tasks">View Shared Tasks</string>
     <string name="title_activity_take_image">Take Image</string>
     <string name="title_activity_edit_shared_task">Edit Shared Task</string>
+    <string name="type_label">Type: </string>
 
 </resources>
