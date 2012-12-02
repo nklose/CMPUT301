@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minWidth="300dp"
+    android:minHeight="400dp"
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:scrollbars="vertical" >
@@ -10,22 +12,25 @@
         android:id="@+id/tvModifyLogEntry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:text="@string/dialog_add_text_item_title"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
         android:id="@+id/txtDescription"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dip"
+        android:gravity="top"
+        android:padding="5dp"
+        android:layout_weight="1"
         android:ellipsize="end"
-        android:ems="10"
         android:singleLine="true"
-        android:hint="@string/dialog_text_item_hint"
-        android:textColor="@android:color/white" />
+        android:hint="@string/dialog_text_item_hint" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="5dp"
         android:orientation="horizontal" >
         <Button
             android:id="@+id/btnCancel"
