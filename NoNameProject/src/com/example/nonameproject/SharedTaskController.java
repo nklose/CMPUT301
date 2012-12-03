@@ -36,15 +36,6 @@ public class SharedTaskController extends TaskController{
 		tasks.add(newTask);
 		new AddSharedTaskThread().execute(newTask);
 	}
-	
-	public void updateTask(Context context, Task task, int index){
-		if(!task.getCompleted()){
-			tasks.set(index, task);
-		} else {
-			tasks.remove(index);
-		}
-		new AddSharedTaskThread().execute(task);
-	}
 
 	public void deleteTask(Context context, Task task) {
 		tasks.remove(task);
