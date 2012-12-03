@@ -84,8 +84,9 @@ public class EditSharedTaskActivity extends Activity {
 			textRB.setFocusable(true);
 			imageRB.setEnabled(true);
 			imageRB.setFocusable(true);
-			audioRB.setEnabled(true);
-			audioRB.setFocusable(true);
+			//TODO: implement audio
+//			audioRB.setEnabled(true);
+//			audioRB.setFocusable(true);
 		}
 
 		textView = (TextView) findViewById(R.id.itemsRequested);

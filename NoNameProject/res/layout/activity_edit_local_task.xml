@@ -3,33 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    
-    
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tools="http://schemas.android.com/tools"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
-        
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
         <Button
-	        android:id="@+id/shareLocalTaskButton"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
-	        android:onClick="shareTask"
-	        android:text="@string/share_button" />
-        
-	    <Button
-	        android:id="@+id/saveChangesLocalTaskButton"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
-	        android:onClick="saveTask"
-	        android:text="@string/save_changes_button" />
-    
+            android:id="@+id/shareLocalTaskButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="shareTask"
+            android:text="@string/share_button" />
+
+        <Button
+            android:id="@+id/saveChangesLocalTaskButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="saveTask"
+            android:text="@string/save_changes_button" />
     </LinearLayout>
-    
+
     <EditText
         android:id="@+id/taskTitle"
         android:layout_width="match_parent"
@@ -39,7 +37,6 @@
         android:hint="@string/add_task_title" >
 
         <requestFocus />
-        
     </EditText>
 
     <EditText
@@ -49,20 +46,21 @@
         android:ems="10"
         android:gravity="top"
         android:hint="@string/add_task_desc" />
-    
-    <EditText
-	    android:id="@+id/taskCreator"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:hint="@string/add_task_creator"
-	    android:gravity="top"
-	    android:ems="10" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tools="http://schemas.android.com/tools"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
+    <EditText
+        android:id="@+id/taskCreator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/add_task_creator" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/textView1"
@@ -72,55 +70,56 @@
             android:gravity="center"
             android:text="@string/add_task_type"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-	    
-	    <RadioGroup
-	        android:id="@+id/addTaskRadioGroup"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="wrap_content" >
-	
-	        <RadioButton
-	            android:id="@+id/addTaskTextRadio"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:checked="true"
-	            android:text="@string/add_task_text_radio" />
-	
-	        <RadioButton
-	            android:id="@+id/addTaskTextImage"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/add_task_image_radio" />
-	
-	        <RadioButton
-	            android:id="@+id/addTaskTextAudio"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/add_task_audio_radio" />
-	        
-	    </RadioGroup>
-	</LinearLayout>
-	
+
+        <RadioGroup
+            android:id="@+id/addTaskRadioGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <RadioButton
+                android:id="@+id/addTaskTextRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/add_task_text_radio" />
+
+            <RadioButton
+                android:id="@+id/addTaskTextImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_task_image_radio" />
+
+            <RadioButton
+                android:id="@+id/addTaskTextAudio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:focusable="false"
+                android:text="@string/add_task_audio_radio" />
+        </RadioGroup>
+    </LinearLayout>
+
     <EditText
-	    android:id="@+id/itemsRequested"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:hint="@string/add_task_items_requested"
-	    android:gravity="top"
-	    android:inputType="number" 
-	    android:ems="10" />
-    
+        android:id="@+id/itemsRequested"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/add_task_items_requested"
+        android:inputType="number" />
+
     <Button
-	        android:id="@+id/addItemLocalTaskButton"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:onClick="addTaskItem"
-	        android:text="@string/add_item_local_task_button" />
-    
+        android:id="@+id/addItemLocalTaskButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="addTaskItem"
+        android:text="@string/add_item_local_task_button" />
+
     <ExpandableListView
-	    android:id="@+id/localTaskItemsListView"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content">
-	</ExpandableListView>
+        android:id="@+id/localTaskItemsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ExpandableListView>
 
 </LinearLayout>
