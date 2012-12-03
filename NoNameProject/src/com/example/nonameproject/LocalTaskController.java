@@ -2,8 +2,6 @@ package com.example.nonameproject;
 
 import java.util.ArrayList;
 
-import com.example.nonameproject.Activities.ViewLocalTasksActivity;
-
 import android.content.Context;
 /**
  * Controller responsible for modifying and reading local tasks.

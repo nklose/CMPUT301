@@ -1,7 +1,5 @@
 package com.example.nonameproject;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 
 /**
@@ -9,10 +7,6 @@ import android.content.Context;
  */
 public class CompletedTaskController extends TaskController{
 
-	/* (non-Javadoc)
-	 * @see com.example.nonameproject.TaskController#addTask(com.example.nonameproject.Task)
-	 */
-	
 	public CompletedTaskController(Context context){
 		super();
 		LocalTaskController local = NoNameApp.getLocalTaskController();
@@ -25,29 +19,55 @@ public class CompletedTaskController extends TaskController{
 		}
 	}
 	
+	/**
+	 * Adds a given task to the list of completed tasks.
+	 * @param context Current context.
+	 * @param newTask Task to be added.
+	 */
 	public void addTask(Context context, Task newTask) {
 		tasks.add(newTask);
 	}
 	
+	/**
+	 * Adds a given task to the list without use of context.
+	 * @param newTask Task to be added.
+	 */
 	public void addTask(Task newTask) {
 		tasks.add(newTask);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.example.nonameproject.TaskController#deleteTask(com.example.nonameproject.Task)
+	/**
+	 * Removes a given task from the list of completed tasks.
+	 * @param context Current context.
+	 * @param task Task to be deleted.
 	 */
 	public void deleteTask(Context context, Task task) {
 		tasks.remove(task);
 	}
 	
+	/**
+	 * Removes a given task from the list without use of context.
+	 * @param task Task to be deleted.
+	 */
 	public void deleteTask(Task task) {
 		tasks.remove(task);
 	}
 	
+	/**
+	 * Removes a task specified by the given index from the list
+	 * of completed tasks.
+	 * @param context Current context.
+	 * @param index Position index of the task to be removed.
+	 */
 	public void deleteTask(Context context, int index) {
 		tasks.remove(index);
 	}
 	
+	/**
+	 * Removes a task specified by the given index from the list
+	 * of completed tasks without use of context.
+	 * @param index Position index of task to be removed.
+	 */
 	public void deleteTask(int index) {
 		tasks.remove(index);
 	}
