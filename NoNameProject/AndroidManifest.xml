@@ -85,7 +85,7 @@
             <intent-filter>
                 <action android:name="android.support.PARENT_ACTIVITY" />
 
-                <category android:name="com.example.nonameproject.Activities.MainActivity" 
+                <category android:name="com.example.nonameproject.Activities.MainActivity" />
             </intent-filter>
         </activity>
         <activity
