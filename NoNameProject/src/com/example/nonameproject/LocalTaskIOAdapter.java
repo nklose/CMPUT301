@@ -11,19 +11,16 @@ import android.content.Context;
 import android.util.Log;
 
 /**
- * Adapter responsible for task input and output to and from the local storage file on the SD card
+ * Adapter responsible for task input and output to and from the local storage file on the SD card.
  */
 public class LocalTaskIOAdapter {
 	//Location of the locally stored tasks
 	public final static String localTaskFileName = "localTasks.log";
 
-	/*
-	 * Reads in local tasks from file and returns them
-	 * 
-	 * @param
-	 * 	context -
-	 * @return
-	 * 	localTasks - ArrayList of Tasks that were stored in the local task file
+	/**
+	 * Reads in local tasks from file and returns them.
+	 * @param context Current context.
+	 * @return ArrayList of Tasks that were stored in the local task file
 	 */
 	public static ArrayList<Task> readLocalLog(Context context){
 		ArrayList<Task> localTasksFromFile = localTasksFromFile(context);
@@ -42,6 +39,11 @@ public class LocalTaskIOAdapter {
 		return localTasks;
 	}
 
+	/**
+	 * Reads a list of local tasks from the file and returns them.
+	 * @param context Current context.
+	 * @return ArrayList of Tasks that were stored in the local task file
+	 */
 	private static ArrayList<Task> localTasksFromFile(Context context) {
 		ArrayList<Task> localTasksFromFile = new ArrayList<Task>();
 		try {
@@ -56,12 +58,10 @@ public class LocalTaskIOAdapter {
 		return localTasksFromFile;
 	}
 
-	/*
-	 * Overwrites the lcoal task file with an input collection of tasks
-	 * 
-	 * @param
-	 * 	context - 
-	 * 	tasks - THe tasks to overwrite the local task file with	
+	/**
+	 * Overwrites the local task file with an input collection of tasks.
+	 * @param context Current context. 
+	 * @param tasks List of tasks to write into the local file.	
 	 */
 	public static void overwriteLocalLog(Context context, ArrayList<Task> tasks){
 		try{
@@ -78,12 +78,10 @@ public class LocalTaskIOAdapter {
 		}
 	}
 
-	/*
-	 * Appends a task to the local task file
-	 * 
-	 * @param
-	 * 	context
-	 * 	task - The Task to append to the local task file
+	/**
+	 * Appends a task to the local task file.
+	 * @param context Current context.
+	 * @param task The Task to append to the local task file.
 	 */
 	public static void appendToLocalLog(Context context, Task task){
 		try{
@@ -100,8 +98,9 @@ public class LocalTaskIOAdapter {
 		}
 	}
 
-	/*
-	 * Resets the local task file by removing all local task entries
+	/**
+	 * Resets the local task file by removing all local task entries.
+	 * @param context Current context.
 	 */
 	public static void nuke(Context context){
 		try{
