@@ -53,6 +53,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Activities.ViewCompletedTasksActivity"
+            android:label="@string/view_completed_tasks" >
+            <intent-filter>
+                <action android:name="android.support.PARENT_ACTIVITY" />
+
+                <category android:name="com.example.nonameproject.Activities.MainActivity" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Activities.ViewSharedTasksActivity"
             android:label="@string/title_activity_view_shared_tasks" >
             <intent-filter>

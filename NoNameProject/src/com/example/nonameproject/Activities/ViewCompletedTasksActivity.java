@@ -25,14 +25,14 @@ import com.example.nonameproject.R;
 
 
 public class ViewCompletedTasksActivity extends Activity {
-	private CompletedTaskBaseAdapter adapter = new CompletedTaskBaseAdapter(this);
+	private CompletedTaskBaseAdapter adapter;
 	private static String deviceId;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_completed_tasks);
-
-		final ListView listViewLog = (ListView) findViewById(R.id.localTasksListView);
+		adapter = new CompletedTaskBaseAdapter(this);
+		final ListView listViewLog = (ListView) findViewById(R.id.completedTasksListView);
 
 		try{
 			deviceId = Secure.getString(this.getContentResolver(), Secure.ANDROID_ID);
@@ -97,6 +97,7 @@ public class ViewCompletedTasksActivity extends Activity {
 		}
 		catch(Exception e){
 			Toast.makeText(ViewCompletedTasksActivity.this, "Error: "+ e.getClass().getName() + " " + e.getMessage(), Toast.LENGTH_LONG).show();
+			e.printStackTrace();
 		}
 	}
 

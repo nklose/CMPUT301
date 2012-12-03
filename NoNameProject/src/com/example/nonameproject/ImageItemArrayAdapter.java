@@ -4,6 +4,7 @@
 package com.example.nonameproject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,12 +17,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class ImageItemArrayAdapter extends ArrayAdapter<Object>{
+public class ImageItemArrayAdapter extends ArrayAdapter<TaskItem>{
 	Context context;
 	int layoutResourceId;
-	Object[] taskItems;
+	ArrayList<TaskItem> taskItems;
 	
-	public ImageItemArrayAdapter(Context context, int layoutResourceId, Object[] taskItems){
+	public ImageItemArrayAdapter(Context context, int layoutResourceId, ArrayList<TaskItem> taskItems){
 		super(context, layoutResourceId, taskItems);
 		this.context = context;
 		this.layoutResourceId = layoutResourceId;
@@ -38,7 +39,7 @@ public class ImageItemArrayAdapter extends ArrayAdapter<Object>{
 		}
 		
 		//get the imageItem
-		ImageItem imageItem = (ImageItem) taskItems[position];
+		ImageItem imageItem = (ImageItem) taskItems.get(position);
 		
 		if(imageItem != null){
 			TextView dateView = (TextView) view.findViewById(R.id.textViewDate);

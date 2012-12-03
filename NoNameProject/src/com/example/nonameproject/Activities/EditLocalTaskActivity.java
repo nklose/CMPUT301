@@ -45,7 +45,7 @@ public class EditLocalTaskActivity extends Activity {
 	private Dialog dialog;
 	private Task task;
 	private static final int TAKE_IMAGE_CODE = 111;
-	private ArrayAdapter<Object> adapter;
+	private ArrayAdapter<TaskItem> adapter;
 	private ListView listViewLog;
 	private String TAG = "EditLocalTaskActivity";
 
@@ -64,10 +64,10 @@ public class EditLocalTaskActivity extends Activity {
 		try {
 			//Check if text task
 			if(task.getType() == Task.TaskType.TASK_TEXT){
-				adapter = new ArrayAdapter<Object>(this, android.R.layout.simple_list_item_1, task.getTaskItems().toArray());
+				adapter = new ArrayAdapter<TaskItem>(this, android.R.layout.simple_list_item_1, task.getTaskItems());
 			}
 			else{
-				adapter = new ImageItemArrayAdapter(this, R.layout.custom_image_task_item_row, (TaskItem[]) task.getTaskItems().toArray());
+				adapter = new ImageItemArrayAdapter(this, R.layout.custom_image_task_item_row, task.getTaskItems());
 			}
 		} catch (Exception e) {}
 		listViewLog.setAdapter(adapter);
@@ -121,7 +121,6 @@ public class EditLocalTaskActivity extends Activity {
 					Task task = controller.getTask(position);
 					task.addTaskItem(textItem);
 					dialog.dismiss();
-					adapter.notifyDataSetChanged();
 				}
 			});
 
@@ -141,6 +140,7 @@ public class EditLocalTaskActivity extends Activity {
 			Intent intent = new Intent(this, TakeImageActivity.class);
 			startActivityForResult(intent, TAKE_IMAGE_CODE);
 		}
+		adapter.notifyDataSetChanged();
 	}
 
 	public void saveTask(View view){
@@ -262,12 +262,12 @@ public class EditLocalTaskActivity extends Activity {
 			if (resultCode == Activity.RESULT_OK) {
 				Log.i(TAG, "Returned from camera");
 				//extract image from the intent
-				Bundle extras = data.getExtras();
-				Uri image = (Uri) extras.get("image");
+				byte[] image = data.getByteArrayExtra("image");
+				String name = task.getTitle();
 				//add image to task
-				ImageItem imageItem= new ImageItem(Calendar.getInstance(), image.getPath(), convertImageToByte(image));
+				ImageItem imageItem= new ImageItem(Calendar.getInstance(), name, image);
 				task.addTaskItem(imageItem);
-				adapter = new ImageItemArrayAdapter(this, R.layout.custom_image_task_item_row, task.getTaskItems().toArray());
+				//adapter = new ImageItemArrayAdapter(this, R.layout.custom_image_task_item_row, task.getTaskItems());
 			}
 			break;
 		} 
