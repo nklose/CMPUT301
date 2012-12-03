@@ -9,14 +9,14 @@ public class CompletedTaskController extends TaskController{
 
 	public CompletedTaskController(Context context){
 		super();
-		LocalTaskController local = NoNameApp.getLocalTaskController();
-		SharedTaskController shared = NoNameApp.getSharedTaskController(context);
-		if(local.tasks.size() == 0){
-			local.readLocalTaskFile(context);
-		}
-		if(shared.tasks.size() == 0){
-			shared.readSharedTaskFile(context);
-		}
+//		LocalTaskController local = NoNameApp.getLocalTaskController();
+//		SharedTaskController shared = NoNameApp.getSharedTaskController(context);
+//		if(local.tasks.size() == 0){
+//			local.readLocalTaskFile(context);
+//		}
+//		if(shared.tasks.size() == 0){
+//			shared.readSharedTaskFile(context);
+//		}
 	}
 	
 	/**
