@@ -60,7 +60,7 @@ public class TakeImageActivity extends Activity {
 			public void onClick(View arg0)
 			{
 				//Check if a photo was taken
-				if(byteArray == null){
+				if(imageUri == null){
 					Toast.makeText(getApplicationContext(), "Image could not be saved. No image found",
 							Toast.LENGTH_LONG).show();
 
@@ -70,7 +70,7 @@ public class TakeImageActivity extends Activity {
 							Toast.LENGTH_LONG).show();
 					//Pass image back
 					Intent newIntent = new Intent();
-					newIntent.putExtra("image", byteArray);
+					newIntent.putExtra("image", imageUri);
 					setResult(Activity.RESULT_OK, newIntent);
 					finish();
 				}
@@ -102,19 +102,19 @@ public class TakeImageActivity extends Activity {
 	private void takeNewImage(){
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-		if(imageUri == null){
-			//Set up folder to store image
-			String imageFolder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/images";
-			File imageFileFolder = new File(imageFolder);
-			if(!imageFileFolder.exists()){
-				imageFileFolder.mkdir();
-			}
-
-			//Set up name for image
-			imageFilePath = imageFolder + "/" + String.valueOf(System.currentTimeMillis()) + ".jpg";
-			File imageFile = new File(imageFilePath);
-			imageUri = Uri.fromFile(imageFile);
+		//Set up folder to store image
+		String imageFolder = "/mnt/sdcard/tmp";
+		File imageFileFolder = new File(imageFolder);
+		if(!imageFileFolder.exists()){
+			imageFileFolder.mkdir();
 		}
+
+		//Set up name for image
+		imageFilePath = imageFolder + "/" + String.valueOf(System.currentTimeMillis()) + ".jpg";
+		File imageFile = new File(imageFilePath);
+		imageUri = Uri.fromFile(imageFile);
+
+		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 
 		//Start the camera activity
 		startActivityForResult(cameraIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
@@ -123,16 +123,21 @@ public class TakeImageActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 		Log.i(TAG, "onActivityResult - requestCode: " + requestCode + " resultCode: " + resultCode);
-		//if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
-			//if (resultCode == RESULT_OK) {
+		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+			if (resultCode == RESULT_OK) {
+				ImageView image = (ImageView) findViewById(R.id.imageView1);
+				String path = imageUri.getPath();
+				image.setImageDrawable(Drawable.createFromPath(path));
+				/*
 				ImageView image = (ImageView) findViewById(R.id.imageView1);
 				Log.i(TAG, "Keys are " + intent.getExtras().keySet().toString());
 				Bitmap photo = (Bitmap) intent.getExtras().get("data"); 
-	            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-	            photo.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
-	            byteArray = bytes.toByteArray();
+				ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+				photo.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+				byteArray = bytes.toByteArray();
 				image.setImageBitmap(photo);
-			//}
-		//}
+				*/
+			}
+		}
 	}
 }

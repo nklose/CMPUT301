@@ -91,6 +91,7 @@ public class EditSharedTaskActivity extends Activity {
 
 	public void addTaskItem(View view){
 		Task task = controller.getTask(position);
+		
 		if (task.getType() == Task.TaskType.TASK_TEXT){
 			dialog = new Dialog(EditSharedTaskActivity.this);
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

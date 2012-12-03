@@ -30,7 +30,6 @@ import android.widget.Toast;
 import com.example.nonameproject.ImageItem;
 import com.example.nonameproject.ImageItemArrayAdapter;
 import com.example.nonameproject.LocalTaskController;
-import com.example.nonameproject.LocalTaskItemBaseAdapter;
 import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
 import com.example.nonameproject.SharedTaskController;
