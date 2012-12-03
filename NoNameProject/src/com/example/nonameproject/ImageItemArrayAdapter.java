@@ -45,18 +45,21 @@ public class ImageItemArrayAdapter extends ArrayAdapter<TaskItem>{
 			TextView dateView = (TextView) view.findViewById(R.id.textViewDate);
 			ImageView imageView = (ImageView) view.findViewById(R.id.imageItemView);
 			
-			//Set the date
-			String date = null;
-			SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-
-			if (imageItem.getSubmitDate() != null) {
-				date = dateFormat.format(imageItem.getSubmitDate().getTime());
-			}
+			String date = date(imageItem);
 			dateView.setText(date);
 			//Decode the byte array to the image
 			Bitmap bMap = BitmapFactory.decodeByteArray(imageItem.getImageData(), 0, imageItem.getImageData().length);
 			imageView.setImageBitmap(bMap);
 		}
 		return view;
+	}
+
+	private String date(ImageItem imageItem) {
+		String date = null;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		if (imageItem.getSubmitDate() != null) {
+			date = dateFormat.format(imageItem.getSubmitDate().getTime());
+		}
+		return date;
 	}
 }
