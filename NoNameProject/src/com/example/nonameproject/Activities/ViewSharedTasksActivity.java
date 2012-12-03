@@ -1,5 +1,7 @@
 package com.example.nonameproject.Activities;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.nonameproject.LocalTaskController;
 import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
 import com.example.nonameproject.SharedTaskBaseAdapter;
@@ -43,17 +46,31 @@ public class ViewSharedTasksActivity extends Activity {
 		}
 	}
 
+	//Loads a random task
+	public void editRandomTask(View view){
+		SharedTaskController controller = NoNameApp.getSharedTaskController(getBaseContext());
+		int numTasks = controller.getNumberOfTasks(); 
+		if(numTasks > 0){
+			Random random = new Random();
+			int position = random.nextInt(controller.getNumberOfTasks());
+			// start Edit Local Task Activity
+			Intent intent = new Intent(ViewSharedTasksActivity.this, EditSharedTaskActivity.class);
+			intent.putExtra("position", position);
+			startActivity(intent);
+		}
+	}
+
 	@Override
 	public void onResume() {
 		super.onResume();
 		//Rest the ListView
 		adapter.notifyDataSetChanged();
 	}
-	
+
 	public void refreshData(){
 		adapter.notifyDataSetChanged();
 	}
-	
+
 	public void onRefresh(View view){
 		SharedTaskController sharedTaskController = NoNameApp.getSharedTaskController(this);
 		sharedTaskController.readSharedTaskFile(this);

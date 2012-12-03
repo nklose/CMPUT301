@@ -118,6 +118,7 @@ public class EditLocalTaskActivity extends Activity {
 			Intent intent = new Intent(this, TakeImageActivity.class);
 			startActivityForResult(intent, TAKE_IMAGE_CODE);
 		}
+		adapter.notifyDataSetChanged();
 	}
 
 	public void saveTask(View view){

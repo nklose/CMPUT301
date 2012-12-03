@@ -1,5 +1,7 @@
 package com.example.nonameproject.Activities;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -95,6 +97,20 @@ public class ViewCompletedTasksActivity extends Activity {
 		}
 		catch(Exception e){
 			Toast.makeText(ViewCompletedTasksActivity.this, "Error: "+ e.getClass().getName() + " " + e.getMessage(), Toast.LENGTH_LONG).show();
+		}
+	}
+
+	//Loads a random task
+	public void editRandomTask(View view){
+		CompletedTaskController controller = NoNameApp.getCompletedTaskController(getBaseContext());
+		int numTasks = controller.getNumberOfTasks(); 
+		if(numTasks > 0){
+			Random random = new Random();
+			int position = random.nextInt(controller.getNumberOfTasks());
+			// start Edit Local Task Activity
+			Intent intent = new Intent(ViewCompletedTasksActivity.this, ViewACompletedTaskActivity.class);
+			intent.putExtra("position", position);
+			startActivity(intent);
 		}
 	}
 

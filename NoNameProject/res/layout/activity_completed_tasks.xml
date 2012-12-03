@@ -18,23 +18,32 @@
             android:layout_weight="8"
             android:text="@string/completed_tasks_title"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-	    
-	    <!-- refresh drawable modified from an image found at  
+
+        <!--
+        refresh drawable modified from an image found at  
 	    http://www.softicons.com/free-icons/toolbar-icons/
-	    toolbar-icons-by-gentleface/refresh-icon -->
-	    <Button
-	        android:id="@+id/refreshButton"
-	        android:layout_width="30dp"
-	        android:layout_height="30dp"
-	        android:gravity="right"
-			android:background="@drawable/ic_refresh" />
-    
+	    toolbar-icons-by-gentleface/refresh-icon
+        -->
+
+        <Button
+            android:id="@+id/refreshButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_refresh"
+            android:gravity="right" />
     </LinearLayout>
 
-	<ListView
-	    android:id="@+id/completedTasksListView"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" >
-	</ListView>
+    <Button
+        android:id="@+id/buttonRandomTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="editRandomTask"
+        android:text="@string/random_task_btn" />
+
+    <ListView
+        android:id="@+id/completedTasksListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

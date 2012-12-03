@@ -66,5 +66,6 @@
     <string name="view_acompleted_task_title">Completed Task</string>
     <string name="text_item_description">Description</string>
     <string name="text_item_date">Date</string>
+    <string name="random_task_btn">Random Task</string>
 
 </resources>

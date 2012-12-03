@@ -32,6 +32,13 @@
     
     </LinearLayout>
 
+    <Button
+        android:id="@+id/buttonRandomTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="editRandomTask"
+        android:text="@string/random_task_btn" />
+    
 	<ListView
 	    android:id="@+id/sharedTasksListView"
 	    android:layout_width="match_parent"
