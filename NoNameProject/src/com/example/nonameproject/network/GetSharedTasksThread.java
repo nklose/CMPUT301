@@ -25,6 +25,7 @@ public class GetSharedTasksThread extends AsyncTask<Object, Void, Context> {
 			e.printStackTrace();
 		}
 		return ((Context)args[1]);
+		
 	}
 	
 	protected void onPostExecute(Context context){
