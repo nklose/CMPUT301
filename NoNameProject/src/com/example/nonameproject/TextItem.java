@@ -24,18 +24,21 @@ public class TextItem extends TaskItem{
 	}
 	
 	public String toString(){
-		String date = null;
+		String date = date();
 		StringBuilder stringBuilder = new StringBuilder("Description:");
 		stringBuilder.append(this.description);
 		stringBuilder.append("\n Date: ");
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		stringBuilder.append(date);
+		return stringBuilder.toString();
+	}
 
+	private String date() {
+		String date = null;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		if (this.getSubmitDate() != null) {
 			date = dateFormat.format(this.getSubmitDate().getTime());
 		}
-		
-		stringBuilder.append(date);
-		return stringBuilder.toString();
+		return date;
 	}
 }
