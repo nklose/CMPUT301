@@ -1,5 +1,6 @@
 package com.example.nonameproject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -23,6 +24,18 @@ public class TextItem extends TaskItem{
 	}
 	
 	public String toString(){
-		return this.description;
+		String date = null;
+		StringBuilder stringBuilder = new StringBuilder("Description:");
+		stringBuilder.append(this.description);
+		stringBuilder.append("\n Date: ");
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+		if (this.getSubmitDate() != null) {
+			date = dateFormat.format(this.getSubmitDate().getTime());
+		}
+		
+		stringBuilder.append(date);
+		return stringBuilder.toString();
 	}
 }

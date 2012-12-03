@@ -31,7 +31,7 @@ public class TakeImageActivity extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 111;
 	private String imageFilePath;
 	private static final String TAG = "TakeImageActivity";
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,7 +61,7 @@ public class TakeImageActivity extends Activity {
 				if(imageUri == null){
 					Toast.makeText(getApplicationContext(), "Image could not be saved. No image found",
 							Toast.LENGTH_LONG).show();
-					
+
 				}
 				else{
 					Toast.makeText(getApplicationContext(), "Image saved.",
@@ -83,7 +83,7 @@ public class TakeImageActivity extends Activity {
 				//Delete photo if one was taken and not saved to the task
 				if(imageUri != null){
 					if(deleteFile(imageFilePath))
-					    Log.i(TAG, "Image deleted.");
+						Log.i(TAG, "Image deleted.");
 				}
 				finish();
 			}
@@ -126,7 +126,12 @@ public class TakeImageActivity extends Activity {
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
 			if (resultCode == RESULT_OK) {
 				ImageView image = (ImageView) findViewById(R.id.imageView1);
-				image.setImageDrawable(Drawable.createFromPath(imageUri.getPath()));
+				String path = imageUri.getPath();
+				if(path != null && path != ""){
+					image.setImageDrawable(Drawable.createFromPath(path));
+				}
+				else
+					Log.e(TAG, "Unable to load image from path");
 			}
 		}
 	}

@@ -81,13 +81,16 @@
                 android:id="@+id/addTaskTextRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:enabled="false"
+                android:focusable="false"
                 android:text="@string/add_task_text_radio" />
 
             <RadioButton
                 android:id="@+id/addTaskTextImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:enabled="false"
+                android:focusable="false"
                 android:text="@string/add_task_image_radio" />
 
             <RadioButton
@@ -116,10 +119,10 @@
         android:onClick="addTaskItem"
         android:text="@string/add_item_local_task_button" />
 
-    <ExpandableListView
+    <ListView
         android:id="@+id/localTaskItemsListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-    </ExpandableListView>
+    </ListView>
 
 </LinearLayout>
