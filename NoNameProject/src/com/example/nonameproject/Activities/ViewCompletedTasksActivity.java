@@ -42,7 +42,7 @@ public class ViewCompletedTasksActivity extends Activity {
 			listViewLog.setOnItemClickListener(new OnItemClickListener() {
 				public void onItemClick(AdapterView<?> a, View v, int position, long id) { 
 					//Start the View Local Task Activity
-					Intent intent = new Intent(ViewCompletedTasksActivity.this, ViewTaskSolutionActivity.class);
+					Intent intent = new Intent(ViewCompletedTasksActivity.this, ViewACompletedTaskActivity.class);
 					intent.putExtra("position", position);
 					startActivity(intent);
 				}
