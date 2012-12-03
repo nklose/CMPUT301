@@ -26,27 +26,11 @@ public class LocalTaskIOAdapter {
 	 * 	localTasks - ArrayList of Tasks that were stored in the local task file
 	 */
 	public static ArrayList<Task> readLocalLog(Context context){
-		ArrayList<Task> localTasksFromFile = new ArrayList<Task>();
+		ArrayList<Task> localTasksFromFile = localTasksFromFile(context);
 		ArrayList<Task> localTasks = new ArrayList<Task>();
 
-		//Read all the entries from the log (if they exist)
-		try{
-			FileInputStream fis = context.openFileInput(localTaskFileName);
-			ObjectInputStream objectStream = new ObjectInputStream(fis);
-			try{
-				localTasksFromFile = (ArrayList<Task>) objectStream.readObject();
-			} finally {
-				objectStream.close();
-			}
-		} catch(ClassNotFoundException e){
-			Log.e("NoNameProject", "Unable to load entries.", e);
+		CompletedTaskController completedController = NoNameApp.getCompletedTaskController(context);
 
-		} catch(IOException e){
-			Log.e("NoNameProject", "Unable to load entries.", e);
-		}
-		
-		CompletedTaskController completedController = NoNameApp.getCompletedTaskController();
-		
 		for( int i=0; i < localTasksFromFile.size() - 1; i++){
 			if( localTasksFromFile.get(i).getCompleted() == false){
 				localTasks.add(localTasksFromFile.get(i));
@@ -57,62 +41,76 @@ public class LocalTaskIOAdapter {
 
 		return localTasks;
 	}
-	
-	/*
-	 * Overwrites the lcoal task file with an input collection of tasks
-	 * 
-	 * @param
-	 * 	context - 
-	 * 	tasks - THe tasks to overwrite the local task file with	
-	 */
-	public static void overwriteLocalLog(Context context, ArrayList<Task> tasks){
-		try{
-			FileOutputStream fos = context.openFileOutput(localTaskFileName, 
-					Context.MODE_PRIVATE);
-			ObjectOutputStream objectStream = new ObjectOutputStream(fos);
-			try{
-				objectStream.writeObject(tasks);
-			} finally {
-				objectStream.close();
-			}
-		} catch(IOException e){
-			Log.e("NoNameProject", "Unable to save entries.", e);
-		}
-	}
 
-	/*
-	 * Appends a task to the local task file
-	 * 
-	 * @param
-	 * 	context
-	 * 	task - The Task to append to the local task file
-	 */
-	public static void appendToLocalLog(Context context, Task task){
-		try{
-			FileOutputStream fos = context.openFileOutput(localTaskFileName, 
-					Context.MODE_APPEND);
-			ObjectOutputStream objectStream = new ObjectOutputStream(fos);
-			try{
-				objectStream.writeObject(task);
-			} finally {
-				objectStream.close();
-			}
-		} catch(IOException e){
-			Log.e("NoNameProject", "Unable to save entry.", e);
-		}
-	}
-
-	/*
-	 * Resets the local task file by removing all local task entries
-	 */
-	public static void nuke(Context context){
-		try{
-			FileOutputStream fos = context.openFileOutput(localTaskFileName, 
-					Context.MODE_PRIVATE);
-			ObjectOutputStream objectStream = new ObjectOutputStream(fos);
+	private static ArrayList<Task> localTasksFromFile(Context context) {
+		ArrayList<Task> localTasksFromFile = new ArrayList<Task>();
+		try {
+			FileInputStream fis = context.openFileInput(localTaskFileName);
+			ObjectInputStream objectStream = new ObjectInputStream(fis);
+			localTasksFromFile = (ArrayList<Task>) objectStream.readObject();
 			objectStream.close();
-		} catch(IOException e){
-			Log.e("NoNameProject", "Unable to save entries.", e);
+		}
+			catch (Exception e) {
+				Log.e("NoNameProject", "Unable to load entries.", e);
+			}
+			return localTasksFromFile;
+		}
+
+		/*
+		 * Overwrites the lcoal task file with an input collection of tasks
+		 * 
+		 * @param
+		 * 	context - 
+		 * 	tasks - THe tasks to overwrite the local task file with	
+		 */
+		public static void overwriteLocalLog(Context context, ArrayList<Task> tasks){
+			try{
+				FileOutputStream fos = context.openFileOutput(localTaskFileName, 
+						Context.MODE_PRIVATE);
+				ObjectOutputStream objectStream = new ObjectOutputStream(fos);
+				try{
+					objectStream.writeObject(tasks);
+				} finally {
+					objectStream.close();
+				}
+			} catch(IOException e){
+				Log.e("NoNameProject", "Unable to save entries.", e);
+			}
+		}
+
+		/*
+		 * Appends a task to the local task file
+		 * 
+		 * @param
+		 * 	context
+		 * 	task - The Task to append to the local task file
+		 */
+		public static void appendToLocalLog(Context context, Task task){
+			try{
+				FileOutputStream fos = context.openFileOutput(localTaskFileName, 
+						Context.MODE_APPEND);
+				ObjectOutputStream objectStream = new ObjectOutputStream(fos);
+				try{
+					objectStream.writeObject(task);
+				} finally {
+					objectStream.close();
+				}
+			} catch(IOException e){
+				Log.e("NoNameProject", "Unable to save entry.", e);
+			}
+		}
+
+		/*
+		 * Resets the local task file by removing all local task entries
+		 */
+		public static void nuke(Context context){
+			try{
+				FileOutputStream fos = context.openFileOutput(localTaskFileName, 
+						Context.MODE_PRIVATE);
+				ObjectOutputStream objectStream = new ObjectOutputStream(fos);
+				objectStream.close();
+			} catch(IOException e){
+				Log.e("NoNameProject", "Unable to save entries.", e);
+			}
 		}
 	}
-}

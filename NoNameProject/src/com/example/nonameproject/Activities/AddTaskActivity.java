@@ -60,9 +60,8 @@ public class AddTaskActivity extends Activity {
     	String deviceId = new String(); // unique device ID creating the task
     	Task.TaskType type = Task.TaskType.TASK_INVALID;
     	Boolean shareOnline;
-    	int numRequiredItems = 1;
-    	
-    	// get context and controllers
+    	int numRequiredItems = numRequiredItems();
+		// get context and controllers
     	Context context = this.getApplicationContext();
     	LocalTaskController localController = NoNameApp.getLocalTaskController();
     	SharedTaskController sharedController = NoNameApp.getSharedTaskController(this);
@@ -71,7 +70,6 @@ public class AddTaskActivity extends Activity {
     	EditText titleText = (EditText) findViewById(R.id.taskTitle);
     	EditText descText = (EditText) findViewById(R.id.taskDescription);
     	EditText creatorText = (EditText) findViewById(R.id.taskCreator);
-    	EditText reqItemsText = (EditText) findViewById(R.id.addTaskItemsRequested);
     	RadioButton typeTextRadio = (RadioButton) findViewById(R.id.addTaskTextRadio);
     	RadioButton typeImageRadio = (RadioButton) findViewById(R.id.addTaskImageRadio);
     	RadioButton typeAudioRadio = (RadioButton) findViewById(R.id.addTaskAudioRadio);
@@ -99,11 +97,6 @@ public class AddTaskActivity extends Activity {
     	description = descText.getText().toString();
     	creator = creatorText.getText().toString();
     	deviceId = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID); 
-    	try
-    	{
-    		numRequiredItems = Integer.parseInt(reqItemsText.getText().toString());
-    	}
-    	catch (Exception e) { }
     	Calendar submitDate = Calendar.getInstance();
     	
     	// initialize toast
@@ -159,4 +152,15 @@ public class AddTaskActivity extends Activity {
 	    	this.finish();
     	}
     }
+
+	private int numRequiredItems() throws java.lang.NumberFormatException {
+		int numRequiredItems = 1;
+		EditText reqItemsText = (EditText) findViewById(R.id.addTaskItemsRequested);
+		try {
+			numRequiredItems = Integer.parseInt(reqItemsText.getText()
+					.toString());
+		} catch (Exception e) {
+		}
+		return numRequiredItems;
+	}
 }

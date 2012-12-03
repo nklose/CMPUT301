@@ -1,8 +1,11 @@
 package com.example.nonameproject.Activities;
 
+import java.util.Random;
+
 import com.example.nonameproject.CompletedTaskController;
 import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
+import com.example.nonameproject.SharedTaskController;
 import com.example.nonameproject.Task;
 
 
@@ -14,7 +17,7 @@ import android.widget.TextView;
 
 public class ViewACompletedTaskActivity extends Activity {
 	private int position;	
-	private CompletedTaskController controller = NoNameApp.getCompletedTaskController();
+	private CompletedTaskController controller = NoNameApp.getCompletedTaskController(this);
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,4 +55,5 @@ public class ViewACompletedTaskActivity extends Activity {
 		String numItems = String.valueOf(task.getNumRequiredItems());
 		textView.setText(numItems);
 	}
+
 }

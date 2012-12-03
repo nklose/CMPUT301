@@ -1,5 +1,7 @@
 package com.example.nonameproject.Activities;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -23,14 +25,14 @@ import com.example.nonameproject.R;
 
 
 public class ViewCompletedTasksActivity extends Activity {
-	private CompletedTaskBaseAdapter adapter = new CompletedTaskBaseAdapter(this);
+	private CompletedTaskBaseAdapter adapter;
 	private static String deviceId;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_completed_tasks);
-
-		final ListView listViewLog = (ListView) findViewById(R.id.localTasksListView);
+		adapter = new CompletedTaskBaseAdapter(this);
+		final ListView listViewLog = (ListView) findViewById(R.id.completedTasksListView);
 
 		try{
 			deviceId = Secure.getString(this.getContentResolver(), Secure.ANDROID_ID);
@@ -51,7 +53,7 @@ public class ViewCompletedTasksActivity extends Activity {
 
 				public boolean onItemLongClick(AdapterView<?> a, View v, final int position, long id) 
 				{	
-					CompletedTaskController controller = NoNameApp.getCompletedTaskController();
+					CompletedTaskController controller = NoNameApp.getCompletedTaskController(ViewCompletedTasksActivity.this);
 					Task task = controller.getTask(position);
 					if( deviceId.equals(task.getDeviceId())){
 						// create a dialog to confirm deletion
@@ -65,7 +67,7 @@ public class ViewCompletedTasksActivity extends Activity {
 								which = position;
 
 								// get controller 
-								CompletedTaskController controller = NoNameApp.getCompletedTaskController();
+								CompletedTaskController controller = NoNameApp.getCompletedTaskController(ViewCompletedTasksActivity.this);
 
 								// delete the task
 								controller.deleteTask(getBaseContext(), position);
@@ -95,6 +97,21 @@ public class ViewCompletedTasksActivity extends Activity {
 		}
 		catch(Exception e){
 			Toast.makeText(ViewCompletedTasksActivity.this, "Error: "+ e.getClass().getName() + " " + e.getMessage(), Toast.LENGTH_LONG).show();
+			e.printStackTrace();
+		}
+	}
+
+	//Loads a random task
+	public void editRandomTask(View view){
+		CompletedTaskController controller = NoNameApp.getCompletedTaskController(getBaseContext());
+		int numTasks = controller.getNumberOfTasks(); 
+		if(numTasks > 0){
+			Random random = new Random();
+			int position = random.nextInt(controller.getNumberOfTasks());
+			// start Edit Local Task Activity
+			Intent intent = new Intent(ViewCompletedTasksActivity.this, ViewACompletedTaskActivity.class);
+			intent.putExtra("position", position);
+			startActivity(intent);
 		}
 	}
 

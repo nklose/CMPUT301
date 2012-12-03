@@ -25,7 +25,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class ViewTaskSolutionActivity extends Activity {
 
 	private int position;	
-	private CompletedTaskController controller = NoNameApp.getCompletedTaskController();
+	private CompletedTaskController controller = NoNameApp.getCompletedTaskController(this);
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -22,6 +22,20 @@ public abstract class TaskController {
 		return tasks.size();
 	}
 	
+	/**
+	 * @param context Current context.
+	 * @param task New task to replace previous task with.
+	 * @param index Position index of task to replace.
+	 */
+	public void updateTask(Context context, Task task, int index){
+		if(!task.getCompleted()){
+			tasks.set(index, task);
+		} else {
+			tasks.remove(index);
+		}
+		LocalTaskIOAdapter.overwriteLocalLog(context, tasks);
+	}
+	
 	abstract void addTask(Context context, Task newTask);
 	
 	abstract void deleteTask(Context context, Task task);

@@ -1,5 +1,6 @@
 package com.example.nonameproject.Activities;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Calendar;
 
@@ -15,6 +16,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
@@ -31,7 +33,7 @@ public class TakeImageActivity extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 111;
 	private String imageFilePath;
 	private static final String TAG = "TakeImageActivity";
-	
+	private byte[] byteArray = null;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,17 +60,17 @@ public class TakeImageActivity extends Activity {
 			public void onClick(View arg0)
 			{
 				//Check if a photo was taken
-				if(imageUri == null){
+				if(byteArray == null){
 					Toast.makeText(getApplicationContext(), "Image could not be saved. No image found",
 							Toast.LENGTH_LONG).show();
-					
+
 				}
 				else{
 					Toast.makeText(getApplicationContext(), "Image saved.",
 							Toast.LENGTH_LONG).show();
 					//Pass image back
 					Intent newIntent = new Intent();
-					newIntent.putExtra("image", imageUri);
+					newIntent.putExtra("image", byteArray);
 					setResult(Activity.RESULT_OK, newIntent);
 					finish();
 				}
@@ -83,7 +85,7 @@ public class TakeImageActivity extends Activity {
 				//Delete photo if one was taken and not saved to the task
 				if(imageUri != null){
 					if(deleteFile(imageFilePath))
-					    Log.i(TAG, "Image deleted.");
+						Log.i(TAG, "Image deleted.");
 				}
 				finish();
 			}
@@ -114,8 +116,6 @@ public class TakeImageActivity extends Activity {
 			imageUri = Uri.fromFile(imageFile);
 		}
 
-		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-
 		//Start the camera activity
 		startActivityForResult(cameraIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 	}
@@ -123,11 +123,16 @@ public class TakeImageActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 		Log.i(TAG, "onActivityResult - requestCode: " + requestCode + " resultCode: " + resultCode);
-		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
-			if (resultCode == RESULT_OK) {
+		//if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+			//if (resultCode == RESULT_OK) {
 				ImageView image = (ImageView) findViewById(R.id.imageView1);
-				image.setImageDrawable(Drawable.createFromPath(imageUri.getPath()));
-			}
-		}
+				Log.i(TAG, "Keys are " + intent.getExtras().keySet().toString());
+				Bitmap photo = (Bitmap) intent.getExtras().get("data"); 
+	            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+	            photo.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+	            byteArray = bytes.toByteArray();
+				image.setImageBitmap(photo);
+			//}
+		//}
 	}
 }

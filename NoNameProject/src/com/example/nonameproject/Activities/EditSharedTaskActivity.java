@@ -79,14 +79,6 @@ public class EditSharedTaskActivity extends Activity {
 		} else if (type == Task.TaskType.TASK_AUDIO){
 			audioRB.setChecked(true);
 		}
-		if( deviceId.equals(task.getDeviceId())){
-			textRB.setEnabled(true);
-			textRB.setFocusable(true);
-			imageRB.setEnabled(true);
-			imageRB.setFocusable(true);
-			audioRB.setEnabled(true);
-			audioRB.setFocusable(true);
-		}
 
 		textView = (TextView) findViewById(R.id.itemsRequested);
 		if( deviceId.equals(task.getDeviceId())){
@@ -154,7 +146,7 @@ public class EditSharedTaskActivity extends Activity {
 		EditText titleText = (EditText) findViewById(R.id.taskTitle);
 		EditText descText = (EditText) findViewById(R.id.taskDescription);
 		EditText creatorText = (EditText) findViewById(R.id.taskCreator);
-		EditText reqItemsText = (EditText) findViewById(R.id.addTaskItemsRequested);
+		EditText reqItemsText = (EditText) findViewById(R.id.itemsRequested);
 		RadioButton typeTextRadio = (RadioButton) findViewById(R.id.addTaskTextRadio);
 		RadioButton typeImageRadio = (RadioButton) findViewById(R.id.addTaskImageRadio);
 		RadioButton typeAudioRadio = (RadioButton) findViewById(R.id.addTaskAudioRadio);

@@ -29,17 +29,22 @@ public class TaskItemAdapter implements JsonSerializer<TaskItem>, JsonDeserializ
 	public TaskItem deserialize(JsonElement json, Type typeOfT,
 			JsonDeserializationContext context) throws JsonParseException {
 		
+		Class<?> classType = classType(json);
+		JsonObject jsonObject = json.getAsJsonObject();
+		return context.deserialize(jsonObject.get(INSTANCE), classType);
+	}
+
+	private Class<?> classType(JsonElement json) {
 		JsonObject jsonObject = json.getAsJsonObject();
 		JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);
 		String className = prim.getAsString();
-		
 		Class<?> classType = null;
 		try {
 			classType = Class.forName(className);
-		} catch (ClassNotFoundException e){
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			throw new JsonParseException(e.getMessage());
 		}
-		return context.deserialize(jsonObject.get(INSTANCE), classType);
+		return classType;
 	}
 }

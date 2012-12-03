@@ -17,6 +17,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -40,7 +42,7 @@ public class SharedTaskIOAdapter {
 	
 	static Gson gson = null;
 	
-	public static ArrayList<Task> getSharedTasks() throws Exception{
+	public static ArrayList<Task> getSharedTasks(Context context) throws Exception{
 
 		if( gson == null ) {
 			GsonBuilder builder = new GsonBuilder();
@@ -83,7 +85,7 @@ public class SharedTaskIOAdapter {
 
 			System.out.println(status);
 
-			CompletedTaskController completedController = NoNameApp.getCompletedTaskController();
+			CompletedTaskController completedController = NoNameApp.getCompletedTaskController(context);
 			
 			if( entity != null) {
 				InputStream is = entity.getContent();

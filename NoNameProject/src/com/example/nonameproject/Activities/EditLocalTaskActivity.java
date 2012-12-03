@@ -14,9 +14,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,12 +28,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nonameproject.ImageItem;
+import com.example.nonameproject.ImageItemArrayAdapter;
 import com.example.nonameproject.LocalTaskController;
 import com.example.nonameproject.LocalTaskItemBaseAdapter;
 import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
 import com.example.nonameproject.SharedTaskController;
 import com.example.nonameproject.Task;
+import com.example.nonameproject.TaskItem;
 import com.example.nonameproject.TextItem;
 
 public class EditLocalTaskActivity extends Activity {
@@ -40,24 +45,32 @@ public class EditLocalTaskActivity extends Activity {
 	private Dialog dialog;
 	private Task task;
 	private static final int TAKE_IMAGE_CODE = 111;
-	
-	private LocalTaskItemBaseAdapter adapter;
+	private ArrayAdapter<TaskItem> adapter;
+	private ListView listViewLog;
+	private String TAG = "EditLocalTaskActivity";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_local_task);
 
-		ListView listViewLog = (ListView) findViewById(R.id.localTaskItemsListView);
+		listViewLog = (ListView) findViewById(R.id.localTaskItemsListView);
 
-		try {
-			adapter = new LocalTaskItemBaseAdapter(this, task);
-			listViewLog.setAdapter(adapter);
-		} catch (Exception e) {}
-		
+		listViewLog.setAdapter(adapter);
+
 		Intent intent = getIntent();
 		position = intent.getIntExtra("position", 0);
 		task = controller.getTask(position);
+		try {
+			//Check if text task
+			if(task.getType() == Task.TaskType.TASK_TEXT){
+				adapter = new ArrayAdapter<TaskItem>(this, android.R.layout.simple_list_item_1, task.getTaskItems());
+			}
+			else{
+				adapter = new ImageItemArrayAdapter(this, R.layout.custom_image_task_item_row, task.getTaskItems());
+			}
+		} catch (Exception e) {}
+		listViewLog.setAdapter(adapter);
 		TextView textView = (TextView) findViewById(R.id.taskTitle);
 		textView.setText(task.getTitle());
 		textView = (TextView) findViewById(R.id.taskDescription);
@@ -74,9 +87,18 @@ public class EditLocalTaskActivity extends Activity {
 		} else if (type == Task.TaskType.TASK_AUDIO){
 			typeText = "Audio";
 		}
-		*/
-		RadioButton typeRB = (RadioButton) findViewById(R.id.addTaskTextRadio);
-		typeRB.setChecked(true);
+		 */
+		RadioButton textRB = (RadioButton) findViewById(R.id.addTaskTextRadio);
+		RadioButton imageRB = (RadioButton) findViewById(R.id.addTaskTextImage);
+		RadioButton audioRB = (RadioButton) findViewById(R.id.addTaskTextAudio);
+		Task.TaskType type = task.getType();
+		if (type == Task.TaskType.TASK_TEXT){
+			textRB.setChecked(true);
+		} else if (type == Task.TaskType.TASK_IMAGE){
+			imageRB.setChecked(true);
+		} else if (type == Task.TaskType.TASK_AUDIO){
+			audioRB.setChecked(true);
+		}
 		textView = (TextView) findViewById(R.id.itemsRequested);
 		String numItems = String.valueOf(task.getNumRequiredItems());
 		textView.setText(numItems);
@@ -118,6 +140,7 @@ public class EditLocalTaskActivity extends Activity {
 			Intent intent = new Intent(this, TakeImageActivity.class);
 			startActivityForResult(intent, TAKE_IMAGE_CODE);
 		}
+		adapter.notifyDataSetChanged();
 	}
 
 	public void saveTask(View view){
@@ -140,7 +163,7 @@ public class EditLocalTaskActivity extends Activity {
 		EditText titleText = (EditText) findViewById(R.id.taskTitle);
 		EditText descText = (EditText) findViewById(R.id.taskDescription);
 		EditText creatorText = (EditText) findViewById(R.id.taskCreator);
-		EditText reqItemsText = (EditText) findViewById(R.id.addTaskItemsRequested);
+		EditText reqItemsText = (EditText) findViewById(R.id.itemsRequested);
 		RadioButton typeTextRadio = (RadioButton) findViewById(R.id.addTaskTextRadio);
 		RadioButton typeImageRadio = (RadioButton) findViewById(R.id.addTaskImageRadio);
 		RadioButton typeAudioRadio = (RadioButton) findViewById(R.id.addTaskAudioRadio);
@@ -168,13 +191,15 @@ public class EditLocalTaskActivity extends Activity {
 		{
 			numRequiredItems = Integer.parseInt(reqItemsText.getText().toString());
 		}
-		catch (Exception e) { }
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		Calendar submitDate = oldTask.getSubmitDate();
 
 		if( completed == false && (task.getTaskItems().size() >= numRequiredItems)){
 			completed = true;
 		}
-		
+
 		// initialize toast
 		// toast code from http://developer.android.com/guide/topics/ui/notifiers/toasts.html
 		CharSequence toastText;
@@ -216,7 +241,7 @@ public class EditLocalTaskActivity extends Activity {
 			this.finish();
 		}
 	}
-	
+
 	public void shareTask(View view){
 		SharedTaskController sharedController = NoNameApp.getSharedTaskController(this.getApplicationContext());
 		LocalTaskController localController = NoNameApp.getLocalTaskController();
@@ -235,12 +260,14 @@ public class EditLocalTaskActivity extends Activity {
 		//Check if returning from take image activity
 		case (TAKE_IMAGE_CODE) : {
 			if (resultCode == Activity.RESULT_OK) {
+				Log.i(TAG, "Returned from camera");
 				//extract image from the intent
-				Bundle extras = data.getExtras();
-				Uri image = (Uri) extras.get("image");
+				byte[] image = data.getByteArrayExtra("image");
+				String name = task.getTitle();
 				//add image to task
-				ImageItem imageItem= new ImageItem(Calendar.getInstance(), image.getPath(), convertImageToByte(image));
+				ImageItem imageItem= new ImageItem(Calendar.getInstance(), name, image);
 				task.addTaskItem(imageItem);
+				//adapter = new ImageItemArrayAdapter(this, R.layout.custom_image_task_item_row, task.getTaskItems());
 			}
 			break;
 		} 

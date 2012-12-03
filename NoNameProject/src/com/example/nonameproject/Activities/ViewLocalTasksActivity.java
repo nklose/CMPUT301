@@ -1,5 +1,7 @@
 package com.example.nonameproject.Activities;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -34,7 +36,7 @@ import com.example.nonameproject.R;
 public class ViewLocalTasksActivity extends Activity 
 {
 	private LocalTaskBaseAdapter adapter;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
@@ -42,22 +44,22 @@ public class ViewLocalTasksActivity extends Activity
 		setContentView(R.layout.activity_local_tasks_list);
 
 		final ListView listViewLog = (ListView) findViewById(R.id.localTasksListView);
-		
+
 		try {
 			adapter = new LocalTaskBaseAdapter(this);
 			listViewLog.setAdapter(adapter);
-			
+
 			// listen for item clicks
 			listViewLog.setOnItemClickListener(new OnItemClickListener() {
 				public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-					
+
 					// start Edit Local Task Activity
 					Intent intent = new Intent(ViewLocalTasksActivity.this, EditLocalTaskActivity.class);
 					intent.putExtra("position", position);
 					startActivity(intent);
 				}  
 			});
-			
+
 			// get the context
 			final Context context = this.getApplicationContext();
 
@@ -68,37 +70,37 @@ public class ViewLocalTasksActivity extends Activity
 				{	
 					// create a dialog to confirm deletion
 					AlertDialog.Builder alertDialog = new AlertDialog.Builder(ViewLocalTasksActivity.this);
-			        alertDialog.setTitle("Delete this task?");
-			        alertDialog.setIcon(R.drawable.ic_x);
-			        //alertDialog.setMessage("Are you sure you want delete this?");
-			        
-			        // yes button
-			        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-			            public void onClick(DialogInterface dialog, int which) {
-		            	which = position;
-		            	
-						// get controller 
-						LocalTaskController localController = NoNameApp.getLocalTaskController();
-						
-						// delete the task
-						localController.deleteTask(context, position);
+					alertDialog.setTitle("Delete this task?");
+					alertDialog.setIcon(R.drawable.ic_x);
+					//alertDialog.setMessage("Are you sure you want delete this?");
 
-						// restart the activity
-						finish();
-						startActivity(getIntent());
-			            }
-			        });
-			 
-			        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() 
-			        {
-			            public void onClick(DialogInterface dialog, int which) 
-			            {
-			            	dialog.cancel();
-			            }
-			        });
-			 
-			     // show delete confirmation dialog
-			        alertDialog.show();
+					// yes button
+					alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							which = position;
+
+							// get controller 
+							LocalTaskController localController = NoNameApp.getLocalTaskController();
+
+							// delete the task
+							localController.deleteTask(context, position);
+
+							// restart the activity
+							finish();
+							startActivity(getIntent());
+						}
+					});
+
+					alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() 
+					{
+						public void onClick(DialogInterface dialog, int which) 
+						{
+							dialog.cancel();
+						}
+					});
+
+					// show delete confirmation dialog
+					alertDialog.show();
 
 					return true;
 				}
@@ -111,10 +113,25 @@ public class ViewLocalTasksActivity extends Activity
 		}
 	}
 
+	//Loads a random task
+	public void editRandomTask(View view){
+		LocalTaskController controller = NoNameApp.getLocalTaskController();
+		int numTasks = controller.getNumberOfTasks(); 
+		if(numTasks > 0){
+			Random random = new Random();
+			int position = random.nextInt(controller.getNumberOfTasks());
+			// start Edit Local Task Activity
+			Intent intent = new Intent(ViewLocalTasksActivity.this, EditLocalTaskActivity.class);
+			intent.putExtra("position", position);
+			startActivity(intent);
+		}
+	}
+
+
 	public void refreshData(){
 		adapter.notifyDataSetChanged();
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
