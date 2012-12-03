@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import android.app.Activity;
 
+import com.example.nonameproject.Activities.ViewSharedTasksActivity;
 import com.example.nonameproject.network.AddSharedTaskThread;
 import com.example.nonameproject.network.DeleteSharedTaskThread;
 import com.example.nonameproject.network.GetSharedTasksThread;
@@ -44,6 +45,9 @@ public class SharedTaskController extends TaskController{
 	 * @param fis
 	 */
 	public void readSharedTaskFile(Context context){
+		if( context instanceof ViewSharedTasksActivity){
+			((ViewSharedTasksActivity) context).setProgressBarIndeterminateVisibility(true);
+		}
 		new GetSharedTasksThread().execute(this, context);
 	}
 	

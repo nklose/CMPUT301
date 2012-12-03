@@ -4,7 +4,6 @@ package com.example.nonameproject;
 
 import java.text.SimpleDateFormat;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

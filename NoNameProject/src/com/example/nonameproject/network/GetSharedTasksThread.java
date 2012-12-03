@@ -18,7 +18,6 @@ public class GetSharedTasksThread extends AsyncTask<Object, Void, Context> {
 	protected Context doInBackground(Object... args) {
 		try {
 			ArrayList<Task> tasks = new ArrayList<Task>();
-			((Activity) args[1]).setProgressBarIndeterminateVisibility(true);
 			tasks = SharedTaskIOAdapter.getSharedTasks();
 			((SharedTaskController) args[0]).addAllTasks(tasks);
 		} catch (Exception e) {

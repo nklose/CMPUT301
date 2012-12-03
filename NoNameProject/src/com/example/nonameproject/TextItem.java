@@ -7,7 +7,7 @@ import java.util.Calendar;
  */
 public class TextItem extends TaskItem{
 	private String description;
-
+	
 	public TextItem(Calendar submitDate, 
 			String description){
 		super(submitDate);
