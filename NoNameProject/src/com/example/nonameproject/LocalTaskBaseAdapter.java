@@ -17,10 +17,6 @@ import android.widget.TextView;
  * Task entries are formatted as appropriate into the layout 'custom_log_row_view.xml'
  * Implementation uses modified code from:
  * 	http://geekswithblogs.net/bosuch/archive/2011/01/31/android---create-a-custom-multi-line-listview-bound-to-an.aspx
- * 
- * 
- * @author ChrisBeckett
- *
  */
 public class LocalTaskBaseAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
@@ -29,11 +25,20 @@ public class LocalTaskBaseAdapter extends BaseAdapter {
 		mInflater = LayoutInflater.from(context);
 	}
 
+	/**
+	 * Returns the number of local tasks.
+	 * @return Number of local tasks.
+	 */
 	public int getCount() {
 		LocalTaskController localTaskController = NoNameApp.getLocalTaskController();
 		return localTaskController.getNumberOfTasks();
 	}
 
+	/**
+	 * Returns the Task at a given position.
+	 * @param position The position to check.
+	 * @return The task at the given position.
+	 */
 	public Object getItem(int position) {
 		LocalTaskController localTaskController = NoNameApp.getLocalTaskController();
 		return localTaskController.getTask(position);
