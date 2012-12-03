@@ -75,7 +75,7 @@ public class TakeImageActivity extends Activity {
 			}
 		});
 		//Cancel taking a new image
-		Button btnCancelImage = (Button) findViewById(R.id.newImageButton);
+		Button btnCancelImage = (Button) findViewById(R.id.cancelImageButton);
 		btnCancelImage.setOnClickListener(new OnClickListener()
 		{
 			public void onClick(View arg0)
@@ -122,6 +122,7 @@ public class TakeImageActivity extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+		Log.i(TAG, "onActivityResult - requestCode: " + requestCode + " resultCode: " + resultCode);
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
 			if (resultCode == RESULT_OK) {
 				ImageView image = (ImageView) findViewById(R.id.imageView1);

@@ -31,10 +31,13 @@ import com.example.nonameproject.R;
  * 
  * Long pressing on a task allows the user to delete it.
  */
-public class ViewLocalTasksActivity extends Activity {
+public class ViewLocalTasksActivity extends Activity 
+{
 	private LocalTaskBaseAdapter adapter;
+	
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_local_tasks_list);
 
@@ -65,8 +68,8 @@ public class ViewLocalTasksActivity extends Activity {
 				{	
 					// create a dialog to confirm deletion
 					AlertDialog.Builder alertDialog = new AlertDialog.Builder(ViewLocalTasksActivity.this);
-			        alertDialog.setTitle("Delete Item");
-			        alertDialog.setMessage("Are you sure you want delete this?");
+			        alertDialog.setTitle("Delete this task?");
+			        //alertDialog.setMessage("Are you sure you want delete this?");
 			        
 			        // yes button
 			        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
@@ -93,7 +96,7 @@ public class ViewLocalTasksActivity extends Activity {
 			            }
 			        });
 			 
-			     // Showing Alert Message
+			     // show delete confirmation dialog
 			        alertDialog.show();
 
 					return true;
