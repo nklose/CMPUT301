@@ -1,6 +1,6 @@
 package com.example.nonameproject.Activities;
 
-import android.R;
+import com.example.nonameproject.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
