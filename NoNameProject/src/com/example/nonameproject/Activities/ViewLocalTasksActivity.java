@@ -1,7 +1,9 @@
 package com.example.nonameproject.Activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -38,9 +40,6 @@ public class ViewLocalTasksActivity extends Activity {
 
 		final ListView listViewLog = (ListView) findViewById(R.id.localTasksListView);
 		
-		// get context
-		final Context context = this.getApplicationContext();
-		
 		try {
 			adapter = new LocalTaskBaseAdapter(this);
 			listViewLog.setAdapter(adapter);
@@ -56,22 +55,47 @@ public class ViewLocalTasksActivity extends Activity {
 				}  
 			});
 			
+			// get the context
+			final Context context = this.getApplicationContext();
+
 			// listen for item long presses
 			listViewLog.setOnItemLongClickListener(new OnItemLongClickListener() {
-				
-				public boolean onItemLongClick(AdapterView<?> a, View v, int position, long id) {
-					// get controller
-					LocalTaskController localController = NoNameApp.getLocalTaskController();
-					
-					// TODO: add delete confirmation dialog
-					
-					// delete the task
-					localController.deleteTask(context, position);
-					
-					// restart the activity
-					finish();
-					startActivity(getIntent());
-					
+
+				public boolean onItemLongClick(AdapterView<?> a, View v, final int position, long id) 
+				{	
+					// create a dialog to confirm deletion
+					AlertDialog.Builder alertDialog = new AlertDialog.Builder(ViewLocalTasksActivity.this);
+			        alertDialog.setTitle("Delete Item");
+			        alertDialog.setMessage("Are you sure you want delete this?");
+			        
+			        // yes button
+			        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+			            public void onClick(DialogInterface dialog, int which) {
+		            	which = position;
+		            	
+						// get controller 
+						LocalTaskController localController = NoNameApp.getLocalTaskController();
+						
+						// delete the task
+						localController.deleteTask(context, position);
+
+						// restart the activity
+						finish();
+						startActivity(getIntent());
+			            }
+			        });
+			 
+			        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() 
+			        {
+			            public void onClick(DialogInterface dialog, int which) 
+			            {
+			            	dialog.cancel();
+			            }
+			        });
+			 
+			     // Showing Alert Message
+			        alertDialog.show();
+
 					return true;
 				}
 			});
