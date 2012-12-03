@@ -3,22 +3,27 @@ package com.example.nonameproject.Activities;
 import java.util.Random;
 
 import com.example.nonameproject.CompletedTaskController;
+import com.example.nonameproject.ImageItemArrayAdapter;
 import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
 import com.example.nonameproject.SharedTaskController;
 import com.example.nonameproject.Task;
+import com.example.nonameproject.TaskItem;
 
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class ViewACompletedTaskActivity extends Activity {
 	private int position;	
 	private CompletedTaskController controller = NoNameApp.getCompletedTaskController(this);
-
+	private ArrayAdapter<TaskItem> adapter;
+	private ListView listViewLog;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,31 +32,41 @@ public class ViewACompletedTaskActivity extends Activity {
 		position = intent.getIntExtra("position", 0);
 		Task task = controller.getTask(position);
 
-		TextView textView = (TextView) findViewById(R.id.taskTitle);
+		listViewLog = (ListView) findViewById(R.id.completedTasksListView);
+
+		position = intent.getIntExtra("position", 0);
+		task = controller.getTask(position);
+		try {
+			//Check if text task
+			if(task.getType() == Task.TaskType.TASK_TEXT){
+				adapter = new ArrayAdapter<TaskItem>(this, android.R.layout.simple_list_item_1, task.getTaskItems());
+			}
+			else{
+				adapter = new ImageItemArrayAdapter(this, R.layout.custom_image_task_item_row, task.getTaskItems());
+			}
+		} catch (Exception e) {}
+		listViewLog.setAdapter(adapter);
+		
+		TextView textView = (TextView) findViewById(R.id.completedTaskTitle);
 		textView.setText(task.getTitle());
 
-		textView = (TextView) findViewById(R.id.taskDescription);
+		textView = (TextView) findViewById(R.id.completedTaskDesc);
 		textView.setText(task.getDescription());
 
-		textView = (TextView) findViewById(R.id.taskCreator);
+		textView = (TextView) findViewById(R.id.completedTaskCreator);
 		textView.setText(task.getCreator());
 
 		Task.TaskType type = task.getType();	
-		RadioButton textRB = (RadioButton) findViewById(R.id.addTaskTextRadio);
-		textRB.setFocusable(false);
-		RadioButton imageRB = (RadioButton) findViewById(R.id.addTaskImageRadio);
-		imageRB.setFocusable(false);
-		RadioButton audioRB = (RadioButton) findViewById(R.id.addTaskAudioRadio);
-		audioRB.setFocusable(false);
+		textView = (TextView) findViewById(R.id.completedTaskType);
 		if (type == Task.TaskType.TASK_TEXT){
-			textRB.setChecked(true);
+			textView.setText("Text");
 		} else if (type == Task.TaskType.TASK_IMAGE){
-			imageRB.setChecked(true);
+			textView.setText("Image");
 		} else if (type == Task.TaskType.TASK_AUDIO){
-			audioRB.setChecked(true);
+			textView.setText("Audio");
 		}
 
-		textView = (TextView) findViewById(R.id.itemsRequested);
+		textView = (TextView) findViewById(R.id.completedTaskItemsRequested);
 		String numItems = String.valueOf(task.getNumRequiredItems());
 		textView.setText(numItems);
 	}
