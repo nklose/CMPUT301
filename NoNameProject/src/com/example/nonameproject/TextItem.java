@@ -7,6 +7,8 @@ import java.util.Calendar;
  * Represents an text item added as a task item to a task
  */
 public class TextItem extends TaskItem{
+	
+	private static final long serialVersionUID = -7437504277333051406L;
 	private String description;
 	
 	public TextItem(Calendar submitDate, 

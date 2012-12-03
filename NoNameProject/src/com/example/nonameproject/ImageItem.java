@@ -1,18 +1,12 @@
 package com.example.nonameproject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.Calendar;
-
-import android.content.ContentResolver;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 /**
  * Represents an image item added as a task item to a task
  */
 public class ImageItem extends TaskItem{
+	private static final long serialVersionUID = -972826834072674247L;
 	private String image;
 	private byte[] imageData;
 
