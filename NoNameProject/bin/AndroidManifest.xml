@@ -60,6 +60,24 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Activities.EditSharedTaskActivity"
+            android:label="@string/title_activity_edit_shared_task" >
+            <intent-filter>
+                <action android:name="android.support.PARENT_ACTIVITY" />
+
+                <category android:name="com.example.nonameproject.Activities.MainActivity" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.TakeImageActivity"
+            android:label="@string/title_activity_take_image" >
+            <intent-filter>
+                <action android:name="android.support.PARENT_ACTIVITY" />
+
+                <category android:name="com.example.nonameproject.Activities.MainActivity" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Activities.SendEmailActivity"
             android:label="@string/title_activity_send_email" >
             <intent-filter>

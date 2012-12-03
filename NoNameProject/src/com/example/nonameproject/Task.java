@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
- * Stores data used to represent a task including the task items associated wth the task
+ * Stores data used to represent a task, including any
+ * task items which have been added to the task.
  */
 public class Task implements Serializable{
 	private String id;
@@ -20,11 +21,12 @@ public class Task implements Serializable{
 	private static final long serialVersionUID = 0L;
 	private String deviceId;
 	
+	// task categories
 	public enum TaskType {
 		TASK_TEXT, TASK_IMAGE, TASK_AUDIO, TASK_INVALID;
 	}
 	
-	//Constructor used when a new task is being created
+	// create a task from scratch
 	public Task(String title, String description, String creator,
 			Integer numRequiredItems, TaskType type, 
 			Calendar submitDate, String deviceId){
@@ -40,7 +42,7 @@ public class Task implements Serializable{
 		this.deviceId = deviceId;
 	}
 	
-	//Constructor used when creating a task from existing task data
+	// create a task from existing task data
 	public Task(String id, String title, String description, String creator,
 			Integer numRequiredItems, Boolean completed, TaskType type, 
 			Calendar submitDate){
