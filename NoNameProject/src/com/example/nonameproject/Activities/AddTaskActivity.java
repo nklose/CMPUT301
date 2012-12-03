@@ -3,6 +3,7 @@ package com.example.nonameproject.Activities;
 import java.util.Calendar;
 
 import com.example.nonameproject.LocalTaskController;
+import com.example.nonameproject.LocalTaskIOAdapter;
 import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
 import com.example.nonameproject.SharedTaskController;
@@ -156,8 +157,7 @@ public class AddTaskActivity extends Activity {
 	    	}
 	    	
 	    	// return to the main screen
-	    	Intent intent = new Intent(this, MainActivity.class);
-	    	startActivity(intent);
+	    	finish();
     	}
     }
 }

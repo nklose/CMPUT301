@@ -57,7 +57,7 @@ public class LocalTaskIOAdapter {
 	public static void overwriteLocalLog(Context context, ArrayList<Task> tasks){
 		try{
 			FileOutputStream fos = context.openFileOutput(localTaskFileName, 
-					context.MODE_PRIVATE);
+					Context.MODE_PRIVATE);
 			ObjectOutputStream objectStream = new ObjectOutputStream(fos);
 			try{
 				objectStream.writeObject(tasks);
@@ -79,7 +79,7 @@ public class LocalTaskIOAdapter {
 	public static void appendToLocalLog(Context context, Task task){
 		try{
 			FileOutputStream fos = context.openFileOutput(localTaskFileName, 
-					context.MODE_APPEND);
+					Context.MODE_APPEND);
 			ObjectOutputStream objectStream = new ObjectOutputStream(fos);
 			try{
 				objectStream.writeObject(task);
@@ -97,7 +97,7 @@ public class LocalTaskIOAdapter {
 	public static void nuke(Context context){
 		try{
 			FileOutputStream fos = context.openFileOutput(localTaskFileName, 
-					context.MODE_PRIVATE);
+					Context.MODE_PRIVATE);
 			ObjectOutputStream objectStream = new ObjectOutputStream(fos);
 			objectStream.close();
 		} catch(IOException e){
