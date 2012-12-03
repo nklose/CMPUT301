@@ -1,23 +1,16 @@
 package com.example.nonameproject.Activities;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.nonameproject.CompletedTaskBaseAdapter;
 import com.example.nonameproject.R;
-import com.example.nonameproject.R.id;
-import com.example.nonameproject.R.layout;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.view.Menu;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class ViewCompletedTasksActivity extends Activity {
 	private CompletedTaskBaseAdapter adapter = new CompletedTaskBaseAdapter(this);

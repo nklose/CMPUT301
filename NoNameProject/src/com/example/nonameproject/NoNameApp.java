@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 /**
- * Represents the state of the application with the data stored in it's 3 singleton controllers
- * Each controller is related to the usage of a certian task type (shared, local, completed)
+ * Represents the state of the application with the data stored in its 3 singleton controllers
+ * Each controller is related to the usage of a certain task type (shared, local, completed)
  */
 public class NoNameApp extends Application{
 	//Singletons
