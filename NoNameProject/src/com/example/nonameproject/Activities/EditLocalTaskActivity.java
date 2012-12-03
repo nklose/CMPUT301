@@ -19,12 +19,14 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nonameproject.ImageItem;
 import com.example.nonameproject.LocalTaskController;
+import com.example.nonameproject.LocalTaskItemBaseAdapter;
 import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
 import com.example.nonameproject.SharedTaskController;
@@ -38,11 +40,21 @@ public class EditLocalTaskActivity extends Activity {
 	private Dialog dialog;
 	private Task task;
 	private static final int TAKE_IMAGE_CODE = 111;
+	
+	private LocalTaskItemBaseAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_local_task);
+
+		ListView listViewLog = (ListView) findViewById(R.id.localTaskItemsListView);
+
+		try {
+			adapter = new LocalTaskItemBaseAdapter(this, task);
+			listViewLog.setAdapter(adapter);
+		} catch (Exception e) {}
+		
 		Intent intent = getIntent();
 		position = intent.getIntExtra("position", 0);
 		task = controller.getTask(position);
@@ -52,6 +64,7 @@ public class EditLocalTaskActivity extends Activity {
 		textView.setText(task.getDescription());
 		textView = (TextView) findViewById(R.id.taskCreator);
 		textView.setText(task.getCreator());
+		/*
 		Task.TaskType type = task.getType();
 		String typeText = new String();
 		if (type == Task.TaskType.TASK_TEXT){
@@ -61,6 +74,7 @@ public class EditLocalTaskActivity extends Activity {
 		} else if (type == Task.TaskType.TASK_AUDIO){
 			typeText = "Audio";
 		}
+		*/
 		RadioButton typeRB = (RadioButton) findViewById(R.id.addTaskTextRadio);
 		typeRB.setChecked(true);
 		textView = (TextView) findViewById(R.id.itemsRequested);
@@ -107,7 +121,6 @@ public class EditLocalTaskActivity extends Activity {
 	}
 
 	public void saveTask(View view){
-		//TODO: currently this function appears to crash the app.
 		Task oldTask = controller.getTask(position);
 
 		// initalize the task variables
@@ -170,7 +183,6 @@ public class EditLocalTaskActivity extends Activity {
 		// check if inputs are valid, and toast if they are not
 		if (title.matches(""))
 		{
-			//TODO: use dialog boxes instead of toasts
 			// display missing title error
 			toastText = "Task title is required.";
 			toast = Toast.makeText(context, toastText, Toast.LENGTH_LONG);
@@ -178,7 +190,6 @@ public class EditLocalTaskActivity extends Activity {
 		}
 		else if (creator.matches(""))
 		{
-			//TODO: use dialog boxes instead of toasts
 			// display missing creator error
 			toastText = "Creator is required.";
 			toast = Toast.makeText(context, toastText, Toast.LENGTH_LONG);
@@ -186,7 +197,6 @@ public class EditLocalTaskActivity extends Activity {
 		}
 		else if (numRequiredItems < 1)
 		{
-			//TODO: use dialog boxes instead of toasts
 			// display required items error
 			toastText = "Required items must be > 0.";
 			toast = Toast.makeText(context, toastText, Toast.LENGTH_LONG);
