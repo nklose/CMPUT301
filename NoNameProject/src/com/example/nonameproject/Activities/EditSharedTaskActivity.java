@@ -18,18 +18,22 @@ import android.provider.Settings.Secure;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nonameproject.ImageItem;
+import com.example.nonameproject.ImageItemArrayAdapter;
 import com.example.nonameproject.LocalTaskController;
 import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
 import com.example.nonameproject.SharedTaskController;
 import com.example.nonameproject.Task;
+import com.example.nonameproject.TaskItem;
 import com.example.nonameproject.TextItem;
 
 public class EditSharedTaskActivity extends Activity {
@@ -39,6 +43,8 @@ public class EditSharedTaskActivity extends Activity {
 	private Dialog dialog;
 	private Task task;
 	private static final int TAKE_IMAGE_CODE = 111;
+	private ArrayAdapter<TaskItem> adapter;
+	private ListView listViewLog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,9 +52,20 @@ public class EditSharedTaskActivity extends Activity {
 		setContentView(R.layout.activity_edit_shared_task);
 		Intent intent = getIntent();
 		String deviceId = Secure.getString(this.getContentResolver(), Secure.ANDROID_ID); 
+		listViewLog = (ListView) findViewById(R.id.localTaskItemsListView);
+
 		position = intent.getIntExtra("position", 0);
 		task = controller.getTask(position);
-		
+		try {
+			//Check if text task
+			if(task.getType() == Task.TaskType.TASK_TEXT){
+				adapter = new ArrayAdapter<TaskItem>(this, android.R.layout.simple_list_item_1, task.getTaskItems());
+			}
+			else{
+				adapter = new ImageItemArrayAdapter(this, R.layout.custom_image_task_item_row, task.getTaskItems());
+			}
+		} catch (Exception e) {}
+		listViewLog.setAdapter(adapter);
 		TextView textView = (TextView) findViewById(R.id.taskTitle);
 		textView.setText(task.getTitle());
 		if( deviceId.equals(task.getDeviceId())){
@@ -67,7 +84,7 @@ public class EditSharedTaskActivity extends Activity {
 			textView.setEnabled(true);
 			textView.setFocusable(true);
 		}
-		
+
 		Task.TaskType type = task.getType();	
 		RadioButton textRB = (RadioButton) findViewById(R.id.addTaskTextRadio);
 		RadioButton imageRB = (RadioButton) findViewById(R.id.addTaskImageRadio);
@@ -91,7 +108,7 @@ public class EditSharedTaskActivity extends Activity {
 
 	public void addTaskItem(View view){
 		Task task = controller.getTask(position);
-		
+
 		if (task.getType() == Task.TaskType.TASK_TEXT){
 			dialog = new Dialog(EditSharedTaskActivity.this);
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -99,35 +116,37 @@ public class EditSharedTaskActivity extends Activity {
 
 			Button btnSave = (Button) dialog.findViewById(R.id.btnAddTextItem);
 			btnSave.setOnClickListener(new OnClickListener()
-	        {
-	        	public void onClick(View arg0)
-	        	{
-	    			EditText txtDescription = (EditText) dialog.findViewById(R.id.txtDescription);
-	    			TextItem textItem = new TextItem(Calendar.getInstance(), txtDescription.getText().toString());
-	    			Task task = controller.getTask(position);
-	    			task.addTaskItem(textItem);
-	    			dialog.dismiss();
-	        	}
-	        });
-			
+			{
+				public void onClick(View arg0)
+				{
+					EditText txtDescription = (EditText) dialog.findViewById(R.id.txtDescription);
+					TextItem textItem = new TextItem(Calendar.getInstance(), txtDescription.getText().toString());
+					Task task = controller.getTask(position);
+					task.addTaskItem(textItem);
+					dialog.dismiss();
+				}
+			});
+
 			Button btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
 			btnCancel.setOnClickListener(new OnClickListener()
-	        {
-	        	public void onClick(View arg0)
-	        	{
-	        		dialog.cancel();
-	        	}
-	        });
+			{
+				public void onClick(View arg0)
+				{
+					dialog.cancel();
+				}
+			});
 			dialog.show();
-		} else if(task.getType() == Task.TaskType.TASK_IMAGE){
+		} //Check if task is an image task
+		else if(task.getType() == Task.TaskType.TASK_IMAGE){
 			//Start the take image activity
 			Intent intent = new Intent(this, TakeImageActivity.class);
 			startActivityForResult(intent, TAKE_IMAGE_CODE);
 		}
+		adapter.notifyDataSetChanged();
 	}
 
 	public void saveTask(View view){
-		
+
 		Task oldTask = controller.getTask(position);
 
 		// initalize the task variables
@@ -151,7 +170,7 @@ public class EditSharedTaskActivity extends Activity {
 		RadioButton typeTextRadio = (RadioButton) findViewById(R.id.addTaskTextRadio);
 		RadioButton typeImageRadio = (RadioButton) findViewById(R.id.addTaskImageRadio);
 		RadioButton typeAudioRadio = (RadioButton) findViewById(R.id.addTaskAudioRadio);
-		
+
 		// set type based on radio buttons
 		if (typeTextRadio.isChecked())
 		{
@@ -179,7 +198,7 @@ public class EditSharedTaskActivity extends Activity {
 			e.printStackTrace();
 		}
 		Calendar submitDate = oldTask.getSubmitDate();
-		
+
 		if( completed == false && (task.getTaskItems().size() >= numRequiredItems)){
 			completed = true;
 		}
@@ -220,7 +239,7 @@ public class EditSharedTaskActivity extends Activity {
 			Task task = new Task(oldTask.getId(), title, description, creator, numRequiredItems,
 					completed, type, submitDate, deviceId);
 			task.setTaskItems(oldTask.getTaskItems());
-			
+
 			sharedController.updateTask(context, task, position);
 			toastText = "Task updated.";
 			toast = Toast.makeText(context, toastText, Toast.LENGTH_LONG);
@@ -228,7 +247,7 @@ public class EditSharedTaskActivity extends Activity {
 			this.finish();
 		}
 	}
-	
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -239,9 +258,10 @@ public class EditSharedTaskActivity extends Activity {
 				//extract image from the intent
 				Bundle extras = data.getExtras();
 				Uri image = (Uri) extras.get("image");
-				//add image to task
 				ImageItem imageItem= new ImageItem(Calendar.getInstance(), image.getPath(), convertImageToByte(image));
 				task.addTaskItem(imageItem);
+				if(adapter != null)
+					adapter.notifyDataSetChanged();
 			}
 			break;
 		} 
