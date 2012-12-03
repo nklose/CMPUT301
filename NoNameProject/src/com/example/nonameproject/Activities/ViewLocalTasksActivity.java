@@ -69,6 +69,7 @@ public class ViewLocalTasksActivity extends Activity
 					// create a dialog to confirm deletion
 					AlertDialog.Builder alertDialog = new AlertDialog.Builder(ViewLocalTasksActivity.this);
 			        alertDialog.setTitle("Delete this task?");
+			        alertDialog.setIcon(R.drawable.ic_x);
 			        //alertDialog.setMessage("Are you sure you want delete this?");
 			        
 			        // yes button

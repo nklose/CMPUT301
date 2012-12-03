@@ -1,17 +1,12 @@
 package com.example.nonameproject.Activities;
 
-import com.example.nonameproject.Activities.AddTaskActivity;
-import com.example.nonameproject.NoNameApp;
-import com.example.nonameproject.R;
-import com.example.nonameproject.R.layout;
-import com.example.nonameproject.R.menu;
-import com.example.nonameproject.SharedTaskController;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+
+import com.example.nonameproject.R;
 
 public class MainActivity extends Activity {
 
@@ -67,6 +62,4 @@ public class MainActivity extends Activity {
     	Intent intent = new Intent(this, ViewCompletedTasksActivity.class);
     	startActivity(intent);
     }
-    
-    
 }
