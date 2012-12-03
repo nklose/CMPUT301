@@ -2,6 +2,7 @@ package com.example.nonameproject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import android.app.Activity;
 
 import com.example.nonameproject.network.AddSharedTaskThread;
 import com.example.nonameproject.network.DeleteSharedTaskThread;
@@ -19,9 +20,12 @@ public class SharedTaskController extends TaskController{
 	/**
 	 * 
 	 */
-	public SharedTaskController() {
+	public SharedTaskController(Context context) {
 		super();
-		readSharedTaskFile();
+		if( this.tasks.size() == 0){
+			readSharedTaskFile(context);
+			//((Activity)context).setProgressBarIndeterminateVisibility(true);
+		}
 	}
 
 	public void addAllTasks(ArrayList<Task> tasks){
@@ -39,8 +43,8 @@ public class SharedTaskController extends TaskController{
 	/**
 	 * @param fis
 	 */
-	public void readSharedTaskFile(){
-		new GetSharedTasksThread().execute(this);
+	public void readSharedTaskFile(Context context){
+		new GetSharedTasksThread().execute(this, context);
 	}
 	
 	/*

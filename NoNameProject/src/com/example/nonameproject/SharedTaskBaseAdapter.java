@@ -4,6 +4,7 @@ package com.example.nonameproject;
 
 import java.text.SimpleDateFormat;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,18 +25,20 @@ import android.widget.TextView;
  */
 public class SharedTaskBaseAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
+	private Context context;
 	
 	public SharedTaskBaseAdapter(Context context) {
-		mInflater = LayoutInflater.from(context);
+		this.context = context;
+		mInflater = LayoutInflater.from(context.getApplicationContext());
 	}
 
 	public int getCount() {
-		SharedTaskController sharedTaskController = NoNameApp.getSharedTaskController();
+		SharedTaskController sharedTaskController = NoNameApp.getSharedTaskController(this.context);
 		return sharedTaskController.getNumberOfTasks();
 	}
 
 	public Object getItem(int position) {
-		SharedTaskController sharedTaskController = NoNameApp.getSharedTaskController();
+		SharedTaskController sharedTaskController = NoNameApp.getSharedTaskController(this.context);
 		return sharedTaskController.getTask(position);
 	}
 
@@ -44,7 +47,7 @@ public class SharedTaskBaseAdapter extends BaseAdapter {
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		SharedTaskController sharedTaskController = NoNameApp.getSharedTaskController();
+		SharedTaskController sharedTaskController = NoNameApp.getSharedTaskController(this.context);
 		ViewHolder holder;
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.custom_local_task_row, null);

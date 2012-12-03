@@ -64,7 +64,7 @@ public class AddTaskActivity extends Activity {
     	// get context and controllers
     	Context context = this.getApplicationContext();
     	LocalTaskController localController = NoNameApp.getLocalTaskController();
-    	SharedTaskController sharedController = NoNameApp.getSharedTaskController();
+    	SharedTaskController sharedController = NoNameApp.getSharedTaskController(this.getApplicationContext());
     	
     	// get input from user
     	EditText titleText = (EditText) findViewById(R.id.taskTitle);

@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,11 +25,13 @@ public class ViewSharedTasksActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_local_tasks_list);
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		setContentView(R.layout.activity_shared_tasks);
 
-		final ListView listViewLog = (ListView) findViewById(R.id.localTasksListView);
+		final ListView listViewLog = (ListView) findViewById(R.id.sharedTasksListView);
 
 		try{
+			this.setProgressBarIndeterminateVisibility(false);
 			adapter = new SharedTaskBaseAdapter(this);
 			listViewLog.setAdapter(adapter);
 			listViewLog.setOnItemClickListener(new OnItemClickListener() {
@@ -49,6 +52,10 @@ public class ViewSharedTasksActivity extends Activity {
 	public void onResume() {
 		super.onResume();
 		//Rest the ListView
+		adapter.notifyDataSetChanged();
+	}
+	
+	public void refreshData(){
 		adapter.notifyDataSetChanged();
 	}
 }

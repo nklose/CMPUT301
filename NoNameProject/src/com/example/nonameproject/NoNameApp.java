@@ -30,9 +30,9 @@ public class NoNameApp extends Application{
 	/**
 	 * @return
 	 */
-	public static SharedTaskController getSharedTaskController() {
+	public static SharedTaskController getSharedTaskController(Context context) {
 		if(sharedTaskController == null) 
-			sharedTaskController = new SharedTaskController();
+			sharedTaskController = new SharedTaskController(context);
 		return sharedTaskController;
 	}
 
