@@ -45,7 +45,7 @@ public class LocalTaskIOAdapter {
 			Log.e("NoNameProject", "Unable to load entries.", e);
 		}
 		
-		CompletedTaskController completedController = NoNameApp.getCompletedTaskController();
+		CompletedTaskController completedController = NoNameApp.getCompletedTaskController(context);
 		
 		for( int i=0; i < localTasksFromFile.size() - 1; i++){
 			if( localTasksFromFile.get(i).getCompleted() == false){

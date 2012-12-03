@@ -154,7 +154,7 @@ public class EditSharedTaskActivity extends Activity {
 		EditText titleText = (EditText) findViewById(R.id.taskTitle);
 		EditText descText = (EditText) findViewById(R.id.taskDescription);
 		EditText creatorText = (EditText) findViewById(R.id.taskCreator);
-		EditText reqItemsText = (EditText) findViewById(R.id.addTaskItemsRequested);
+		EditText reqItemsText = (EditText) findViewById(R.id.itemsRequested);
 		RadioButton typeTextRadio = (RadioButton) findViewById(R.id.addTaskTextRadio);
 		RadioButton typeImageRadio = (RadioButton) findViewById(R.id.addTaskImageRadio);
 		RadioButton typeAudioRadio = (RadioButton) findViewById(R.id.addTaskAudioRadio);

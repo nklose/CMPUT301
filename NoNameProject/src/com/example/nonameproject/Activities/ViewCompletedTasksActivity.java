@@ -51,7 +51,7 @@ public class ViewCompletedTasksActivity extends Activity {
 
 				public boolean onItemLongClick(AdapterView<?> a, View v, final int position, long id) 
 				{	
-					CompletedTaskController controller = NoNameApp.getCompletedTaskController();
+					CompletedTaskController controller = NoNameApp.getCompletedTaskController(ViewCompletedTasksActivity.this);
 					Task task = controller.getTask(position);
 					if( deviceId.equals(task.getDeviceId())){
 						// create a dialog to confirm deletion
@@ -65,7 +65,7 @@ public class ViewCompletedTasksActivity extends Activity {
 								which = position;
 
 								// get controller 
-								CompletedTaskController controller = NoNameApp.getCompletedTaskController();
+								CompletedTaskController controller = NoNameApp.getCompletedTaskController(ViewCompletedTasksActivity.this);
 
 								// delete the task
 								controller.deleteTask(getBaseContext(), position);

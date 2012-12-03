@@ -13,8 +13,16 @@ public class CompletedTaskController extends TaskController{
 	 * @see com.example.nonameproject.TaskController#addTask(com.example.nonameproject.Task)
 	 */
 	
-	public CompletedTaskController(){
+	public CompletedTaskController(Context context){
 		super();
+		LocalTaskController local = NoNameApp.getLocalTaskController();
+		SharedTaskController shared = NoNameApp.getSharedTaskController(context);
+		if(local.tasks.size() == 0){
+			local.readLocalTaskFile(context);
+		}
+		if(shared.tasks.size() == 0){
+			shared.readSharedTaskFile(context);
+		}
 	}
 	
 	public void addTask(Context context, Task newTask) {

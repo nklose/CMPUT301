@@ -39,9 +39,9 @@ public class NoNameApp extends Application{
 	/**
 	 * @return
 	 */
-	public static CompletedTaskController getCompletedTaskController() {
+	public static CompletedTaskController getCompletedTaskController(Context context) {
 		if(completedTaskController == null) 
-			completedTaskController = new CompletedTaskController();
+			completedTaskController = new CompletedTaskController(context);
 		return completedTaskController;
 	}
 }

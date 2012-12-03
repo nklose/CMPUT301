@@ -140,7 +140,7 @@ public class EditLocalTaskActivity extends Activity {
 		EditText titleText = (EditText) findViewById(R.id.taskTitle);
 		EditText descText = (EditText) findViewById(R.id.taskDescription);
 		EditText creatorText = (EditText) findViewById(R.id.taskCreator);
-		EditText reqItemsText = (EditText) findViewById(R.id.addTaskItemsRequested);
+		EditText reqItemsText = (EditText) findViewById(R.id.itemsRequested);
 		RadioButton typeTextRadio = (RadioButton) findViewById(R.id.addTaskTextRadio);
 		RadioButton typeImageRadio = (RadioButton) findViewById(R.id.addTaskImageRadio);
 		RadioButton typeAudioRadio = (RadioButton) findViewById(R.id.addTaskAudioRadio);
@@ -168,7 +168,9 @@ public class EditLocalTaskActivity extends Activity {
 		{
 			numRequiredItems = Integer.parseInt(reqItemsText.getText().toString());
 		}
-		catch (Exception e) { }
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		Calendar submitDate = oldTask.getSubmitDate();
 
 		if( completed == false && (task.getTaskItems().size() >= numRequiredItems)){
