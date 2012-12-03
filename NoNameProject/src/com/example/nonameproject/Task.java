@@ -18,7 +18,6 @@ public class Task implements Serializable{
 	private TaskType type;
 	private Calendar submitDate;
 	private ArrayList<TaskItem> taskItems;
-	private static final long serialVersionUID = 0L;
 	private String deviceId;
 	
 	// task categories
@@ -45,7 +44,7 @@ public class Task implements Serializable{
 	// create a task from existing task data
 	public Task(String id, String title, String description, String creator,
 			Integer numRequiredItems, Boolean completed, TaskType type, 
-			Calendar submitDate){
+			Calendar submitDate, String deviceId){
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -55,6 +54,7 @@ public class Task implements Serializable{
 		this.type = type;
 		this.submitDate = submitDate;
 		this.taskItems = new ArrayList<TaskItem>();
+		this.deviceId = deviceId;
 	}
 
 	public String getId() {

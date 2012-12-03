@@ -27,32 +27,10 @@
 	        android:layout_width="30dp"
 	        android:layout_height="30dp"
 	        android:gravity="right"
+	        android:onClick="onRefresh"
 			android:background="@drawable/ic_refresh" />
     
     </LinearLayout>
-
-	<RadioGroup
-	    android:id="@+id/sharedTasksRadio"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" 
-	    android:gravity="center"
-	    android:orientation="horizontal">
-	
-	    <RadioButton
-	        android:id="@+id/mySharedTasksRadio"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:checked="true"
-	        android:layout_marginRight="30dp"
-	        android:text="@string/my_tasks_label_radio" />
-	
-	    <RadioButton
-	        android:id="@+id/allSharedTasksRadio"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/all_tasks_label_radio" />
-	    
-	</RadioGroup>
 
 	<ListView
 	    android:id="@+id/sharedTasksListView"

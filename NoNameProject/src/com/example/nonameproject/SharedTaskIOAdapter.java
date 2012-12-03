@@ -18,6 +18,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 /**
@@ -26,47 +27,44 @@ import com.google.gson.reflect.TypeToken;
 public class SharedTaskIOAdapter {
 
 	private class OnlineContentFromList {
-		private String summary;
-		private String id;
-		
-		public String getId(){
-			return this.id;
-		}
+		public String id;
 	}
-	
-	private class OnlineContentFromGet {
-		private String summary;
-		private String id;
-		private Task content;
-		private String description;
 
-		public Task getContent(){
-			return this.content;
-		}
+	private class OnlineContentFromGet {
+		public Task content;
+		public String id;
 	}
-	
+
 	private static HttpClient httpclient = new DefaultHttpClient();
 	private static HttpPost httpPost = new HttpPost("http://crowdsourcer.softwareprocess.es/F12/CMPUT301F12T10/");
-    static Gson gson = new Gson();
+	
+	static Gson gson = null;
+	
 	public static ArrayList<Task> getSharedTasks() throws Exception{
+
+		if( gson == null ) {
+			GsonBuilder builder = new GsonBuilder();
+			builder.registerTypeAdapter(TaskItem.class, new TaskItemAdapter());
+			gson = builder.create();
+		}
 		
 		String jsonString = new String();
 		List<BasicNameValuePair> nvps = new ArrayList<BasicNameValuePair>();
 		nvps.add( new BasicNameValuePair("action", "list"));
-		
+
 		httpPost.setEntity(new UrlEncodedFormEntity(nvps));
 		HttpResponse response = httpclient.execute(httpPost);
-		
+
 		String status = response.getStatusLine().toString();
 		HttpEntity entity = response.getEntity();
-		
+
 		System.out.println(status);
-		
+
 		if( entity != null){
 			InputStream is = entity.getContent();
 			jsonString = convertStreamToString(is);
 		}
-		
+
 		entity.consumeContent();
 		Type arrayType = new TypeToken<ArrayList<OnlineContentFromList>>(){}.getType();
 		ArrayList<OnlineContentFromList> content = new ArrayList<OnlineContentFromList>();
@@ -75,30 +73,37 @@ public class SharedTaskIOAdapter {
 		for( OnlineContentFromList o : content){
 			List<BasicNameValuePair> nvpsGet = new ArrayList<BasicNameValuePair>();
 			nvpsGet.add( new BasicNameValuePair("action", "get"));
-			nvpsGet.add( new BasicNameValuePair("id", o.getId()));
-			
+			nvpsGet.add( new BasicNameValuePair("id", o.id));
+
 			httpPost.setEntity(new UrlEncodedFormEntity(nvpsGet));
 			response = httpclient.execute(httpPost);
-			
+
 			status = response.getStatusLine().toString();
 			entity = response.getEntity();
-			
+
 			System.out.println(status);
-			
+
 			if( entity != null) {
 				InputStream is = entity.getContent();
 				jsonString = convertStreamToString(is);
 				OnlineContentFromGet get = gson.fromJson(jsonString, OnlineContentFromGet.class);
-				Task task = get.getContent();
+				Task task = get.content;
+				task.setId(get.id);
 				taskList.add(task);
 			}
-			
 		}
 		return taskList;
 	}
-	
-	
+
+
 	public static void update(Task task) throws ClientProtocolException, IOException{
+		
+		if( gson == null ) {
+			GsonBuilder builder = new GsonBuilder();
+			builder.registerTypeAdapter(TaskItem.class, new TaskItemAdapter());
+			gson = builder.create();
+		}
+		
 		List <BasicNameValuePair> nvps = new ArrayList <BasicNameValuePair>();
 		nvps.add(new BasicNameValuePair("action", "update"));
 		nvps.add(new BasicNameValuePair("id", task.getId()));
@@ -109,16 +114,23 @@ public class SharedTaskIOAdapter {
 		httpPost.setEntity(new UrlEncodedFormEntity(nvps));
 		HttpResponse response = httpclient.execute(httpPost);
 
-	    String status = response.getStatusLine().toString();
-	    HttpEntity entity = response.getEntity();
+		String status = response.getStatusLine().toString();
+		HttpEntity entity = response.getEntity();
 
-	    System.out.println(status);
-	    entity.consumeContent();
-		
-		
+		System.out.println(status);
+		entity.consumeContent();
+
+
 	}
-	
+
 	public static void add(Task task) throws ClientProtocolException, IOException{
+		
+		if( gson == null ) {
+			GsonBuilder builder = new GsonBuilder();
+			builder.registerTypeAdapter(TaskItem.class, new TaskItemAdapter());
+			gson = builder.create();
+		}
+		
 		List <BasicNameValuePair> nvps = new ArrayList <BasicNameValuePair>();
 		nvps.add(new BasicNameValuePair("action", "post"));
 		nvps.add(new BasicNameValuePair("summary", task.getTitle()));
@@ -128,13 +140,13 @@ public class SharedTaskIOAdapter {
 		httpPost.setEntity(new UrlEncodedFormEntity(nvps));
 		HttpResponse response = httpclient.execute(httpPost);
 
-	    String status = response.getStatusLine().toString();
-	    HttpEntity entity = response.getEntity();
+		String status = response.getStatusLine().toString();
+		HttpEntity entity = response.getEntity();
 
-	    System.out.println(status);
-	    entity.consumeContent();
+		System.out.println(status);
+		entity.consumeContent();
 	}
-	
+
 	public static void delete(Task task) throws ClientProtocolException, IOException {
 		List <BasicNameValuePair> nvps = new ArrayList <BasicNameValuePair>();
 		nvps.add(new BasicNameValuePair("action", "remove"));
@@ -143,13 +155,13 @@ public class SharedTaskIOAdapter {
 		httpPost.setEntity(new UrlEncodedFormEntity(nvps));
 		HttpResponse response = httpclient.execute(httpPost);
 
-	    String status = response.getStatusLine().toString();
-	    HttpEntity entity = response.getEntity();
+		String status = response.getStatusLine().toString();
+		HttpEntity entity = response.getEntity();
 
-	    System.out.println(status);
-	    entity.consumeContent();
+		System.out.println(status);
+		entity.consumeContent();
 	}
-	
+
 	private static  String convertStreamToString(InputStream is) {
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -174,11 +186,11 @@ public class SharedTaskIOAdapter {
 		}
 		return sb.toString();
 	}
-	
+
 	/*
 	 * Resets CrowdSourcer by removing all shared task entries
 	 */
 	public static void nuke(){
-		
+
 	}
 }

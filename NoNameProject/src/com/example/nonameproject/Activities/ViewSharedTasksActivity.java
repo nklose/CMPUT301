@@ -10,8 +10,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
 import com.example.nonameproject.SharedTaskBaseAdapter;
+import com.example.nonameproject.SharedTaskController;
 
 public class ViewSharedTasksActivity extends Activity {
 	private SharedTaskBaseAdapter adapter;
@@ -50,5 +52,10 @@ public class ViewSharedTasksActivity extends Activity {
 	
 	public void refreshData(){
 		adapter.notifyDataSetChanged();
+	}
+	
+	public void onRefresh(View view){
+		SharedTaskController sharedTaskController = NoNameApp.getSharedTaskController(this);
+		sharedTaskController.readSharedTaskFile(this);
 	}
 }
