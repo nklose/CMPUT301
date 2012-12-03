@@ -1,5 +1,4 @@
 <resources>
-
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">NoNameActivity</string>
     <string name="app_name">NoNameApp</string>
@@ -66,5 +65,4 @@
     <string name="view_acompleted_task_title">Completed Task</string>
     <string name="text_item_description">Description</string>
     <string name="text_item_date">Date</string>
-
 </resources>
