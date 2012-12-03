@@ -26,7 +26,16 @@ public class Task implements Serializable{
 		TASK_TEXT, TASK_IMAGE, TASK_AUDIO, TASK_INVALID;
 	}
 	
-	// create a task from scratch
+	/**
+	 * Creates a task from scratch.
+	 * @param title Title of the task. (required)
+	 * @param description A description of the task. (optional)
+	 * @param creator The user who created the task. (required)
+	 * @param numRequiredItems The number of items requested. (optional; default=1)
+	 * @param type The type of the task, text or image. (required)
+	 * @param submitDate The date of submission. (generated)
+	 * @param deviceId The ID of the device used to create the task. (generated)
+	 */
 	public Task(String title, String description, String creator,
 			Integer numRequiredItems, TaskType type, 
 			Calendar submitDate, String deviceId){
@@ -42,7 +51,18 @@ public class Task implements Serializable{
 		this.deviceId = deviceId;
 	}
 	
-	// create a shared task from existing task data
+	/**
+	 * Creates a task from existing data.
+	 * @param id The unique ID number of the task, used for position indexing.
+	 * @param title The title of the task.
+	 * @param description A description of the task.
+	 * @param creator The user who created the task.
+	 * @param numRequiredItems The number of items requested. (default=1)
+	 * @param completed Whether or not the task has been completed.
+	 * @param type The type of task, text or image.
+	 * @param submitDate The date the task was submitted.
+	 * @param deviceId The device ID of the device used to create the task.
+	 */
 	public Task(String id, String title, String description, String creator,
 			Integer numRequiredItems, Boolean completed, TaskType type, 
 			Calendar submitDate, String deviceId){
@@ -58,7 +78,17 @@ public class Task implements Serializable{
 		this.deviceId = deviceId;
 	}
 	
-	// create an offline task from existing task data
+	/**
+	 * Create an online task from existing data.
+	 * @param title The title of the task.
+	 * @param description A description of the task.
+	 * @param creator The user who created the task.
+	 * @param numRequiredItems The number of items requested. (default=1)
+	 * @param completed Whether or not the task has been completed.
+	 * @param type The type of task, text or image.
+	 * @param submitDate The date the task was submitted.
+	 * @param deviceId The device ID of the device used to create the task.
+	 */
 	public Task(String title, String description, String creator,
 			Integer numRequiredItems, Boolean completed, TaskType type, 
 			Calendar submitDate, String deviceId){
@@ -154,6 +184,10 @@ public class Task implements Serializable{
 		this.deviceId = deviceId;
 	}
 
+	/**
+	 * Adds a task item to the list of task items.
+	 * @param taskItem Item to be added.
+	 */
 	public void addTaskItem(TaskItem taskItem){
 		taskItems.add(taskItem);
 	}
