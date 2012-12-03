@@ -39,6 +39,7 @@
         android:hint="@string/add_task_title" >
 
         <requestFocus />
+        
     </EditText>
 
     <EditText
@@ -96,6 +97,7 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="@string/add_task_audio_radio" />
+	        
 	    </RadioGroup>
 	</LinearLayout>
 	
@@ -120,9 +122,5 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content">
 	</ExpandableListView>
-
-    
-    
-    
 
 </LinearLayout>
