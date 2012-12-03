@@ -31,29 +31,6 @@
     
     </LinearLayout>
 
-	<RadioGroup
-	    android:id="@+id/completedTasksRadio"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" 
-	    android:gravity="center"
-	    android:orientation="horizontal">
-	
-	    <RadioButton
-	        android:id="@+id/myTasksRadio"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:checked="true"
-	        android:layout_marginRight="30dp"
-	        android:text="@string/my_tasks_label_radio" />
-	
-	    <RadioButton
-	        android:id="@+id/allTasksRadio"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/all_tasks_label_radio" />
-	    
-	</RadioGroup>
-
 	<ListView
 	    android:id="@+id/completedTasksListView"
 	    android:layout_width="match_parent"

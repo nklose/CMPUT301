@@ -83,9 +83,9 @@
             android:name=".Activities.SendEmailActivity"
             android:label="@string/title_activity_send_email" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.support.PARENT_ACTIVITY" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="com.example.nonameproject.Activities.MainActivity" />
             </intent-filter>
         </activity>
         <activity
