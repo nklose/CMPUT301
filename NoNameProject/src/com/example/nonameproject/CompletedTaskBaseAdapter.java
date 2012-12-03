@@ -15,30 +15,44 @@ import android.widget.TextView;
  * Task entries are formatted as appropriate into the layout 'custom_log_row_view.xml'
  * Implementation uses modified code from:
  * 	http://geekswithblogs.net/bosuch/archive/2011/01/31/android---create-a-custom-multi-line-listview-bound-to-an.aspx
- * 
- * 
- * @author ChrisBeckett
- *
  */
 public class CompletedTaskBaseAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	private Context context;
 	
+	/**
+	 * Creates a CompletedTaskBaseAdapter from the given context.
+	 * @param context Current context.
+	 */
 	public CompletedTaskBaseAdapter(Context context) {
 		mInflater = LayoutInflater.from(context);
 		this.context = context;
 	}
 
+	/**
+	 * Returns the number of completed tasks.
+	 * @return Number of completed tasks.
+	 */
 	public int getCount() {
 		CompletedTaskController completedTaskController = NoNameApp.getCompletedTaskController(context);
 		return completedTaskController.getNumberOfTasks();
 	}
 
+	/**
+	 * Gets the object at a given position.
+	 * @param position Position to get the object from.
+	 * @return The object at the given position.
+	 */
 	public Object getItem(int position) {
 		CompletedTaskController completedTaskController = NoNameApp.getCompletedTaskController(context);
 		return completedTaskController.getTask(position);
 	}
 
+	/**
+	 * Gets the ID of the item at the given position.
+	 * @param position Position to get the ID of.
+	 * @return the ID of the item at the given position.
+	 */
 	public long getItemId(int position) {
 		return position;
 	}
@@ -80,6 +94,11 @@ public class CompletedTaskBaseAdapter extends BaseAdapter {
 		return convertView;
 	}
 
+	/**
+	 * Holds objects needed for the view.
+	 * @param convertView The view.
+	 * @return The ViewHolder.
+	 */
 	private ViewHolder holder(View convertView) {
 		ViewHolder holder;
 		if (convertView == null) {
