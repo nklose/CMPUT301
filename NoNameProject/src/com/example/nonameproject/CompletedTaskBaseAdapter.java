@@ -45,10 +45,9 @@ public class CompletedTaskBaseAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		CompletedTaskController completedTaskController = NoNameApp.getCompletedTaskController(context);
-		ViewHolder holder;
+		ViewHolder holder = holder(convertView);
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.custom_local_task_row, null);
-			holder = new ViewHolder();
 			holder.txtDate = (TextView) convertView.findViewById(R.id.textViewDate);
 			holder.txtTitle = (TextView) convertView.findViewById(R.id.textViewTitle);
 			holder.txtType = (TextView) convertView.findViewById(R.id.textViewType);
@@ -57,7 +56,6 @@ public class CompletedTaskBaseAdapter extends BaseAdapter {
 
 			convertView.setTag(holder);
 		} else {
-			holder = (ViewHolder) convertView.getTag();
 		}
 		Task entry = completedTaskController.getTask(position);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -80,6 +78,16 @@ public class CompletedTaskBaseAdapter extends BaseAdapter {
 		holder.progressBar.setProgress(progress);
 
 		return convertView;
+	}
+
+	private ViewHolder holder(View convertView) {
+		ViewHolder holder;
+		if (convertView == null) {
+			holder = new ViewHolder();
+		} else {
+			holder = (ViewHolder) convertView.getTag();
+		}
+		return holder;
 	}
 
 	static class ViewHolder {
