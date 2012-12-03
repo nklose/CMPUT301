@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,7 +29,9 @@ public class TakeImageActivity extends Activity {
 
 	private Uri imageUri;
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 111;
-
+	private String imageFilePath;
+	private static final String TAG = "TakeImageActivity";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,10 +61,16 @@ public class TakeImageActivity extends Activity {
 				if(imageUri == null){
 					Toast.makeText(getApplicationContext(), "Image could not be saved. No image found",
 							Toast.LENGTH_LONG).show();
+					
 				}
 				else{
 					Toast.makeText(getApplicationContext(), "Image saved.",
 							Toast.LENGTH_LONG).show();
+					//Pass image back
+					Intent newIntent = new Intent();
+					newIntent.putExtra("image", imageUri);
+					setResult(Activity.RESULT_OK, newIntent);
+					finish();
 				}
 			}
 		});
@@ -71,11 +80,12 @@ public class TakeImageActivity extends Activity {
 		{
 			public void onClick(View arg0)
 			{
-				//Delete photo if one was taken
+				//Delete photo if one was taken and not saved to the task
 				if(imageUri != null){
-
+					if(deleteFile(imageFilePath))
+					    Log.i(TAG, "Image deleted.");
 				}
-				
+				finish();
 			}
 		});
 	}
@@ -99,7 +109,7 @@ public class TakeImageActivity extends Activity {
 			}
 
 			//Set up name for image
-			String imageFilePath = imageFolder + "/" + String.valueOf(System.currentTimeMillis()) + ".jpg";
+			imageFilePath = imageFolder + "/" + String.valueOf(System.currentTimeMillis()) + ".jpg";
 			File imageFile = new File(imageFilePath);
 			imageUri = Uri.fromFile(imageFile);
 		}
