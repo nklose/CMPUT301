@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 public class AddTaskActivity extends Activity {
 
+	// number of seconds to show toast messages
 	private final int TOAST_LENGTH = 3;
 	
     @Override
@@ -48,7 +49,7 @@ public class AddTaskActivity extends Activity {
     }
     
     /**
-     * Adds a task either locally or to the server online.
+     * Creates a task from scratch and either saves it locally or shares it online.
      */
     public void createTask(View view)
     {
@@ -56,7 +57,7 @@ public class AddTaskActivity extends Activity {
     	String title = new String();
     	String description = new String();
     	String creator = new String();
-    	String deviceId = new String();
+    	String deviceId = new String(); // unique device ID creating the task
     	Task.TaskType type = Task.TaskType.TASK_INVALID;
     	Boolean shareOnline;
     	int numRequiredItems = 1;
@@ -66,7 +67,7 @@ public class AddTaskActivity extends Activity {
     	LocalTaskController localController = NoNameApp.getLocalTaskController();
     	SharedTaskController sharedController = NoNameApp.getSharedTaskController(this.getApplicationContext());
     	
-    	// get input from user
+    	// get input objects
     	EditText titleText = (EditText) findViewById(R.id.taskTitle);
     	EditText descText = (EditText) findViewById(R.id.taskDescription);
     	EditText creatorText = (EditText) findViewById(R.id.taskCreator);
@@ -76,7 +77,7 @@ public class AddTaskActivity extends Activity {
     	RadioButton typeAudioRadio = (RadioButton) findViewById(R.id.addTaskAudioRadio);
     	CheckBox shareCheckbox = (CheckBox) findViewById(R.id.shareOnlineCheckbox);
     	
-    	// set type based on radio buttons
+    	// get task type from radio buttons
     	if (typeTextRadio.isChecked())
     	{
     		type = Task.TaskType.TASK_TEXT;
@@ -90,9 +91,10 @@ public class AddTaskActivity extends Activity {
     		type = Task.TaskType.TASK_AUDIO;
     	}
     	
+    	// get preference to share online or save locally
     	shareOnline = shareCheckbox.isChecked();
     	
-    	// assign inputs to variables
+    	// get inputs from input objects
     	title = titleText.getText().toString();
     	description = descText.getText().toString();
     	creator = creatorText.getText().toString();
@@ -112,7 +114,6 @@ public class AddTaskActivity extends Activity {
     	// check if inputs are valid, and toast if they are not
     	if (title.matches(""))
     	{
-    		//TODO: use dialog boxes instead of toasts
     		// display missing title error
     		toastText = "Task title is required.";
     		toast = Toast.makeText(context, toastText, TOAST_LENGTH);
@@ -120,7 +121,6 @@ public class AddTaskActivity extends Activity {
     	}
     	else if (creator.matches(""))
     	{
-    		//TODO: use dialog boxes instead of toasts
     		// display missing creator error
     		toastText = "Creator is required.";
     		toast = Toast.makeText(context, toastText, TOAST_LENGTH);
@@ -128,7 +128,6 @@ public class AddTaskActivity extends Activity {
     	}
     	else if (numRequiredItems < 1)
     	{
-    		//TODO: use dialog boxes instead of toasts
     		// display required items error
     		toastText = "Required items must be > 0.";
     		toast = Toast.makeText(context, toastText, TOAST_LENGTH);

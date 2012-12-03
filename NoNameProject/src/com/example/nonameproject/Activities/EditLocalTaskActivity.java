@@ -2,32 +2,26 @@ package com.example.nonameproject.Activities;
 
 import java.util.Calendar;
 
-import com.example.nonameproject.CompletedTaskController;
-import com.example.nonameproject.LocalTaskController;
-import com.example.nonameproject.NoNameApp;
-import com.example.nonameproject.R;
-import com.example.nonameproject.SharedTaskController;
-import com.example.nonameproject.R.layout;
-import com.example.nonameproject.Task;
-import com.example.nonameproject.TextItem;
-
-import android.os.Bundle;
-import android.provider.Settings.Secure;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.nonameproject.LocalTaskController;
+import com.example.nonameproject.NoNameApp;
+import com.example.nonameproject.R;
+import com.example.nonameproject.SharedTaskController;
+import com.example.nonameproject.Task;
+import com.example.nonameproject.TextItem;
 
 public class EditLocalTaskActivity extends Activity {
 
@@ -49,7 +43,7 @@ public class EditLocalTaskActivity extends Activity {
 		textView = (TextView) findViewById(R.id.taskCreator);
 		textView.setText(task.getCreator());
 		Task.TaskType type = task.getType();
-		String typeText = "";
+		String typeText = new String();
 		if (type == Task.TaskType.TASK_TEXT){
 			typeText = "Text";
 		} else if (type == Task.TaskType.TASK_IMAGE){

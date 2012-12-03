@@ -1,24 +1,17 @@
 package com.example.nonameproject.Activities;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import com.example.nonameproject.R;
-import com.example.nonameproject.SharedTaskBaseAdapter;
-import com.example.nonameproject.R.id;
-import com.example.nonameproject.R.layout;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.example.nonameproject.R;
+import com.example.nonameproject.SharedTaskBaseAdapter;
 
 public class ViewSharedTasksActivity extends Activity {
 	private SharedTaskBaseAdapter adapter;
