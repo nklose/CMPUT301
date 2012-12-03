@@ -9,6 +9,7 @@ import java.util.Calendar;
  * task items which have been added to the task.
  */
 public class Task implements Serializable{
+	private static final long serialVersionUID = -583565739244804544L;
 	private String id;
 	private String title;
 	private String description;
