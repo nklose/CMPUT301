@@ -41,11 +41,27 @@ public class Task implements Serializable{
 		this.deviceId = deviceId;
 	}
 	
-	// create a task from existing task data
+	// create a shared task from existing task data
 	public Task(String id, String title, String description, String creator,
 			Integer numRequiredItems, Boolean completed, TaskType type, 
 			Calendar submitDate, String deviceId){
 		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.creator = creator;
+		this.numRequiredItems = numRequiredItems;
+		this.completed = completed;
+		this.type = type;
+		this.submitDate = submitDate;
+		this.taskItems = new ArrayList<TaskItem>();
+		this.deviceId = deviceId;
+	}
+	
+	// create an offline task from existing task data
+	public Task(String title, String description, String creator,
+			Integer numRequiredItems, Boolean completed, TaskType type, 
+			Calendar submitDate, String deviceId){
+		this.id = "";
 		this.title = title;
 		this.description = description;
 		this.creator = creator;

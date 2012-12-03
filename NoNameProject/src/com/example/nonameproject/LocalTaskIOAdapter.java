@@ -26,6 +26,7 @@ public class LocalTaskIOAdapter {
 	 * 	localTasks - ArrayList of Tasks that were stored in the local task file
 	 */
 	public static ArrayList<Task> readLocalLog(Context context){
+		ArrayList<Task> localTasksFromFile = new ArrayList<Task>();
 		ArrayList<Task> localTasks = new ArrayList<Task>();
 
 		//Read all the entries from the log (if they exist)
@@ -33,7 +34,7 @@ public class LocalTaskIOAdapter {
 			FileInputStream fis = context.openFileInput(localTaskFileName);
 			ObjectInputStream objectStream = new ObjectInputStream(fis);
 			try{
-				localTasks = (ArrayList<Task>) objectStream.readObject();
+				localTasksFromFile = (ArrayList<Task>) objectStream.readObject();
 			} finally {
 				objectStream.close();
 			}
@@ -42,6 +43,16 @@ public class LocalTaskIOAdapter {
 
 		} catch(IOException e){
 			Log.e("NoNameProject", "Unable to load entries.", e);
+		}
+		
+		CompletedTaskController completedController = NoNameApp.getCompletedTaskController();
+		
+		for( int i=0; i < localTasksFromFile.size() - 1; i++){
+			if( localTasksFromFile.get(i).getCompleted() == false){
+				localTasks.add(localTasksFromFile.get(i));
+			} else {
+				completedController.addTask(localTasksFromFile.get(i));
+			}
 		}
 
 		return localTasks;

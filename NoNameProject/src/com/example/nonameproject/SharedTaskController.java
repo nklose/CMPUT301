@@ -25,7 +25,6 @@ public class SharedTaskController extends TaskController{
 		super();
 		if( this.tasks.size() == 0){
 			readSharedTaskFile(context);
-			//((Activity)context).setProgressBarIndeterminateVisibility(true);
 		}
 	}
 
@@ -34,10 +33,21 @@ public class SharedTaskController extends TaskController{
 	}
 	
 	public void addTask(Context context, Task newTask) {
+		tasks.add(newTask);
 		new AddSharedTaskThread().execute(newTask);
+	}
+	
+	public void updateTask(Context context, Task task, int index){
+		if(!task.getCompleted()){
+			tasks.set(index, task);
+		} else {
+			tasks.remove(index);
+		}
+		new AddSharedTaskThread().execute(task);
 	}
 
 	public void deleteTask(Context context, Task task) {
+		tasks.remove(task);
 		new DeleteSharedTaskThread().execute(task);
 	}
 

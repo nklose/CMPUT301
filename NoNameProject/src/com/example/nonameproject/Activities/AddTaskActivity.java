@@ -156,8 +156,7 @@ public class AddTaskActivity extends Activity {
 	    	}
 	    	
 	    	// return to the main screen
-	    	Intent intent = new Intent(this, MainActivity.class);
-	    	startActivity(intent);
+	    	this.finish();
     	}
     }
 }

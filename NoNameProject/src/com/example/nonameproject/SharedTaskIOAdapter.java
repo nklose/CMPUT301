@@ -83,13 +83,19 @@ public class SharedTaskIOAdapter {
 
 			System.out.println(status);
 
+			CompletedTaskController completedController = NoNameApp.getCompletedTaskController();
+			
 			if( entity != null) {
 				InputStream is = entity.getContent();
 				jsonString = convertStreamToString(is);
 				OnlineContentFromGet get = gson.fromJson(jsonString, OnlineContentFromGet.class);
 				Task task = get.content;
 				task.setId(get.id);
-				taskList.add(task);
+				if( task.getCompleted()==false){
+					taskList.add(task);
+				} else {
+					completedController.addTask(task);
+				}
 			}
 		}
 		return taskList;

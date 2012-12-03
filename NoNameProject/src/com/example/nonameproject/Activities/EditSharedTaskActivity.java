@@ -1,11 +1,18 @@
 package com.example.nonameproject.Activities;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.view.View;
@@ -17,6 +24,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nonameproject.ImageItem;
 import com.example.nonameproject.LocalTaskController;
 import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
@@ -29,6 +37,8 @@ public class EditSharedTaskActivity extends Activity {
 	private int position;	
 	private SharedTaskController controller = NoNameApp.getSharedTaskController(this);
 	private Dialog dialog;
+	private Task task;
+	private static final int TAKE_IMAGE_CODE = 111;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +47,7 @@ public class EditSharedTaskActivity extends Activity {
 		Intent intent = getIntent();
 		String deviceId = Secure.getString(this.getContentResolver(), Secure.ANDROID_ID); 
 		position = intent.getIntExtra("position", 0);
-		Task task = controller.getTask(position);
+		task = controller.getTask(position);
 		
 		TextView textView = (TextView) findViewById(R.id.taskTitle);
 		textView.setText(task.getTitle());
@@ -116,6 +126,10 @@ public class EditSharedTaskActivity extends Activity {
 	        	}
 	        });
 			dialog.show();
+		} else if(task.getType() == Task.TaskType.TASK_IMAGE){
+			//Start the take image activity
+			Intent intent = new Intent(this, TakeImageActivity.class);
+			startActivityForResult(intent, TAKE_IMAGE_CODE);
 		}
 	}
 
@@ -129,7 +143,8 @@ public class EditSharedTaskActivity extends Activity {
 		String creator = new String();
 		String deviceId = oldTask.getDeviceId();
 		Task.TaskType type = Task.TaskType.TASK_INVALID;
-		int numRequiredItems = 1;
+		Boolean completed = oldTask.getCompleted();
+		int numRequiredItems = oldTask.getNumRequiredItems();
 
 		// get context and controllers
 		Context context = this.getApplicationContext();
@@ -143,7 +158,7 @@ public class EditSharedTaskActivity extends Activity {
 		RadioButton typeTextRadio = (RadioButton) findViewById(R.id.addTaskTextRadio);
 		RadioButton typeImageRadio = (RadioButton) findViewById(R.id.addTaskImageRadio);
 		RadioButton typeAudioRadio = (RadioButton) findViewById(R.id.addTaskAudioRadio);
-
+		
 		// set type based on radio buttons
 		if (typeTextRadio.isChecked())
 		{
@@ -167,8 +182,14 @@ public class EditSharedTaskActivity extends Activity {
 		{
 			numRequiredItems = Integer.parseInt(reqItemsText.getText().toString());
 		}
-		catch (Exception e) { }
+		catch (Exception e) { 
+			e.printStackTrace();
+		}
 		Calendar submitDate = oldTask.getSubmitDate();
+		
+		if( completed == false && (task.getTaskItems().size() >= numRequiredItems)){
+			completed = true;
+		}
 
 		// initialize toast
 		// toast code from http://developer.android.com/guide/topics/ui/notifiers/toasts.html
@@ -203,14 +224,50 @@ public class EditSharedTaskActivity extends Activity {
 		else
 		{
 			// create the task and store it
-			Task task = new Task(title, description, creator, numRequiredItems,
-					type, submitDate, deviceId);
+			Task task = new Task(oldTask.getId(), title, description, creator, numRequiredItems,
+					completed, type, submitDate, deviceId);
 			task.setTaskItems(oldTask.getTaskItems());
 			
-			sharedController.addTask(context, task);
+			sharedController.updateTask(context, task, position);
 			toastText = "Task updated.";
 			toast = Toast.makeText(context, toastText, Toast.LENGTH_LONG);
 			toast.show();
+			this.finish();
 		}
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+		//Check if returning from take image activity
+		case (TAKE_IMAGE_CODE) : {
+			if (resultCode == Activity.RESULT_OK) {
+				//extract image from the intent
+				Bundle extras = data.getExtras();
+				Uri image = (Uri) extras.get("image");
+				//add image to task
+				ImageItem imageItem= new ImageItem(Calendar.getInstance(), image.getPath(), convertImageToByte(image));
+				task.addTaskItem(imageItem);
+			}
+			break;
+		} 
+		}
+	}
+	//Converts a image Uri to a byte array for easier storage
+	//Modified from http://colinyeoh.wordpress.com/2012/05/18/android-convert-image-uri-to-byte-array/
+	public byte[] convertImageToByte(Uri uri){
+		byte[] data = null;
+		try {
+			ContentResolver cr = getBaseContext().getContentResolver();
+			InputStream inputStream = cr.openInputStream(uri);
+			Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+			data = baos.toByteArray();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return data;
 	}
 }

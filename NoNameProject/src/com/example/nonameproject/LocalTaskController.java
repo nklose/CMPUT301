@@ -2,6 +2,8 @@ package com.example.nonameproject;
 
 import java.util.ArrayList;
 
+import com.example.nonameproject.Activities.ViewLocalTasksActivity;
+
 import android.content.Context;
 /**
  * Controller responsible for modifying and reading local tasks.
@@ -65,8 +67,13 @@ public class LocalTaskController extends TaskController{
 	 * @param index Position index of task to replace.
 	 */
 	public void updateTask(Context context, Task task, int index){
-		tasks.set(index, task);
+		if(!task.getCompleted()){
+			tasks.set(index, task);
+		} else {
+			tasks.remove(index);
+		}
 		LocalTaskIOAdapter.overwriteLocalLog(context, tasks);
+
 	}
 	
 	/**

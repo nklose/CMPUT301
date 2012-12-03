@@ -116,13 +116,12 @@ public class EditLocalTaskActivity extends Activity {
 		String creator = new String();
 		String deviceId = oldTask.getDeviceId();
 		Task.TaskType type = Task.TaskType.TASK_INVALID;
-		Boolean shareOnline = false;
+		Boolean completed = oldTask.getCompleted();
 		int numRequiredItems = 1;
 
 		// get context and controllers
 		Context context = this.getApplicationContext();
 		LocalTaskController localController = NoNameApp.getLocalTaskController();
-		SharedTaskController sharedController = NoNameApp.getSharedTaskController(this.getApplicationContext());
 
 		// get input from user
 		EditText titleText = (EditText) findViewById(R.id.taskTitle);
@@ -159,6 +158,10 @@ public class EditLocalTaskActivity extends Activity {
 		catch (Exception e) { }
 		Calendar submitDate = oldTask.getSubmitDate();
 
+		if( completed == false && (task.getTaskItems().size() >= numRequiredItems)){
+			completed = true;
+		}
+		
 		// initialize toast
 		// toast code from http://developer.android.com/guide/topics/ui/notifiers/toasts.html
 		CharSequence toastText;
@@ -193,24 +196,26 @@ public class EditLocalTaskActivity extends Activity {
 		{
 			// create the task and store it
 			Task task = new Task(title, description, creator, numRequiredItems,
-					type, submitDate, deviceId);
+					completed, type, submitDate, deviceId);
 			task.setTaskItems(oldTask.getTaskItems());
 			// save the task locally or online depending on checkbox
-			if (!shareOnline)
-			{
-				localController.updateTask(context, task, position);
-				toastText = "Task updated.";
-				toast = Toast.makeText(context, toastText, Toast.LENGTH_LONG);
-				toast.show();
-			}
-			else
-			{
-				sharedController.addTask(context, task);
-				toastText = "Task updated.";
-				toast = Toast.makeText(context, toastText, Toast.LENGTH_LONG);
-				toast.show();
-			}
+			localController.updateTask(context, task, position);
+			toastText = "Task updated.";
+			toast = Toast.makeText(context, toastText, Toast.LENGTH_LONG);
+			toast.show();
+			this.finish();
 		}
+	}
+	
+	public void shareTask(View view){
+		SharedTaskController sharedController = NoNameApp.getSharedTaskController(this.getApplicationContext());
+		LocalTaskController localController = NoNameApp.getLocalTaskController();
+		localController.deleteTask(this, task);
+		sharedController.addTask(this, task);
+		String toastText = "Task shared online.";
+		Toast toast = Toast.makeText(this, toastText, Toast.LENGTH_LONG);
+		toast.show();
+		this.finish();
 	}
 
 	@Override

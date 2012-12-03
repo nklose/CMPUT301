@@ -12,28 +12,35 @@ public class CompletedTaskController extends TaskController{
 	/* (non-Javadoc)
 	 * @see com.example.nonameproject.TaskController#addTask(com.example.nonameproject.Task)
 	 */
+	
+	public CompletedTaskController(){
+		super();
+	}
+	
 	public void addTask(Context context, Task newTask) {
-		// TODO Auto-generated method stub
-
+		tasks.add(newTask);
+	}
+	
+	public void addTask(Task newTask) {
+		tasks.add(newTask);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.example.nonameproject.TaskController#deleteTask(com.example.nonameproject.Task)
 	 */
 	public void deleteTask(Context context, Task task) {
-		// TODO Auto-generated method stub
-
+		tasks.remove(task);
 	}
 	
-	/*
-	 * Deletes the shared tasks both in memory and crowdsourcer
-	 * Used in the teardown of tests
-	 * 
-	 * @param
-	 * 	context - 
-	 */
-	public void nuke(){
-		tasks = new ArrayList<Task>();
-		SharedTaskIOAdapter.nuke();
+	public void deleteTask(Task task) {
+		tasks.remove(task);
+	}
+	
+	public void deleteTask(Context context, int index) {
+		tasks.remove(index);
+	}
+	
+	public void deleteTask(int index) {
+		tasks.remove(index);
 	}
 }

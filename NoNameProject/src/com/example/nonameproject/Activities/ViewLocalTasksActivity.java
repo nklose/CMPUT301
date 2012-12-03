@@ -110,6 +110,10 @@ public class ViewLocalTasksActivity extends Activity
 		}
 	}
 
+	public void refreshData(){
+		adapter.notifyDataSetChanged();
+	}
+	
 	@Override
 	public void onResume() {
 		super.onResume();
