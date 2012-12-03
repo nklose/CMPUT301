@@ -8,6 +8,7 @@ import com.example.nonameproject.Activities.ViewSharedTasksActivity;
 import com.example.nonameproject.network.AddSharedTaskThread;
 import com.example.nonameproject.network.DeleteSharedTaskThread;
 import com.example.nonameproject.network.GetSharedTasksThread;
+import com.example.nonameproject.network.NukeTasksThread;
 
 /**
  * Controller responsible for modifying and reading shared tasks used by the application.
@@ -67,6 +68,6 @@ public class SharedTaskController extends TaskController{
 	 */
 	public void nuke(){
 		tasks = new ArrayList<Task>();
-		SharedTaskIOAdapter.nuke();
+		new NukeTasksThread().execute();
 	}
 }

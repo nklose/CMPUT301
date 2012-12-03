@@ -198,7 +198,18 @@ public class SharedTaskIOAdapter {
 	/*
 	 * Resets CrowdSourcer by removing all shared task entries
 	 */
-	public static void nuke(){
+	public static void nuke() throws ClientProtocolException, IOException{
+		List <BasicNameValuePair> nvps = new ArrayList <BasicNameValuePair>();
+		nvps.add(new BasicNameValuePair("action", "nuke"));
+		nvps.add(new BasicNameValuePair("key", "judgedredd"));
 
+		httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+		HttpResponse response = httpclient.execute(httpPost);
+
+		String status = response.getStatusLine().toString();
+		HttpEntity entity = response.getEntity();
+
+		System.out.println(status);
+		entity.consumeContent();
 	}
 }

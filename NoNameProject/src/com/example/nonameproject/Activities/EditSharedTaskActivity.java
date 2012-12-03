@@ -50,10 +50,12 @@ public class EditSharedTaskActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_shared_task);
-		Intent intent = getIntent();
 		String deviceId = Secure.getString(this.getContentResolver(), Secure.ANDROID_ID); 
-		listViewLog = (ListView) findViewById(R.id.localTaskItemsListView);
+		listViewLog = (ListView) findViewById(R.id.sharedTaskItemsListView);
 
+		listViewLog.setAdapter(adapter);
+		
+		Intent intent = getIntent();
 		position = intent.getIntExtra("position", 0);
 		task = controller.getTask(position);
 		try {
