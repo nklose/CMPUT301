@@ -261,12 +261,19 @@ public class EditLocalTaskActivity extends Activity {
 			if (resultCode == Activity.RESULT_OK) {
 				Log.i(TAG, "Returned from camera");
 				//extract image from the intent
+				Bundle extras = data.getExtras();
+				Uri image = (Uri) extras.get("image");
+				ImageItem imageItem= new ImageItem(Calendar.getInstance(), image.getPath(), convertImageToByte(image));
+				/*
+				//extract image from the intent
 				byte[] image = data.getByteArrayExtra("image");
 				String name = task.getTitle();
 				//add image to task
 				ImageItem imageItem= new ImageItem(Calendar.getInstance(), name, image);
+				*/
 				task.addTaskItem(imageItem);
-				//adapter = new ImageItemArrayAdapter(this, R.layout.custom_image_task_item_row, task.getTaskItems());
+				if(adapter != null)
+					adapter.notifyDataSetChanged();
 			}
 			break;
 		} 

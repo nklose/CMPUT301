@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 public class TakeImageActivity extends Activity {
 
-	private Uri imageUri;
+	private static Uri imageUri;
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 111;
 	private String imageFilePath;
 	private static final String TAG = "TakeImageActivity";
@@ -121,11 +121,14 @@ public class TakeImageActivity extends Activity {
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		Log.i(TAG, "onActivityResult - requestCode: " + requestCode + " resultCode: " + resultCode);
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
 			if (resultCode == RESULT_OK) {
 				ImageView image = (ImageView) findViewById(R.id.imageView1);
+				if(data != null){
+					imageUri = data.getData();
+				}
 				String path = imageUri.getPath();
 				image.setImageDrawable(Drawable.createFromPath(path));
 				/*
@@ -136,7 +139,7 @@ public class TakeImageActivity extends Activity {
 				photo.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
 				byteArray = bytes.toByteArray();
 				image.setImageBitmap(photo);
-				*/
+				 */
 			}
 		}
 	}
