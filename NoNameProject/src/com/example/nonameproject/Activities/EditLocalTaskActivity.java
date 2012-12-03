@@ -1,11 +1,18 @@
 package com.example.nonameproject.Activities;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +23,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nonameproject.ImageItem;
 import com.example.nonameproject.LocalTaskController;
 import com.example.nonameproject.NoNameApp;
 import com.example.nonameproject.R;
@@ -28,6 +36,8 @@ public class EditLocalTaskActivity extends Activity {
 	private int position;	
 	private LocalTaskController controller = NoNameApp.getLocalTaskController();
 	private Dialog dialog;
+	private Task task;
+	private static final int TAKE_IMAGE_CODE = 111;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +45,7 @@ public class EditLocalTaskActivity extends Activity {
 		setContentView(R.layout.activity_edit_local_task);
 		Intent intent = getIntent();
 		position = intent.getIntExtra("position", 0);
-		Task task = controller.getTask(position);
+		task = controller.getTask(position);
 		TextView textView = (TextView) findViewById(R.id.taskTitle);
 		textView.setText(task.getTitle());
 		textView = (TextView) findViewById(R.id.taskDescription);
@@ -67,26 +77,32 @@ public class EditLocalTaskActivity extends Activity {
 
 			Button btnSave = (Button) dialog.findViewById(R.id.btnAddTextItem);
 			btnSave.setOnClickListener(new OnClickListener()
-	        {
-	        	public void onClick(View arg0)
-	        	{
-	    			EditText txtDescription = (EditText) dialog.findViewById(R.id.txtDescription);
-	    			TextItem textItem = new TextItem(Calendar.getInstance(), txtDescription.getText().toString());
-	    			Task task = controller.getTask(position);
-	    			task.addTaskItem(textItem);
-	    			dialog.dismiss();
-	        	}
-	        });
-			
+			{
+				public void onClick(View arg0)
+				{
+					EditText txtDescription = (EditText) dialog.findViewById(R.id.txtDescription);
+					TextItem textItem = new TextItem(Calendar.getInstance(), txtDescription.getText().toString());
+					Task task = controller.getTask(position);
+					task.addTaskItem(textItem);
+					dialog.dismiss();
+				}
+			});
+
 			Button btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
 			btnCancel.setOnClickListener(new OnClickListener()
-	        {
-	        	public void onClick(View arg0)
-	        	{
-	        		dialog.cancel();
-	        	}
-	        });
+			{
+				public void onClick(View arg0)
+				{
+					dialog.cancel();
+				}
+			});
 			dialog.show();
+		}
+		//Check if task is an image task
+		else if(task.getType() == Task.TaskType.TASK_IMAGE){
+			//Start the take image activity
+			Intent intent = new Intent(this, TakeImageActivity.class);
+			startActivityForResult(intent, TAKE_IMAGE_CODE);
 		}
 	}
 
@@ -195,5 +211,40 @@ public class EditLocalTaskActivity extends Activity {
 				toast.show();
 			}
 		}
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+		//Check if returning from take image activity
+		case (TAKE_IMAGE_CODE) : {
+			if (resultCode == Activity.RESULT_OK) {
+				//extract image from the intent
+				Bundle extras = data.getExtras();
+				Uri image = (Uri) extras.get("image");
+				//add image to task
+				ImageItem imageItem= new ImageItem(Calendar.getInstance(), image.getPath(), convertImageToByte(image));
+				task.addTaskItem(imageItem);
+			}
+			break;
+		} 
+		}
+	}
+	//Converts a image Uri to a byte array for easier storage
+	//Modified from http://colinyeoh.wordpress.com/2012/05/18/android-convert-image-uri-to-byte-array/
+	public byte[] convertImageToByte(Uri uri){
+		byte[] data = null;
+		try {
+			ContentResolver cr = getBaseContext().getContentResolver();
+			InputStream inputStream = cr.openInputStream(uri);
+			Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+			data = baos.toByteArray();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return data;
 	}
 }
