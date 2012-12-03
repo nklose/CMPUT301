@@ -1,12 +1,11 @@
 package com.example.nonameproject.Activities;
 
+import android.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-
-import com.example.nonameproject.R;
 
 public class MainActivity extends Activity {
 
