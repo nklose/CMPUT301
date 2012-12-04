@@ -32,7 +32,7 @@ public class ViewACompletedTaskActivity extends Activity {
 		position = intent.getIntExtra("position", 0);
 		Task task = controller.getTask(position);
 
-		listViewLog = (ListView) findViewById(R.id.completedTasksListView);
+		listViewLog = (ListView) findViewById(R.id.completedTaskItemsListView);
 
 		position = intent.getIntExtra("position", 0);
 		task = controller.getTask(position);
